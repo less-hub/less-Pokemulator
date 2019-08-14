@@ -1,4 +1,4 @@
-## How to install... On Arch
+## Installing... On Arch
 ---
 ```
 # Installs needed packages for Ruby and gosu
@@ -11,11 +11,24 @@ sudo pacman -S ruby
 gem install gosu
 ```
 
-## How to play
+##Installing... On other distros
 ---
-In the game main directory `ruby app.rb`
+```
+while OS != ArchLinux
+	OS.uninstall
+	OS.install("ARCH")
+end
+```
+
+## Starting the game
+---
+In the game main directory, run `ruby app.rb`
 
 Welcome to my world!
+
+## Playing
+---
+You can move your charcter with `i, j, k, l`
 
 ## Program language
 ---
