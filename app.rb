@@ -1,5 +1,6 @@
 require 'gosu'
 require './lib/player'
+require './lib/house'
 
 module ZOrder
   BACKGROUND, HOUSE, PLAYER_Z, UI = *0..3
@@ -15,9 +16,12 @@ class APP_NAME < Gosu::Window
     @background_image = Gosu::Image.new("media/bg.png")
 
     @player = Player.new(1920/2, 1080/2)
+
+    @house = House.new
   end
 
   def update
+    # --- CLASS PLAYER
     move_y = 0
     move_x = 0
 
@@ -30,11 +34,14 @@ class APP_NAME < Gosu::Window
     end
 
     @player.update(move_x, move_y)
+
+    # --- END PLAYER
   end
 
   def draw
     @background_image.draw(0, 0, ZOrder::BACKGROUND)
     @player.draw
+    @house.draw
   end
 
   def button_down(id)
