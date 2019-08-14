@@ -7,10 +7,10 @@ end
 
 WIDTH, HEIGHT = 1920, 1080
 
-class FightinGod < Gosu::Window
+class APP_NAME < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
-    self.caption = "FightinGod"
+    self.caption = "APP_NAME"
 
     @background_image = Gosu::Image.new("media/bg.png")
 
@@ -48,4 +48,4 @@ class FightinGod < Gosu::Window
 
 end
 
-FightinGod.new.show
+APP_NAME.new.show
