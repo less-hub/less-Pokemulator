@@ -15,21 +15,10 @@ class Player
   end
 
   def draw
-    offs_y = offs_x = 0
-
-    if @dir == :down
-      offs_y += 25
-    elsif @dir == :up
-      offs_y += -25
-    elsif @dir == :right
-      offs_x += 25
-    elsif @dir == :left
-      offs_x += -25
-    end
-
     factor_x = 5.0
     factor_y = 5.0
-    @cur_image.draw(@x + offs_x, @y + offs_y, ZOrder::PLAYER_Z, factor_x, factor_y)
+
+    @cur_image.draw(@x, @y, ZOrder::PLAYER_Z, factor_x, factor_y)
   end
 
   def update(move_x, move_y)
