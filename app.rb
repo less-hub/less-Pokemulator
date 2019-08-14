@@ -17,9 +17,17 @@ class FightinGod < Gosu::Window
 
   def update
     move_y = 0
+    move_x = 0
+
     move_y += 5 if Gosu.button_down? Gosu::KB_K
     move_y -= 5 if Gosu.button_down? Gosu::KB_I
-    @player.update(move_y)
+
+    if move_y == 0
+      move_x += 5 if Gosu.button_down? Gosu::KB_L
+      move_x -= 5 if Gosu.button_down? Gosu::KB_J
+    end
+
+    @player.update(move_x, move_y)
   end
 
   def draw
