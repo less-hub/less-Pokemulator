@@ -5,9 +5,11 @@ module ZOrder
   BACKGROUND, HOUSE, PLAYER_Z, UI = *0..3
 end
 
+WIDTH, HEIGHT = 1920, 1080
+
 class FightinGod < Gosu::Window
   def initialize
-    super 1920, 1080
+    super WIDTH, HEIGHT
     self.caption = "FightinGod"
 
     @background_image = Gosu::Image.new("media/bg.png")

@@ -52,22 +52,48 @@ class Player
     elsif (move_x < 0 && move_y == 0)
       @cur_image = (Gosu.milliseconds / 175 % 2 == 0) ? @walk_left1 : @walk_left2
     end
+      if (move_y > 0)
+        @dir = :down
+        unless do_i_go_off_screen_down?
+          move_y.times { @y += 1 }
+        end
+      elsif (move_y < 0)
+        @dir = :up
+        move_y = -move_y
+        unless do_i_go_off_screen_up?
+          move_y.times { @y -= 1 }
+        end
+      elsif (move_x > 0)
+        @dir = :right
+        unless do_i_go_off_screen_right?
+          move_x.times { @x += 1 }
+        end
+      elsif (move_x < 0)
+        @dir = :left
+        move_x = -move_x
+        unless do_i_go_off_screen_left?
+          move_x.times { @x -= 1 }
+        end
+      end
+  end
 
+  def do_i_go_off_screen_right?
+    # 95 = 70px WIDTH HERO + 25px MOVEMENT ON X
+    @x > WIDTH - 95
+  end
 
-    if (move_y > 0)
-      @dir = :down
-      move_y.times { @y += 1 }
-    elsif (move_y < 0)
-      @dir = :up
-      move_y = -move_y
-      move_y.times { @y -= 1 }
-    elsif (move_x > 0)
-      @dir = :right
-      move_x.times { @x += 1 }
-    elsif (move_x < 0)
-      @dir = :left
-      move_x = -move_x
-      move_x.times { @x -= 1 }
-    end
+  def do_i_go_off_screen_left?
+    # 25px MOVEMENT ON X
+    @x < 25
+  end
+
+  def do_i_go_off_screen_up?
+    # 25px MOVEMENT ON Y
+    @y < 25
+  end
+
+  def do_i_go_off_screen_down?
+    # 125 = BOOOOOH
+    @y > HEIGHT - 125
   end
 end
