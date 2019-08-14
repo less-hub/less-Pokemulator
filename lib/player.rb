@@ -67,22 +67,22 @@ class Player
   end
 
   def do_i_go_off_screen_right?
-    # 95 = 70px WIDTH HERO + 25px MOVEMENT ON X
-    @x > WIDTH - 95
+    # 95 = 70px WIDTH HERO
+    @x > WIDTH - 70
   end
 
   def do_i_go_off_screen_left?
-    # 25px MOVEMENT ON X
-    @x < 25
+    # OFF_SCREEN LEFT = 0
+    @x < 0
   end
 
   def do_i_go_off_screen_up?
-    # 25px MOVEMENT ON Y
-    @y < 25
+    # OFF_SCREEN UP = 0
+    @y < 0
   end
 
   def do_i_go_off_screen_down?
-    # 125 = BOOOOOH
-    @y > HEIGHT - 125
+    # 100 = BOOOOOH
+    @y > HEIGHT - 100
   end
 end
