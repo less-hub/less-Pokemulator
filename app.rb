@@ -16,7 +16,7 @@ class APP_NAME < Gosu::Window
 
     @background_image = Gosu::Image.new("media/bg.png")
 
-    @player = Player.new(1920/2, 1080/2)
+    @player = Player.new(1920/2 - 30, 1080/2 - 30)
 
     @village = Village.new(3)
 

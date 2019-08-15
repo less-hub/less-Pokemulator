@@ -10,6 +10,10 @@ class Village
     @house2 = House.new
     @house2.warp(1200, 300)
     @village.push(@house2)
+
+    @house3 = House.new
+    @house3.warp(200, 600)
+    @village.push(@house3)
   end
 
   def draw
