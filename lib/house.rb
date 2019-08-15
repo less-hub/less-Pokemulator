@@ -15,4 +15,9 @@ class House
   def draw
     @image.draw(@x, @y, ZOrder::HOUSE, @factor_x, @factor_y)
   end
+
+  def warp(x, y)
+    @x = x
+    @y = y
+  end
 end
