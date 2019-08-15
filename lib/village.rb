@@ -24,10 +24,6 @@ class Village
 
   end
 
-  def at(pos)
-    @village[pos]
-  end
-
   def colliding_to_houses?(x, y, dir)
     @village.detect { |house| house.collide?(x, y, dir)}
   end

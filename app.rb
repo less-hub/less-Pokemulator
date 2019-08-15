@@ -16,11 +16,11 @@ class APP_NAME < Gosu::Window
 
     @background_image = Gosu::Image.new("media/bg.png")
 
-    @player = Player.new(1920/2 - 30, 1080/2 - 30)
+    @player = Player.new(1920/2, 1080/2)
 
     @village = Village.new(3)
 
-#    @camera_x = @camera_y = 0
+    @camera_x = @camera_y = 0
 
   end
 
@@ -39,16 +39,18 @@ class APP_NAME < Gosu::Window
 
     @player.update(move_x, move_y)
 
-#    @camera_x = [@player.x - WIDTH / 2, 0].max
-#    @camera_y = [@player.y - HEIGHT / 2, 0].max
+    @camera_x = [[@player.x - WIDTH / 2, 0].max, WIDTH].min
+    @camera_y = [[@player.y - HEIGHT / 2, 0].max, HEIGHT].min
 
     # --- END PLAYER
   end
 
   def draw
-    @background_image.draw(0, 0, ZOrder::BACKGROUND)
-    @player.draw
-    @village.draw
+    Gosu.translate(-@camera_x, -@camera_y) do
+      @background_image.draw(0, 0, ZOrder::BACKGROUND)
+      @player.draw
+      @village.draw
+    end
   end
 
   def button_down(id)
