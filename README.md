@@ -35,6 +35,7 @@ You can move your charcter with `i, j, k, l`
 * Player can't move on top of top-left corner of house.
 
 ## TO-DO list
+---
 
 * Add (basic) map of local zone
 * Add (basic) map of world zone
