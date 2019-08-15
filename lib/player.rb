@@ -1,4 +1,6 @@
 class Player
+  attr_reader :x, :y
+  
   def initialize(x, y)
     @x = x
     @y = y
@@ -16,8 +18,8 @@ class Player
   end
 
   def draw
-    factor_x = 5.0
-    factor_y = 5.0
+    factor_x = 3.0
+    factor_y = 3.0
 
     @cur_image.draw(@x, @y, ZOrder::PLAYER_Z, factor_x, factor_y)
 

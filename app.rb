@@ -20,6 +20,8 @@ class APP_NAME < Gosu::Window
 
     @village = Village.new(3)
 
+#    @camera_x = @camera_y = 0
+
   end
 
   def update
@@ -36,6 +38,9 @@ class APP_NAME < Gosu::Window
     end
 
     @player.update(move_x, move_y)
+
+#    @camera_x = [@player.x - WIDTH / 2, 0].max
+#    @camera_y = [@player.y - HEIGHT / 2, 0].max
 
     # --- END PLAYER
   end

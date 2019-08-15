@@ -14,6 +14,7 @@ class Village
     @house3 = House.new
     @house3.warp(200, 600)
     @village.push(@house3)
+
   end
 
   def draw
