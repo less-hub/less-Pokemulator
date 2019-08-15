@@ -12,7 +12,7 @@ class Player
 
     @cur_image = @standing_down
 
-    @house = House.new
+    @village = Village.new(2)
   end
 
   def draw
@@ -20,6 +20,7 @@ class Player
     factor_y = 5.0
 
     @cur_image.draw(@x, @y, ZOrder::PLAYER_Z, factor_x, factor_y)
+
   end
 
   def update(move_x, move_y)
@@ -46,7 +47,7 @@ class Player
       if (move_y > 0)
         @dir = :down
 
-        if @house.collide?(@x, @y, @dir)
+        if @village.colliding_to_houses?(@x, @y, @dir)
           move_y = 0
         end
 
@@ -57,7 +58,7 @@ class Player
       elsif (move_y < 0)
         @dir = :up
 
-        if @house.collide?(@x, @y, @dir)
+        if @village.colliding_to_houses?(@x, @y, @dir)
           move_y = 0
         end
 
@@ -69,7 +70,7 @@ class Player
       elsif (move_x > 0)
         @dir = :right
 
-        if @house.collide?(@x, @y, @dir)
+        if @village.colliding_to_houses?(@x, @y, @dir)
           move_x = 0
         end
 
@@ -80,7 +81,7 @@ class Player
       elsif (move_x < 0)
         @dir = :left
 
-        if @house.collide?(@x, @y, @dir)
+        if @village.colliding_to_houses?(@x, @y, @dir)
           move_x = 0
         end
 

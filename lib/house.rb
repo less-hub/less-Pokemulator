@@ -3,7 +3,7 @@ HOUSE_HEIGHT = 72 * 5
 
 class House
   def initialize
-    @x = @y = 300
+    @x = @y = 0
 
     @factor_x = 5.0
     @factor_y = 5.0
