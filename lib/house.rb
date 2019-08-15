@@ -3,7 +3,7 @@ HOUSE_HEIGHT = 72 * 5
 
 class House
   def initialize
-    @x = @y = 0
+    @x = @y = 300
 
     @factor_x = 5.0
     @factor_y = 5.0
@@ -26,9 +26,9 @@ class House
     # DIR UP AND DIR LEFT
     #     X: +5, Y: -10
     if dir == :up
-      x <= HOUSE_WIDTH - 15 && y <= HOUSE_HEIGHT - 80
+      x <= @x + HOUSE_WIDTH - 15 && x >= @x - 35 && y <= @y + HOUSE_HEIGHT - 80 && y >= @y
     elsif dir == :left
-      x <= HOUSE_WIDTH - 10 && y <= HOUSE_HEIGHT - 90
+      x <= @x + HOUSE_WIDTH - 10 && x>= @x && y <= @y + HOUSE_HEIGHT - 90 && y >= @y - 90
     end
   end
 end
