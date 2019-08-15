@@ -46,6 +46,11 @@ class Player
 
       if (move_y > 0)
         @dir = :down
+
+        if @house.collide?(@x, @y, @dir)
+          move_y = 0
+        end
+
         unless do_i_go_off_screen_down?
           move_y.times { @y += 1 }
         end
@@ -64,13 +69,18 @@ class Player
 
       elsif (move_x > 0)
         @dir = :right
+
+        if @house.collide?(@x, @y, @dir)
+          move_x = 0
+        end
+        
         unless do_i_go_off_screen_right?
           move_x.times { @x += 1 }
         end
 
       elsif (move_x < 0)
         @dir = :left
-        
+
         if @house.collide?(@x, @y, @dir)
           move_x = 0
         end
