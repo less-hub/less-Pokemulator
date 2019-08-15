@@ -20,4 +20,15 @@ class House
     @x = x
     @y = y
   end
+
+  def collide?(x, y, dir)
+    # HOUSE COLLISION .. FIND OUT WHY RATES ARE
+    # DIR UP AND DIR LEFT
+    #     X: +5, Y: -10
+    if dir == :up
+      x <= HOUSE_WIDTH - 15 && y <= HOUSE_HEIGHT - 80
+    elsif dir == :left
+      x <= HOUSE_WIDTH - 10 && y <= HOUSE_HEIGHT - 90
+    end
+  end
 end

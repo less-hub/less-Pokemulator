@@ -53,7 +53,7 @@ class Player
       elsif (move_y < 0)
         @dir = :up
 
-        if @x <= HOUSE_WIDTH - 15 && @y <= HOUSE_HEIGHT - 80
+        if @house.collide?(@x, @y, @dir)
           move_y = 0
         end
 
@@ -70,10 +70,8 @@ class Player
 
       elsif (move_x < 0)
         @dir = :left
-
-        # HOUSE COLLISION FROM LEFT... FIND OUT WHY RATES ARE
-        # LEFT X: +5, LEFT Y: -10
-        if @x <= HOUSE_WIDTH - 10 && @y <= HOUSE_HEIGHT - 90
+        
+        if @house.collide?(@x, @y, @dir)
           move_x = 0
         end
 
