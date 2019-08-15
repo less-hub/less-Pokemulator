@@ -12,7 +12,7 @@ class Village
     @village.push(@house2)
 
     @house3 = House.new
-    @house3.warp(200, 600)
+    @house3.warp(3400, 1700)
     @village.push(@house3)
 
   end

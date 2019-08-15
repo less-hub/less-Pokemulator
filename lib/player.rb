@@ -18,8 +18,8 @@ class Player
   end
 
   def draw
-    factor_x = 3.0
-    factor_y = 3.0
+    factor_x = 5.0
+    factor_y = 5.0
 
     @cur_image.draw(@x, @y, ZOrder::PLAYER_Z, factor_x, factor_y)
 
@@ -98,7 +98,7 @@ class Player
 
   def do_i_go_off_screen_right?
     # 95 = 70px WIDTH HERO
-    @x > WIDTH - 70
+    @x > 2* WIDTH - 70
   end
 
   def do_i_go_off_screen_left?
@@ -113,6 +113,6 @@ class Player
 
   def do_i_go_off_screen_down?
     # FIND OUT WHY 100
-    @y > HEIGHT - 100
+    @y > 2 * HEIGHT - 100
   end
 end

@@ -8,6 +8,9 @@ module ZOrder
 end
 
 WIDTH, HEIGHT = 1920, 1080
+#BG SIZE AND EFFECTIVE SIZE:
+# WIDTH: 1920 * 2 = 3840
+# HEIGHT:1080 * 2 = 2160
 
 class APP_NAME < Gosu::Window
   def initialize
