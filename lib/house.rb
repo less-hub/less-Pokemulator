@@ -22,9 +22,7 @@ class House
   end
 
   def collide?(x, y, dir)
-    # HOUSE COLLISION .. FIND OUT WHY RATES ARE
-    # DIR UP AND DIR LEFT
-    #     X: +5, Y: -10
+    # UNDERSTAND THESE COSTANTS: 10, 15, 35, 80, 90, 100
     if dir == :up
       x <= @x + HOUSE_WIDTH - 15 && x >= @x - 35 && y <= @y + HOUSE_HEIGHT - 80 && y >= @y
     elsif dir == :left

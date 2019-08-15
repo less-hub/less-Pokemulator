@@ -5,7 +5,6 @@ class Player
 
     @dir= :down
 
-    #Every player frame is 14x18 px
     @walk_down1, @standing_down, @walk_down2 = *Gosu::Image.load_tiles("media/trainer_down.bmp", 14, 19)
     @walk_up1, @standing_up, @walk_up2 = *Gosu::Image.load_tiles("media/trainer_up.bmp", 14, 19)
     @walk_right1, @standing_right, @walk_right2 = *Gosu::Image.load_tiles("media/trainer_right.bmp", 14, 19)
@@ -73,7 +72,7 @@ class Player
         if @house.collide?(@x, @y, @dir)
           move_x = 0
         end
-        
+
         unless do_i_go_off_screen_right?
           move_x.times { @x += 1 }
         end

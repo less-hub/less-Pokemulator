@@ -30,10 +30,25 @@ Welcome to my world!
 ---
 You can move your charcter with `i, j, k, l`
 
+## Known bugs
+---
+* Player can't move on top of top-left corner of house.
+
+## TO-DO list
+
+* Add (basic) map of local zone
+* Add (basic) map of world zone
+* Add enemies
+* Add combat system
+* Add better local maps
+* Add better world map
+* Add storyline
+
 ## Program language
 ---
 This game is written in Ruby
 
 ## Credits
 ---
-Thanks to Gosu for his awesome graphic library.
+* Thanks to Gosu for his awesome graphic library.
+* Thanks to Gallantyl U-Seigel for all houses tiles.
