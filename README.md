@@ -37,11 +37,16 @@ You can move your charcter with `i, j, k, l`
 ## TO-DO list
 ---
 
-* Add (basic) map of local zone
-* Add (basic) map of world zone
-* Add enemies
+* Add Street class
+* Add Rock class
+* Add Tree class
+* Add better local maps: streets, rocks and trees
+* Add friendly NPC
+* Add Player spawn point at player House
+* Add better local maps: RPG style maps
+* Add enemy NPC
 * Add combat system
-* Add better local maps
+* Add (basic) map of world zone
 * Add better world map
 * Add storyline
 
