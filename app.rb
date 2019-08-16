@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'gosu'
+require './lib/sizes'
 require './lib/player'
 require './lib/house'
 require './lib/city'
@@ -14,8 +15,6 @@ module ZOrder
   BACKGROUND, STREET, OBSTACLES, HOUSE, PLAYER_Z, UI = *0..5
 end
 
-WIDTH = 1920
-HEIGHT = 1080
 #  BG EFFECTIVE SIZE:
 #     WIDTH: 1920 * 2 = 3840
 #     HEIGHT:1080 * 2 = 2160

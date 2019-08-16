@@ -1,20 +1,14 @@
-TREE_WIDTH = 46 * 5
-TREE_HEIGHT = 51 * 5
-
 class Tree
   def initialize(x, y)
     @x = x
     @y = y
-
-    @factor_x = 5.0
-    @factor_y = 5.0
 
     @image = Gosu::Image.new("media/tree.bmp")
 
   end
 
   def draw
-    @image.draw(@x, @y, ZOrder::OBSTACLES, @factor_x, @factor_y)
+    @image.draw(@x, @y, ZOrder::OBSTACLES, IMAGE_FACTOR_X, IMAGE_FACTOR_Y)
   end
 
   # Moves a tree to a different location

@@ -1,20 +1,14 @@
-STONE_WIDTH = 33  * 5
-STONE_HEIGHT = 34 * 5
-
 class Stone
   def initialize(x, y)
     @x = x
     @y = y
-
-    @factor_x = 5.0
-    @factor_y = 5.0
 
     @image = Gosu::Image.new("media/stone1.bmp")
 
   end
 
   def draw
-    @image.draw(@x, @y, ZOrder::OBSTACLES, @factor_x, @factor_y)
+    @image.draw(@x, @y, ZOrder::OBSTACLES, IMAGE_FACTOR_X, IMAGE_FACTOR_Y)
   end
 
   # Moves a stone to a different location

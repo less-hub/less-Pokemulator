@@ -1,21 +1,11 @@
 # frozen_string_literal: true
 
-# House width and house height in PX.
-# 69 = House image Width
-# 72 = House image Height
-# 5 = Growing factor
-
-HOUSE_WIDTH = 61 * 5
-HOUSE_HEIGHT = 60 * 5
-
 # An house and a pieace of street leading to door will spawn at given position.
 
 class House
   attr_accessor :x, :y
 
   def initialize(x, y)
-    @factor_x = 5.0
-    @factor_y = 5.0
     @image = Gosu::Image.new('media/house2.bmp')
 
     @x = x
@@ -25,7 +15,7 @@ class House
   end
 
   def draw
-    @image.draw(@x, @y, ZOrder::HOUSE, @factor_x, @factor_y)
+    @image.draw(@x, @y, ZOrder::HOUSE, IMAGE_FACTOR_X, IMAGE_FACTOR_Y)
     @street.draw
   end
 
