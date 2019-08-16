@@ -33,22 +33,24 @@ class Nature
   end
 
   # Spawns an horizontal line of trees
-  # @param: where to spawn trees from, number of trees
+  # @param: trees from x position, number of trees, trees from y position
   # @return: NIL
-  def spawn_trees_line_on_x(x, trees_number)
-    trees_number.times { |counter| @forest.push(Tree.new(((@x + x) + counter * TREE_WIDTH), 0)) }
+  def spawn_trees_line_on_x(x, trees_number, y)
+    trees_number.times { |counter| @forest.push(Tree.new(((@x + x) + counter * (TREE_WIDTH + 10 )), y)) }
   end
 
-  # Spawns a vertical line of trees
-  # @param: where to spawn trees from, number of trees
+  # Spawns a vertical line of trees with an x offset
+  # @param: trees from y position, number of trees, trees from x position
   # @return: NIL
-  def spawn_trees_line_on_y(y, trees_number)
-    trees_number.times { |counter| @forest.push(Tree.new(0, (@y + y) + counter * TREE_WIDTH)) }
+  def spawn_trees_line_on_y(y, trees_number, x)
+    trees_number.times { |counter| @forest.push(Tree.new(x, (@y + y) + counter * (TREE_WIDTH + 10) )) }
   end
 
   def spawn_trees_on_screen_edge
-    spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1)
-    spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) + 1)
+    spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 0)
+    spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 0)
+    spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 2 * HEIGHT - TREE_HEIGHT)
+    spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1,2 * WIDTH - TREE_WIDTH)
   end
 
 end
