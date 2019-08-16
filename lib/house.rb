@@ -5,8 +5,8 @@
 # 72 = House image Height
 # 5 = Growing factor
 
-HOUSE_WIDTH = 69 * 5
-HOUSE_HEIGHT = 72 * 5
+HOUSE_WIDTH = 61 * 5
+HOUSE_HEIGHT = 60 * 5
 
 # An house and a pieace of street leading to door will spawn at given position.
 
@@ -16,12 +16,12 @@ class House
   def initialize(x, y)
     @factor_x = 5.0
     @factor_y = 5.0
-    @image = Gosu::Image.new('media/house1.bmp')
+    @image = Gosu::Image.new('media/house2.bmp')
 
     @x = x
     @y = y
 
-    @street = Street.new(@x + 50, @y + HOUSE_HEIGHT - 20)
+    @street = Street.new(@x + 30, @y + HOUSE_HEIGHT - 20)
   end
 
   def draw
