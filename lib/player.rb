@@ -1,11 +1,15 @@
+# Spawns the player at given position, who can move around
+
 class Player
   attr_reader :x, :y
 
   def initialize(x, y)
     @x = x
     @y = y
-
     @dir= :down
+
+    @factor_x = 5.0
+    @factor_y = 5.0
 
     @walk_down1, @standing_down, @walk_down2 = *Gosu::Image.load_tiles("media/trainer_down.bmp", 14, 19)
     @walk_up1, @standing_up, @walk_up2 = *Gosu::Image.load_tiles("media/trainer_up.bmp", 14, 19)
@@ -14,17 +18,18 @@ class Player
 
     @cur_image = @standing_down
 
-    @village = Village.new(2)
+    @village = Village.new
   end
 
   def draw
-    factor_x = 5.0
-    factor_y = 5.0
-
-    @cur_image.draw(@x, @y, ZOrder::PLAYER_Z, factor_x, factor_y)
-
+    @cur_image.draw(@x, @y, ZOrder::PLAYER_Z, @factor_x, @factor_y)
+    @village.draw
   end
 
+
+  # Makes the player moving around, stops if hits screen border or houses
+  # @param: player offset x, player offset y
+  # @return: NIL
   def update(move_x, move_y)
       if (move_y == 0 && move_x == 0)
         if @dir == :down
@@ -96,7 +101,9 @@ class Player
 
   end
 
-  #Will be usefull for map changes
+  # Will be usefull for map changes, cos checks screen limits
+  # @param: NIL
+  # @return: true if player goes offscreen, flase otherwise
   def do_i_go_off_screen_right?
     # 95 = 70px WIDTH HERO
     @x > 2* WIDTH - 70

@@ -1,21 +1,26 @@
+# House width and house height in PX.
+# 69 = House image Width
+# 72 = House image Height
+# 5 = Growing factor
+
 HOUSE_WIDTH = 69 * 5
 HOUSE_HEIGHT = 72 * 5
+
+# An house and a pieace of street leading to door will spawn at given position.
 
 class House
   attr_accessor :x, :y
 
   def initialize(x, y)
+    @factor_x = 5.0
+    @factor_y = 5.0
+    @image = Gosu::Image.new("media/house1.bmp")
+
+
     @x = x
     @y = y
 
-    @factor_x = 5.0
-    @factor_y = 5.0
-
-    @image = Gosu::Image.new("media/house1.bmp")
-
     @street = Street.new(@x + 50, @y + HOUSE_HEIGHT - 20)
-
-
   end
 
   def draw
@@ -23,11 +28,17 @@ class House
     @street.draw
   end
 
+  # Moves an house to a different location
+  # @param: where to move house on x-axis, where to move house on y-axis
+  # @return: NIL
   def warp(x, y)
     @x = x
     @y = y
   end
 
+  # Checks if player collides to THIS house
+  # @param: player x position, player y position, player direction
+  # @return: true if player hits the house, false otherwise
   def collide?(x, y, dir)
     # UNDERSTAND THESE COSTANTS: 10, 15, 35, 80, 90, 100
     if dir == :up
