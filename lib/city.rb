@@ -8,6 +8,7 @@ class City
     @nature = Nature.new
     @village = Village.new
 
+    @nature.spawn_trees_on_screen_edge
   end
 
   def draw
