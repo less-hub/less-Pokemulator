@@ -37,7 +37,6 @@ You can move your charcter with `i, j, k, l`
 ## TO-DO list
 ---
 
-* Finish Street class
 * Add Rock class
 * Add Tree class
 * Add friendly NPC
