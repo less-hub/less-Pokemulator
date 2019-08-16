@@ -28,7 +28,9 @@ Welcome to my world!
 
 ## Playing
 ---
-You can move your charcter with `i, j, k, l`
+You can move your charcter with `i, j, k, l`.
+
+You can interact with NPCs with `space`.
 
 ## Known bugs
 ---
@@ -36,7 +38,6 @@ You can move your charcter with `i, j, k, l`
 
 ## TO-DO list
 ---
-* Add friendly NPC
 * Add Player spawn point at player House
 * Add enemy NPC
 * Add combat system
