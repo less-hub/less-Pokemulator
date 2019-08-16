@@ -2,6 +2,8 @@ HOUSE_WIDTH = 69 * 5
 HOUSE_HEIGHT = 72 * 5
 
 class House
+  attr_accessor :x, :y
+  
   def initialize
     @x = @y = 0
 

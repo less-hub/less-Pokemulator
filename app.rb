@@ -2,9 +2,10 @@ require 'gosu'
 require './lib/player'
 require './lib/house'
 require './lib/village'
+require './lib/street'
 
 module ZOrder
-  BACKGROUND, HOUSE, PLAYER_Z, UI = *0..3
+  BACKGROUND, STREET, HOUSE, PLAYER_Z, UI = *0..4
 end
 
 WIDTH, HEIGHT = 1920, 1080
