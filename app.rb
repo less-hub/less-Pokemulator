@@ -7,6 +7,7 @@ require './lib/city'
 require './lib/street'
 require './lib/tree'
 require './lib/nature'
+require './lib/village'
 
 module ZOrder
   BACKGROUND, STREET, OBSTACLES, HOUSE, PLAYER_Z, UI = *0..5

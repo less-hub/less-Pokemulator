@@ -17,6 +17,14 @@ class Tree
     @image.draw(@x, @y, ZOrder::OBSTACLES, @factor_x, @factor_y)
   end
 
+  # Moves a tree to a different location
+  # @param: where to move tree on x-axis, where to move tree on y-axis
+  # @return: NIL
+  def warp(x, y)
+    @x = x
+    @y = y
+  end
+
   # Checks if player collides to THIS tree
   # @param: player x position, player y position, player direction
   # @return: true if player hits the tree, false otherwise
