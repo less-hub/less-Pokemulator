@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 WIDTH = 1920
 HEIGHT = 1080
 

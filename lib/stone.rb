@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class Stone
   def initialize(x, y)
     @x = x
     @y = y
 
-    @image = Gosu::Image.new("media/stone1.bmp")
-
+    @image = Gosu::Image.new('media/stone1.bmp')
   end
 
   def draw

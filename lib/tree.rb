@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class Tree
   def initialize(x, y)
     @x = x
     @y = y
 
-    @image = Gosu::Image.new("media/tree.bmp")
-
+    @image = Gosu::Image.new('media/tree.bmp')
   end
 
   def draw

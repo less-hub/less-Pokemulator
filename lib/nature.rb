@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A forest spawns with refer point in [0, 0]
 # You can create a new tree by givinig TREE coord to new_tree, and then
 # insert in @forest. Example:
@@ -14,7 +16,6 @@ class Nature
 
     @forest.push(new_tree(1200, 500))
     @hound.push(new_stone(900, 400))
-
   end
 
   # Builds a new tree in given position
@@ -54,14 +55,14 @@ class Nature
   # @param: trees from x position, number of trees, trees from y position
   # @return: NIL
   def spawn_trees_line_on_x(x, trees_number, y)
-    trees_number.times { |counter| @forest.push(Tree.new(((@x + x) + counter * (TREE_WIDTH + 10 )), y)) }
+    trees_number.times { |counter| @forest.push(Tree.new(((@x + x) + counter * (TREE_WIDTH + 10)), y)) }
   end
 
   # Spawns a vertical line of trees with an x offset
   # @param: trees from y position, number of trees, trees from x position
   # @return: NIL
   def spawn_trees_line_on_y(y, trees_number, x)
-    trees_number.times { |counter| @forest.push(Tree.new(x, (@y + y) + counter * (TREE_WIDTH + 10) )) }
+    trees_number.times { |counter| @forest.push(Tree.new(x, (@y + y) + counter * (TREE_WIDTH + 10))) }
   end
 
   # Spawns trees on the edge of the screen
@@ -71,7 +72,6 @@ class Nature
     spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 0)
     spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 0)
     spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 2 * HEIGHT - TREE_HEIGHT)
-    spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1,2 * WIDTH - TREE_WIDTH)
+    spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 2 * WIDTH - TREE_WIDTH)
   end
-
 end
