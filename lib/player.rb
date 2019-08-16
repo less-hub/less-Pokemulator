@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Spawns the player at given position, who can move around
 
 class Player
@@ -6,15 +8,15 @@ class Player
   def initialize(x, y)
     @x = x
     @y = y
-    @dir= :down
+    @dir = :down
 
     @factor_x = 5.0
     @factor_y = 5.0
 
-    @walk_down1, @standing_down, @walk_down2 = *Gosu::Image.load_tiles("media/trainer_down.bmp", 14, 19)
-    @walk_up1, @standing_up, @walk_up2 = *Gosu::Image.load_tiles("media/trainer_up.bmp", 14, 19)
-    @walk_right1, @standing_right, @walk_right2 = *Gosu::Image.load_tiles("media/trainer_right.bmp", 14, 19)
-    @walk_left1, @standing_left, @walk_left2 = *Gosu::Image.load_tiles("media/trainer_left.bmp", 14, 18)
+    @walk_down1, @standing_down, @walk_down2 = *Gosu::Image.load_tiles('media/trainer_down.bmp', 14, 19)
+    @walk_up1, @standing_up, @walk_up2 = *Gosu::Image.load_tiles('media/trainer_up.bmp', 14, 19)
+    @walk_right1, @standing_right, @walk_right2 = *Gosu::Image.load_tiles('media/trainer_right.bmp', 14, 19)
+    @walk_left1, @standing_left, @walk_left2 = *Gosu::Image.load_tiles('media/trainer_left.bmp', 14, 18)
 
     @cur_image = @standing_down
 
@@ -26,79 +28,61 @@ class Player
     @village.draw
   end
 
-
   # Makes the player moving around, stops if hits screen border or houses
   # @param: player offset x, player offset y
   # @return: NIL
   def update(move_x, move_y)
-      if (move_y == 0 && move_x == 0)
-        if @dir == :down
-          @cur_image = @standing_down
-        elsif @dir == :up
-          @cur_image = @standing_up
-        elsif @dir == :right
-          @cur_image = @standing_right
-        elsif @dir == :left
-          @cur_image = @standing_left
-        end
-      elsif (move_y > 0 && move_x == 0)
-        @cur_image = (Gosu.milliseconds / 175 % 2 == 0) ? @walk_down1 : @walk_down2
-      elsif (move_y < 0 && move_x == 0)
-        @cur_image = (Gosu.milliseconds / 175 % 2 == 0) ? @walk_up1 : @walk_up2
-      elsif (move_x > 0 && move_y == 0)
-        @cur_image = (Gosu.milliseconds / 175 % 2 == 0) ? @walk_right1 : @walk_right2
-      elsif (move_x < 0 && move_y == 0)
-        @cur_image = (Gosu.milliseconds / 175 % 2 == 0) ? @walk_left1 : @walk_left2
+    if move_y.zero? && move_x.zero?
+      if @dir == :down
+        @cur_image = @standing_down
+      elsif @dir == :up
+        @cur_image = @standing_up
+      elsif @dir == :right
+        @cur_image = @standing_right
+      elsif @dir == :left
+        @cur_image = @standing_left
       end
+    elsif move_y.positive? && move_x.zero?
+      @cur_image = (Gosu.milliseconds / 175).even? ? @walk_down1 : @walk_down2
+    elsif move_y.negative? && move_x.zero?
+      @cur_image = (Gosu.milliseconds / 175).even? ? @walk_up1 : @walk_up2
+    elsif move_x.positive? && move_y.zero?
+      @cur_image = (Gosu.milliseconds / 175).even? ? @walk_right1 : @walk_right2
+    elsif move_x.negative? && move_y.zero?
+      @cur_image = (Gosu.milliseconds / 175).even? ? @walk_left1 : @walk_left2
+    end
 
-      if (move_y > 0)
-        @dir = :down
+    if move_y.positive?
+      @dir = :down
 
-        if @village.colliding_to_houses?(@x, @y, @dir)
-          move_y = 0
-        end
+      move_y = 0 if @village.colliding_to_houses?(@x, @y, @dir)
 
-        unless do_i_go_off_screen_down?
-          move_y.times { @y += 1 }
-        end
+      move_y.times { @y += 1 } unless do_i_go_off_screen_down?
 
-      elsif (move_y < 0)
-        @dir = :up
+    elsif move_y.negative?
+      @dir = :up
 
-        if @village.colliding_to_houses?(@x, @y, @dir)
-          move_y = 0
-        end
+      move_y = 0 if @village.colliding_to_houses?(@x, @y, @dir)
 
-        move_y = -move_y
-        unless do_i_go_off_screen_up?
-          move_y.times { @y -= 1 }
-        end
+      move_y = -move_y
+      move_y.times { @y -= 1 } unless do_i_go_off_screen_up?
 
-      elsif (move_x > 0)
-        @dir = :right
+    elsif move_x.positive?
+      @dir = :right
 
-        if @village.colliding_to_houses?(@x, @y, @dir)
-          move_x = 0
-        end
+      move_x = 0 if @village.colliding_to_houses?(@x, @y, @dir)
 
-        unless do_i_go_off_screen_right?
-          move_x.times { @x += 1 }
-        end
+      move_x.times { @x += 1 } unless do_i_go_off_screen_right?
 
-      elsif (move_x < 0)
-        @dir = :left
+    elsif move_x.negative?
+      @dir = :left
 
-        if @village.colliding_to_houses?(@x, @y, @dir)
-          move_x = 0
-        end
+      move_x = 0 if @village.colliding_to_houses?(@x, @y, @dir)
 
-        move_x = -move_x
-        unless do_i_go_off_screen_left?
-          move_x.times { @x -= 1 }
-        end
+      move_x = -move_x
+      move_x.times { @x -= 1 } unless do_i_go_off_screen_left?
 
-      end
-
+    end
   end
 
   # Will be usefull for map changes, cos checks screen limits
@@ -106,17 +90,17 @@ class Player
   # @return: true if player goes offscreen, flase otherwise
   def do_i_go_off_screen_right?
     # 95 = 70px WIDTH HERO
-    @x > 2* WIDTH - 70
+    @x > 2 * WIDTH - 70
   end
 
   def do_i_go_off_screen_left?
     # OFF_SCREEN LEFT = 0
-    @x < 0
+    @x.negative?
   end
 
   def do_i_go_off_screen_up?
     # OFF_SCREEN UP = 0
-    @y < 0
+    @y.negative?
   end
 
   def do_i_go_off_screen_down?

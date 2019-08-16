@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'gosu'
 require './lib/player'
 require './lib/house'
@@ -8,7 +10,8 @@ module ZOrder
   BACKGROUND, STREET, HOUSE, PLAYER_Z, UI = *0..4
 end
 
-WIDTH, HEIGHT = 1920, 1080
+WIDTH = 1920
+HEIGHT = 1080
 #  BG EFFECTIVE SIZE:
 #     WIDTH: 1920 * 2 = 3840
 #     HEIGHT:1080 * 2 = 2160
@@ -16,17 +19,16 @@ WIDTH, HEIGHT = 1920, 1080
 class APP_NAME < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
-    self.caption = "APP_NAME"
+    self.caption = 'APP_NAME'
 
-    #Shows FPS
-    @font = Gosu::Font.new(self, Gosu::default_font_name, 20)
+    # Shows FPS
+    @font = Gosu::Font.new(self, Gosu.default_font_name, 20)
 
-    @background_image = Gosu::Image.new("media/bg.png")
+    @background_image = Gosu::Image.new('media/bg.png')
 
-    @player = Player.new(1920/2, 1080/2)
+    @player = Player.new(1920 / 2, 1080 / 2)
 
     @camera_x = @camera_y = 0
-
   end
 
   def update
@@ -37,7 +39,7 @@ class APP_NAME < Gosu::Window
     move_y += 5 if Gosu.button_down? Gosu::KB_K
     move_y -= 5 if Gosu.button_down? Gosu::KB_I
 
-    if move_y == 0
+    if move_y.zero?
       move_x += 5 if Gosu.button_down? Gosu::KB_L
       move_x -= 5 if Gosu.button_down? Gosu::KB_J
     end
@@ -49,7 +51,6 @@ class APP_NAME < Gosu::Window
     # Camera follows player
     @camera_x = [[@player.x - WIDTH / 2, 0].max, WIDTH].min
     @camera_y = [[@player.y - HEIGHT / 2, 0].max, HEIGHT].min
-
   end
 
   def draw
@@ -58,7 +59,7 @@ class APP_NAME < Gosu::Window
       @player.draw
     end
 
-    @font.draw_text("#{Gosu.fps}", 0, 0, 1, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(Gosu.fps.to_s, 0, 0, 1, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def button_down(id)
@@ -68,8 +69,6 @@ class APP_NAME < Gosu::Window
       super
     end
   end
-
-
 end
 
 APP_NAME.new.show

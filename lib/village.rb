@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A village spawns with refer point in [0, 0]
 # You can create a new house by givinig HOUSE coord to new_house, and then
 # insert in @village. Example:
@@ -8,16 +10,13 @@
 class Village
   def initialize
     @x = @y = 0
-    @village = Array.new
+    @village = []
 
     @village.push(new_house(0, 0))
-
   end
 
   def draw
-    @village.each do |house|
-      house.draw
-    end
+    @village.each(&:draw)
   end
 
   # Builds a new house in given position
@@ -33,5 +32,4 @@ class Village
   def colliding_to_houses?(x, y, dir)
     @village.detect { |house| house.collide?(x, y, dir) }
   end
-
 end

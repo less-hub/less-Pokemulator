@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # House width and house height in PX.
 # 69 = House image Width
 # 72 = House image Height
@@ -14,8 +16,7 @@ class House
   def initialize(x, y)
     @factor_x = 5.0
     @factor_y = 5.0
-    @image = Gosu::Image.new("media/house1.bmp")
-
+    @image = Gosu::Image.new('media/house1.bmp')
 
     @x = x
     @y = y
@@ -42,13 +43,17 @@ class House
   def collide?(x, y, dir)
     # UNDERSTAND THESE COSTANTS: 10, 15, 35, 80, 90, 100
     if dir == :up
-      x <= @x + HOUSE_WIDTH - 15 && x >= @x - 35 && y <= @y + HOUSE_HEIGHT - 80 && y >= @y
+      x <= @x + HOUSE_WIDTH - 15 && x >= @x - 35 &&
+        y <= @y + HOUSE_HEIGHT - 80 && y >= @y
     elsif dir == :left
-      x <= @x + HOUSE_WIDTH && x>= @x && y <= @y + HOUSE_HEIGHT - 100 && y >= @y - 90
+      x <= @x + HOUSE_WIDTH && x >= @x &&
+        y <= @y + HOUSE_HEIGHT - 100 && y >= @y - 90
     elsif dir == :down
-      x <= @x + HOUSE_WIDTH - 15 && x >= @x - 35 && y <= @y + HOUSE_HEIGHT - 100 && y >= @y - 100
+      x <= @x + HOUSE_WIDTH - 15 && x >= @x - 35 &&
+        y <= @y + HOUSE_HEIGHT - 100 && y >= @y - 100
     elsif dir == :right
-      x <= @x + HOUSE_WIDTH - 15 && x >= @x - 45 && y <= @y + HOUSE_HEIGHT - 100 && y >= @y - 90
+      x <= @x + HOUSE_WIDTH - 15 && x >= @x - 45 &&
+        y <= @y + HOUSE_HEIGHT - 100 && y >= @y - 90
     end
   end
 end
