@@ -10,9 +10,10 @@ require './lib/tree'
 require './lib/nature'
 require './lib/village'
 require './lib/stone'
+require './lib/friendlynpc'
 
 module ZOrder
-  BACKGROUND, STREET, OBSTACLES, HOUSE, PLAYER_Z, UI = *0..5
+  BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, PLAYER_Z, UI = *0..6
 end
 
 #  BG EFFECTIVE SIZE:
