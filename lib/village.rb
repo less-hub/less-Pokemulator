@@ -10,16 +10,15 @@
 class Village
   def initialize
     @x = @y = 0
+    @nature = Nature.new
     @village = []
-    @forest = []
 
     @village.push(new_house(200, 200))
-    @forest.push(new_tree(700, 200))
   end
 
   def draw
     @village.each(&:draw)
-    @forest.each(&:draw)
+    @nature.draw
   end
 
   # Builds a new house in given position
@@ -29,15 +28,11 @@ class Village
     House.new(x, y)
   end
 
-  def new_tree(x, y)
-    Tree.new(x, y)
-  end
-
   # Checks if player hits the house
   # @param: player x-axis, player y-axis, player direction
   # @return: true if player hits ATLEAST 1 house, false otherwise
   def colliding_to_houses?(x, y, dir)
     @village.detect { |house| house.collide?(x, y, dir) } ||
-      @forest.detect { |tree| tree.collide?(x, y, dir) }
+      @nature.colliding_to_trees?(x, y, dir)
   end
 end
