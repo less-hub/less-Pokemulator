@@ -40,12 +40,11 @@ You can move your charcter with `i, j, k, l`
 * Add Rock class
 * Add Tree class
 * Add friendly NPC
-* Add better local maps: streets, rocks and trees
 * Add Player spawn point at player House
-* Add better local maps: RPG style maps
 * Add enemy NPC
 * Add combat system
 * Add (basic) map of world zone
+* Add villages, routes etc to world zone
 * Add better world map
 * Add storyline
 
