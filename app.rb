@@ -3,7 +3,7 @@
 require 'gosu'
 require './lib/player'
 require './lib/house'
-require './lib/village'
+require './lib/city'
 require './lib/street'
 require './lib/tree'
 require './lib/nature'

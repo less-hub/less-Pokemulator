@@ -7,7 +7,7 @@
 #
 # NOTE: Spawn houses on village constructor!
 
-class Village
+class City
   def initialize
     @x = @y = 0
     @nature = Nature.new
