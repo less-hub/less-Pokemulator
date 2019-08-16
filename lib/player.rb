@@ -22,11 +22,17 @@ class Player
     @cur_image = @standing_down
 
     @city = City.new
+
+    @fnpc = Friendlynpc.new(1920 / 2 + 200, 1080 / 2 + 200, :down)
+
+    @interact_status = false
   end
 
   def draw
     @cur_image.draw(@x, @y, ZOrder::PLAYER_Z, @factor_x, @factor_y)
     @city.draw
+    @fnpc.draw
+
   end
 
   # Makes the player moving around, stops if hits screen border or houses
@@ -56,14 +62,14 @@ class Player
     if move_y.positive?
       @dir = :down
 
-      move_y = 0 if @city.colliding?(@x, @y, @dir)
+      move_y = 0 if @city.colliding?(@x, @y, @dir) || @fnpc.colliding_to_fnpc?(@x, @y, @dir)
 
       move_y.times { @y += 1 } unless do_i_go_off_screen_down?
 
     elsif move_y.negative?
       @dir = :up
 
-      move_y = 0 if @city.colliding?(@x, @y, @dir)
+      move_y = 0 if @city.colliding?(@x, @y, @dir) || @fnpc.colliding_to_fnpc?(@x, @y, @dir)
 
       move_y = -move_y
       move_y.times { @y -= 1 } unless do_i_go_off_screen_up?
@@ -71,14 +77,14 @@ class Player
     elsif move_x.positive?
       @dir = :right
 
-      move_x = 0 if @city.colliding?(@x, @y, @dir)
+      move_x = 0 if @city.colliding?(@x, @y, @dir) || @fnpc.colliding_to_fnpc?(@x, @y, @dir)
 
       move_x.times { @x += 1 } unless do_i_go_off_screen_right?
 
     elsif move_x.negative?
       @dir = :left
 
-      move_x = 0 if @city.colliding?(@x, @y, @dir)
+      move_x = 0 if @city.colliding?(@x, @y, @dir) || @fnpc.colliding_to_fnpc?(@x, @y, @dir)
 
       move_x = -move_x
       move_x.times { @x -= 1 } unless do_i_go_off_screen_left?
@@ -108,4 +114,10 @@ class Player
     # FIND OUT WHY 100
     @y > 2 * HEIGHT - 100
   end
+
+  def talks?
+  @fnpc.update(@x, @y, @dir)
+  @fnpc.finished_to_talk?
+  end
+
 end

@@ -10,13 +10,11 @@ class City
 
     @nature.spawn_trees_on_screen_edge
 
-    @fnpc = Friendlynpc.new(1920 / 2 - 200, 1080 / 2 + 500, :down)
   end
 
   def draw
     @village.draw
     @nature.draw
-    @fnpc.draw
   end
 
   # Checks if player hits some obeject near him
@@ -25,7 +23,6 @@ class City
   def colliding?(x, y, dir)
     @village.colliding_to_houses?(x, y, dir) ||
       @nature.colliding_to_trees?(x, y, dir) ||
-      @nature.colliding_to_stones?(x, y, dir) ||
-      @fnpc.colliding_to_fnpc?(x, y, dir)
+      @nature.colliding_to_stones?(x, y, dir)
   end
 end

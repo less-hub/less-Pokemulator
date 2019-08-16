@@ -4,9 +4,21 @@ class Friendlynpc
     @y = y
     @dir = dir
 
+    @OFFSET_X = 1920
+    @OFFSET_Y = 1080
+
     @look_up, @look_down = *Gosu::Image.load_tiles('media/fnpc1_updown.bmp', 17, 24)
     @look_left, @look_right = *Gosu::Image.load_tiles('media/fnpc1_leftright.bmp', 16, 24)
 
+    @is_talking = false
+  end
+
+  def draw
+    @cur_image.draw(@x, @y, ZOrder::NPC, IMAGE_FACTOR_X - 1.0, IMAGE_FACTOR_Y - 1.0)
+    Gosu.draw_rect(-@OFFSET_X, -@OFFSET_Y, 300, 300, Gosu::Color::WHITE, ZOrder::UI)
+  end
+
+  def update(x, y, dir)
     if @dir == :down
       @cur_image = @look_down
     elsif @dir == :left
@@ -17,10 +29,38 @@ class Friendlynpc
       @cur_image = @look_right
     end
 
-  end
+    if colliding_to_fnpc?(x, y, dir)
+      @is_talking = true if Gosu.button_down? Gosu::KB_SPACE
 
-  def draw
-    @cur_image.draw(@x, @y, ZOrder::NPC, IMAGE_FACTOR_X - 1.0, IMAGE_FACTOR_Y - 1.0)
+      if @is_talking
+        @OFFSET_X = -(@x - 150 + FNPC_WIDTH / 2)
+        @OFFSET_Y = -(@y - 350)
+
+        if dir == :right
+          @dir = :left
+        elsif dir == :left
+          @dir = :right
+        elsif dir == :up
+          @dir = :down
+        elsif dir == :down
+          @dir = :up
+        end
+      else
+        @OFFSET_X = 1920
+        @OFFSET_Y = 1080
+
+        @dir = :down
+      end
+
+      while @is_talking
+        npc_says_stuff
+        @is_talking = false
+      end
+    else
+      @OFFSET_X = 1920
+      @OFFSET_Y = 1080
+      @dir = :down
+    end
   end
 
   def colliding_to_fnpc?(x, y, dir)
@@ -39,5 +79,12 @@ class Friendlynpc
     end
   end
 
+  def finished_to_talk?
+    @is_talking
+  end
+
+  def npc_says_stuff
+    npc_speech =  "Lorem ipsum dolor sit amet."
+  end
 
 end

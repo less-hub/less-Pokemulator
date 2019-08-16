@@ -35,6 +35,15 @@ class APP_NAME < Gosu::Window
     @camera_x = @camera_y = 0
   end
 
+  def draw
+    Gosu.translate(-@camera_x, -@camera_y) do
+      @background_image.draw(0, 0, ZOrder::BACKGROUND)
+      @player.draw
+    end
+
+    @font.draw_text(Gosu.fps.to_s, 0, 0, 1, 1.0, 1.0, Gosu::Color::BLACK)
+  end
+
   def update
     # --- CLASS PLAYER
     move_y = 0
@@ -48,22 +57,15 @@ class APP_NAME < Gosu::Window
       move_x -= 5 if Gosu.button_down? Gosu::KB_J
     end
 
-    @player.update(move_x, move_y)
+    unless @player.talks?
+      @player.update(move_x, move_y)
+    end
 
     # --- END PLAYER
 
     # Camera follows player
     @camera_x = [[@player.x - WIDTH / 2, 0].max, WIDTH].min
     @camera_y = [[@player.y - HEIGHT / 2, 0].max, HEIGHT].min
-  end
-
-  def draw
-    Gosu.translate(-@camera_x, -@camera_y) do
-      @background_image.draw(0, 0, ZOrder::BACKGROUND)
-      @player.draw
-    end
-
-    @font.draw_text(Gosu.fps.to_s, 0, 0, 1, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def button_down(id)
