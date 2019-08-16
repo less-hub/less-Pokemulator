@@ -83,7 +83,7 @@ class Player
       move_x = -move_x
       move_x.times { @x -= 1 } unless do_i_go_off_screen_left?
 
-    end
+      end
   end
 
   # Will be usefull for map changes, cos checks screen limits

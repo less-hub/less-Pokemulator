@@ -38,4 +38,6 @@ class Friendlynpc
         y <= @y + FNPC_HEIGHT - 100 && y >= @y - 90
     end
   end
+
+
 end
