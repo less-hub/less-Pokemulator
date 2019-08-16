@@ -10,8 +10,11 @@ class Nature
     @x = 0
     @y = 0
     @forest = []
+    @hound = []
 
     @forest.push(new_tree(1200, 500))
+    @hound.push(new_stone(900, 400))
+
   end
 
   # Builds a new tree in given position
@@ -21,8 +24,16 @@ class Nature
     Tree.new(x, y)
   end
 
+  # Builds a new stone in given position
+  # @param: x-axis of stone, y-axis of stone
+  # @return: Stone at given position
+  def new_stone(x, y)
+    Stone.new(x, y)
+  end
+
   def draw
     @forest.each(&:draw)
+    @hound.each(&:draw)
   end
 
   # Checks if player hits the trees
@@ -30,6 +41,13 @@ class Nature
   # @return: true if player hits ATLEAST 1 tree, false otherwise
   def colliding_to_trees?(x, y, dir)
     @forest.detect { |tree| tree.collide?(x, y, dir) }
+  end
+
+  # Checks if player hits the stones
+  # @param: player x-axis, player y-axis, player direction
+  # @return: true if player hits ATLEAST 1 stone, false otherwise
+  def colliding_to_stones?(x, y, dir)
+    @hound.detect { |stone| stone.collide?(x, y, dir) }
   end
 
   # Spawns an horizontal line of trees
