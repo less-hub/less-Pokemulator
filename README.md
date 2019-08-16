@@ -37,13 +37,13 @@ You can move your charcter with `i, j, k, l`
 ## TO-DO list
 ---
 
+* Add Tree class
+* Add Rock class
 * Add friendly NPC
 * Add Player spawn point at player House
 * Add enemy NPC
 * Add combat system
 * Add (basic) map of world zone
-* Add Rock class
-* Add Tree class
 * Add villages, routes etc to world zone
 * Add better world map
 * Add storyline
@@ -57,3 +57,4 @@ This game is written in Ruby
 * Thanks to Gosu for his awesome graphic library.
 * Thanks to Gallantyl U-Seigel for all houses tiles.
 * Thanks to https://www.dragonflycave.com/resources/ for sprites.
+* Thanks to Chae for trees and mountains

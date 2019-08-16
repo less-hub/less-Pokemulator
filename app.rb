@@ -5,9 +5,10 @@ require './lib/player'
 require './lib/house'
 require './lib/village'
 require './lib/street'
+require './lib/tree'
 
 module ZOrder
-  BACKGROUND, STREET, HOUSE, PLAYER_Z, UI = *0..4
+  BACKGROUND, STREET, OBSTACLES, HOUSE, PLAYER_Z, UI = *0..5
 end
 
 WIDTH = 1920

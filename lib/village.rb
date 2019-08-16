@@ -10,6 +10,7 @@
 class Village
   def initialize
     @x = @y = 0
+    @tree = Tree.new(300, 300)
     @village = []
 
     @village.push(new_house(0, 0))
@@ -17,6 +18,7 @@ class Village
 
   def draw
     @village.each(&:draw)
+    @tree.draw
   end
 
   # Builds a new house in given position
