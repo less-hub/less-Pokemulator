@@ -46,6 +46,9 @@ class Nature
     trees_number.times { |counter| @forest.push(Tree.new(x, (@y + y) + counter * (TREE_WIDTH + 10) )) }
   end
 
+  # Spawns trees on the edge of the screen
+  # @param: NIL
+  # @return: NIL
   def spawn_trees_on_screen_edge
     spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 0)
     spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 0)
