@@ -8,7 +8,7 @@
 class Village
   def initialize
     @village = []
-    @village.push(new_house(200, 200))
+    @village.push(new_house(400, 400))
   end
 
   def draw

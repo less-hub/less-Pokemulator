@@ -7,9 +7,10 @@
 
 class Nature
   def initialize
+    @x = 0
+    @y = 0
     @forest = []
 
-    @forest.push(new_tree(700, 200))
     @forest.push(new_tree(1200, 500))
   end
 
@@ -29,6 +30,20 @@ class Nature
   # @return: true if player hits ATLEAST 1 tree, false otherwise
   def colliding_to_trees?(x, y, dir)
     @forest.detect { |tree| tree.collide?(x, y, dir) }
+  end
+
+  # Spawns an horizontal line of trees
+  # @param: where to spawn trees from, number of trees
+  # @return: NIL
+  def spawn_trees_line_on_x(x, trees_number)
+    trees_number.times { |counter| @forest.push(Tree.new(((@x + x) + counter * TREE_WIDTH), 0)) }
+  end
+
+  # Spawns a vertical line of trees
+  # @param: where to spawn trees from, number of trees
+  # @return: NIL
+  def spawn_trees_line_on_y(y, trees_number)
+    trees_number.times { |counter| @forest.push(Tree.new(0, (@y + y) + counter * TREE_WIDTH)) }
   end
 
 end

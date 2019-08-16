@@ -7,6 +7,7 @@ class City
     @x = @y = 0
     @nature = Nature.new
     @village = Village.new
+
   end
 
   def draw
