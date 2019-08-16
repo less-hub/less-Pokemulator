@@ -10,13 +10,14 @@ class Player
     @y = y
     @dir = :down
 
-    @factor_x = 5.0
-    @factor_y = 5.0
+    @factor_x = 4.0
+    @factor_y = 4.0
 
-    @walk_down1, @standing_down, @walk_down2 = *Gosu::Image.load_tiles('media/trainer_down.bmp', 14, 19)
-    @walk_up1, @standing_up, @walk_up2 = *Gosu::Image.load_tiles('media/trainer_up.bmp', 14, 19)
-    @walk_right1, @standing_right, @walk_right2 = *Gosu::Image.load_tiles('media/trainer_right.bmp', 14, 19)
-    @walk_left1, @standing_left, @walk_left2 = *Gosu::Image.load_tiles('media/trainer_left.bmp', 14, 18)
+    @standing_up, @walk_up1, @walk_up2,
+      @standing_down, @walk_down1, @walk_down2 = *Gosu::Image.load_tiles('media/trainer_up_down.bmp', 19, 28)
+
+    @walk_right1, @standing_right, @walk_right2,
+      @walk_left1, @standing_left, @walk_left2 = *Gosu::Image.load_tiles('media/trainer_left_right.bmp', 14, 28)
 
     @cur_image = @standing_down
 

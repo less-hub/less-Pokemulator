@@ -56,3 +56,4 @@ This game is written in Ruby
 ---
 * Thanks to Gosu for his awesome graphic library.
 * Thanks to Gallantyl U-Seigel for all houses tiles.
+* Thanks to https://www.dragonflycave.com/resources/ for sprites.
