@@ -17,11 +17,11 @@ class APP_NAME < Gosu::Window
   def initialize
     super WIDTH, HEIGHT
     self.caption = "APP_NAME"
+    @font = Gosu::Font.new(self, Gosu::default_font_name, 20)
 
     @background_image = Gosu::Image.new("media/bg.png")
 
     @player = Player.new(1920/2, 1080/2)
-
     @village = Village.new(3)
 
     @camera_x = @camera_y = 0
@@ -55,6 +55,8 @@ class APP_NAME < Gosu::Window
       @player.draw
       @village.draw
     end
+
+    @font.draw_text("#{Gosu.fps}", 0, 0, 1, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def button_down(id)

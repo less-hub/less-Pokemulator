@@ -3,19 +3,24 @@ HOUSE_HEIGHT = 72 * 5
 
 class House
   attr_accessor :x, :y
-  
-  def initialize
-    @x = @y = 0
+
+  def initialize(x, y)
+    @x = x
+    @y = y
 
     @factor_x = 5.0
     @factor_y = 5.0
 
     @image = Gosu::Image.new("media/house1.bmp")
 
+    @street = Street.new(@x + 50, @y + HOUSE_HEIGHT - 20)
+
+
   end
 
   def draw
     @image.draw(@x, @y, ZOrder::HOUSE, @factor_x, @factor_y)
+    @street.draw
   end
 
   def warp(x, y)

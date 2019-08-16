@@ -37,13 +37,13 @@ You can move your charcter with `i, j, k, l`
 ## TO-DO list
 ---
 
-* Add Rock class
-* Add Tree class
 * Add friendly NPC
 * Add Player spawn point at player House
 * Add enemy NPC
 * Add combat system
 * Add (basic) map of world zone
+* Add Rock class
+* Add Tree class
 * Add villages, routes etc to world zone
 * Add better world map
 * Add storyline

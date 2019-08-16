@@ -4,10 +4,6 @@ class Street
     @factor_x = 5.0
     @factor_y = 5.0
 
-  # HOUSE STREET RIGHT UNDER DOOR
-  #  @x = 0 + 50
-  #  @y = 0 + HOUSE_HEIGHT - 20
-
     @x = x
     @y = y
 

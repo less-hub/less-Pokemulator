@@ -96,6 +96,7 @@ class Player
 
   end
 
+  #Will be usefull for map changes
   def do_i_go_off_screen_right?
     # 95 = 70px WIDTH HERO
     @x > 2* WIDTH - 70
