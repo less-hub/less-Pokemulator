@@ -37,11 +37,11 @@ You can move your charcter with `i, j, k, l`
 ## TO-DO list
 ---
 
-* Add Street class
+* Finish Street class
 * Add Rock class
 * Add Tree class
-* Add better local maps: streets, rocks and trees
 * Add friendly NPC
+* Add better local maps: streets, rocks and trees
 * Add Player spawn point at player House
 * Add better local maps: RPG style maps
 * Add enemy NPC
