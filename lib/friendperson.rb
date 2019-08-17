@@ -26,9 +26,9 @@ class FriendPerson
     @is_talking = false
 
     @font = Gosu::Font.new(30)
-    @text_speech = File.new("media/trainers/fnpc/speech.txt")
+    @text_speech = File.new("media/trainers/fnpc/speech_zone/1.txt")
     @npc_speech = @text_speech.readlines("---")[text_ind]
-    @npc_speech.gsub!('---',"1")
+    @npc_speech.gsub!('---','')
 
   end
 
