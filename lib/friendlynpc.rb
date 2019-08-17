@@ -18,8 +18,8 @@ class Friendlynpc
     @OFFSET_X = 1920
     @OFFSET_Y = 1080
 
-    @look_up, @look_down = *Gosu::Image.load_tiles('media/fnpc1_updown.bmp', 17, 24)
-    @look_left, @look_right = *Gosu::Image.load_tiles('media/fnpc1_leftright.bmp', 16, 24)
+    @look_up, @look_down = *Gosu::Image.load_tiles('media/basic_fnpc_updown.bmp', 17, 24)
+    @look_left, @look_right = *Gosu::Image.load_tiles('media/basic_fnpc_leftright.bmp', 16, 24)
 
     @is_talking = false
 
