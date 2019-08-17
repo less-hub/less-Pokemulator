@@ -86,17 +86,17 @@ class FriendPerson
 
   def colliding_to_fnpc?(x, y, dir)
     if dir == :up
-      x <= @x + FNPC_WIDTH - 25 && x >= @x - 65 &&
-        y <= @y + FNPC_HEIGHT - 80 && y >= @y
+      x <= @x + FNPC_WIDTH - AVATAR_A && x >= @x - AVATAR_C &&
+        y <= @y + FNPC_HEIGHT - AVATAR_D && y >= @y
     elsif dir == :left
       x <= @x + FNPC_WIDTH && x >= @x &&
-        y <= @y + FNPC_HEIGHT - 100 && y >= @y - 90
+        y <= @y + FNPC_HEIGHT - AVATAR_E && y >= @y - AVATAR_D
     elsif dir == :down
-      x <= @x + FNPC_WIDTH - 25 && x >= @x - 65 &&
-        y <= @y + FNPC_HEIGHT - 100 && y >= @y - 100
+      x <= @x + FNPC_WIDTH - AVATAR_A && x >= @x - AVATAR_C &&
+        y <= @y + FNPC_HEIGHT - AVATAR_E && y >= @y - AVATAR_E
     elsif dir == :right
-      x <= @x + FNPC_WIDTH - 25 && x >= @x - 75 &&
-        y <= @y + FNPC_HEIGHT - 100 && y >= @y - 90
+      x <= @x + FNPC_WIDTH - AVATAR_A && x >= @x - AVATAR_D &&
+        y <= @y + FNPC_HEIGHT - AVATAR_E && y >= @y - AVATAR_D
     end
   end
 
