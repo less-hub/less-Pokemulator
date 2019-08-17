@@ -1,6 +1,7 @@
-Hello and welcome
-to this awesome game!
+lorem
+ipsum
+dolor
 ---
-This is an other Hello
-and welcome to game!
+sit
+amet
 ---

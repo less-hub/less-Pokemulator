@@ -1,5 +1,5 @@
-class Friendlynpc
-  def initialize(x, y, dir, npc_kind)
+class FriendPerson
+  def initialize(x, y, dir, npc_kind, text_ind)
     @x = x
     @y = y
     @native_dir = dir
@@ -27,6 +27,8 @@ class Friendlynpc
 
     @font = Gosu::Font.new(30)
     @text_speech = File.new("media/trainers/fnpc/speech.txt")
+    @npc_speech = @text_speech.readlines("---")[text_ind]
+    @npc_speech.gsub!('-',' ')
 
   end
 

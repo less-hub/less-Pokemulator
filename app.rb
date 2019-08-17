@@ -10,8 +10,7 @@ require './lib/tree'
 require './lib/nature'
 require './lib/village'
 require './lib/stone'
-require './lib/friendlynpc'
-require './lib/person'
+require './lib/friendperson'
 require './lib/people'
 
 module ZOrder
