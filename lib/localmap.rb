@@ -2,7 +2,7 @@
 
 # Creates a city with refer point in [0, 0], full of trees, rocks and houses!
 
-class City
+class LocalMap
   def initialize
     @x = @y = 0
     @nature = Nature.new

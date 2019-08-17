@@ -20,14 +20,14 @@ class Player
 
     @cur_image = @standing_down
 
-    @city = City.new
+    @localmap = LocalMap.new
 
     @interact_status = false
   end
 
   def draw
     @cur_image.draw(@x, @y, ZOrder::PLAYER_Z, @factor_x, @factor_y)
-    @city.draw
+    @localmap.draw
   end
 
   # Makes the player moving around, stops if hits screen border or houses
@@ -57,14 +57,14 @@ class Player
     if move_y.positive?
       @dir = :down
 
-      move_y = 0 if @city.colliding?(@x, @y, @dir)
+      move_y = 0 if @localmap.colliding?(@x, @y, @dir)
 
       move_y.times { @y += 1 } unless do_i_go_off_screen_down?
 
     elsif move_y.negative?
       @dir = :up
 
-      move_y = 0 if @city.colliding?(@x, @y, @dir)
+      move_y = 0 if @localmap.colliding?(@x, @y, @dir)
 
       move_y = -move_y
       move_y.times { @y -= 1 } unless do_i_go_off_screen_up?
@@ -72,21 +72,21 @@ class Player
     elsif move_x.positive?
       @dir = :right
 
-      move_x = 0 if @city.colliding?(@x, @y, @dir)
+      move_x = 0 if @localmap.colliding?(@x, @y, @dir)
 
       move_x.times { @x += 1 } unless do_i_go_off_screen_right?
 
     elsif move_x.negative?
       @dir = :left
 
-      move_x = 0 if @city.colliding?(@x, @y, @dir)
+      move_x = 0 if @localmap.colliding?(@x, @y, @dir)
 
       move_x = -move_x
       move_x.times { @x -= 1 } unless do_i_go_off_screen_left?
 
       end
 
-      @city.update(@x, @y, @dir)
+      @localmap.update(@x, @y, @dir)
 
   end
 
