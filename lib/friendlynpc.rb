@@ -16,6 +16,9 @@ class Friendlynpc
     @text_speech = File.new("media/fnpc_speech.txt")
     @npc_speech = @text_speech.readlines("---")[0]
     @npc_speech.gsub!('-',' ')
+
+    @cur_image = @look_down
+
   end
 
   def draw

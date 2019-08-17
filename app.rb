@@ -57,9 +57,8 @@ class APP_NAME < Gosu::Window
       move_x -= 5 if Gosu.button_down? Gosu::KB_J
     end
 
-    unless @player.talks?
-      @player.update(move_x, move_y)
-    end
+    @player.update(move_x, move_y)
+
 
     # --- END PLAYER
 
