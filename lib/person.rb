@@ -1,6 +1,9 @@
 class Person < Friendlynpc
   def initialize(x, y, dir, npc_kind)
     super
+
+    @npc_speech = @text_speech.readlines("---")[1]
+    @npc_speech.gsub!('-',' ')
   end
 
   def draw

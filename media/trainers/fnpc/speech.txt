@@ -1,4 +1,3 @@
----
 Hello and welcome
 to this awesome game!
 ---

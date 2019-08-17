@@ -27,8 +27,6 @@ class Friendlynpc
 
     @font = Gosu::Font.new(30)
     @text_speech = File.new("media/trainers/fnpc/speech.txt")
-    @npc_speech = @text_speech.readlines("---")[1]
-    @npc_speech.gsub!('-',' ')
 
   end
 
