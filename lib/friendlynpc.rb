@@ -36,7 +36,7 @@ class Friendlynpc
     end
 
     if colliding_to_fnpc?(x, y, dir)
-      @is_talking = true if Gosu.button_down? Gosu::KB_SPACE
+      @is_talking = true
 
       if @is_talking
         @OFFSET_X = -(@x - 150 + FNPC_WIDTH / 2)
@@ -66,6 +66,7 @@ class Friendlynpc
       @OFFSET_X = 1920
       @OFFSET_Y = 1080
       @dir = :down
+      @is_talking = false
     end
   end
 
