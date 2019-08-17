@@ -41,7 +41,7 @@ class APP_NAME < Gosu::Window
       @player.draw
     end
 
-    @font.draw_text(Gosu.fps.to_s, 0, 0, 1, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(Gosu.fps.to_s, 0, 0, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def update
