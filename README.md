@@ -52,16 +52,17 @@ This game is written in Ruby
 ---
 Create a `.txt` file, place it in `media/maps/MAP_NUMBER.txt`. The path is
 ```
-POS X OBJ POS Y
+POSX OBJ POSY
 ```
-where `OBJ` stands for
+where `OBJ` is
+
+
 * `H` stands for HOUSE
 * `T` stands for TREE
 * `S` stands for STONE
 
-Hence, for instance
+Hence, for instance, in file `/media/maps/0.txt`
 ```
-# /media/maps/0.txt
 600 T 400
 500 S 800
 1100 H 400
