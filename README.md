@@ -50,16 +50,16 @@ This game is written in Ruby
 
 ## Adding maps
 ---
-Create a `.txt` file, place it in `media/maps/MAP_NUMBER.txt`. The path is
+Create a `.txt` file, place it in `media/maps/MAP_NUMBER.txt`. The spawn path is
 ```
 POSX OBJ POSY
 ```
-where `OBJ` is
+Where `OBJ` stands for
 
 
-* `H` stands for HOUSE
-* `T` stands for TREE
-* `S` stands for STONE
+* `H` for HOUSE
+* `T` for TREE
+* `S` for STONE
 
 Hence, for instance, in file `/media/maps/0.txt`
 ```
@@ -67,9 +67,7 @@ Hence, for instance, in file `/media/maps/0.txt`
 500 S 800
 1100 H 400
 ```
-To create a `Tree` in `600, 400`
-To create a `Stone` in `500, 800`
-To create a `House` in `1100, 400`
+To create a `Tree` in `600, 400`, a `Stone` in `500, 800` and `House` in `1100, 400`
 
 ## Credits
 ---
