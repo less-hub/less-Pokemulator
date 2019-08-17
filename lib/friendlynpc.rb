@@ -2,7 +2,18 @@ class Friendlynpc
   def initialize(x, y, dir)
     @x = x
     @y = y
+    @native_dir = dir
     @dir = dir
+
+    if dir == :down
+      @cur_image = @look_down
+    elsif dir == :left
+      @cur_image = @look_left
+    elsif dir == :up
+      @cur_image = @look_up
+    elsif dir == :right
+      @cur_image = @look_right
+    end
 
     @OFFSET_X = 1920
     @OFFSET_Y = 1080
@@ -16,8 +27,6 @@ class Friendlynpc
     @text_speech = File.new("media/fnpc_speech.txt")
     @npc_speech = @text_speech.readlines("---")[0]
     @npc_speech.gsub!('-',' ')
-
-    @cur_image = @look_down
 
   end
 
@@ -58,7 +67,7 @@ class Friendlynpc
         @OFFSET_X = 1920
         @OFFSET_Y = 1080
 
-        @dir = :down
+        @dir = @native_dir
       end
 
       while @is_talking
@@ -68,7 +77,7 @@ class Friendlynpc
     else
       @OFFSET_X = 1920
       @OFFSET_Y = 1080
-      @dir = :down
+      @dir = @native_dir
       @is_talking = false
     end
   end
