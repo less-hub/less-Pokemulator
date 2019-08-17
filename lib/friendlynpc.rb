@@ -19,13 +19,13 @@ class Friendlynpc
     @OFFSET_Y = 1080
 
     @look_up, @look_down,
-    @look_left, @look_right = *Gosu::Image.load_tiles('media/basic_fnpc.bmp', 17, 24)
+    @look_left, @look_right = *Gosu::Image.load_tiles('media/trainers/fnpc/0.bmp', 17, 24)
 
     @is_talking = false
 
     @font = Gosu::Font.new(30)
-    @text_speech = File.new("media/fnpc_speech.txt")
-    @npc_speech = @text_speech.readlines("---")[0]
+    @text_speech = File.new("media/trainers/fnpc/speech.txt")
+    @npc_speech = @text_speech.readlines("---")[1]
     @npc_speech.gsub!('-',' ')
 
   end

@@ -5,7 +5,7 @@ class Stone
     @x = x
     @y = y
 
-    @image = Gosu::Image.new('media/stone1.bmp')
+    @image = Gosu::Image.new('media/nature/stone1.bmp')
   end
 
   def draw

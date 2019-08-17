@@ -5,7 +5,7 @@ class Tree
     @x = x
     @y = y
 
-    @image = Gosu::Image.new('media/tree.bmp')
+    @image = Gosu::Image.new('media/nature/tree.bmp')
   end
 
   def draw

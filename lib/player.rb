@@ -16,7 +16,7 @@ class Player
     @standing_up, @walk_up1, @walk_up2,
       @standing_left, @walk_left1, @walk_left2,
       @standing_down, @walk_down1, @walk_down2,
-      @standing_right, @walk_right1, @walk_right2 = *Gosu::Image.load_tiles('media/main_trainer.bmp', 22, 26)
+      @standing_right, @walk_right1, @walk_right2 = *Gosu::Image.load_tiles('media/trainers/main_trainer.bmp', 22, 26)
 
     @cur_image = @standing_down
 

@@ -2,10 +2,11 @@ class Person < Friendlynpc
   def initialize(x, y, dir)
     super
 
-    @path_to_image = 'media/fnpc1.bmp'
+    @path_to_image = 'media/trainers/fnpc/1.bmp'
 
     @look_up, @look_down,
     @look_left, @look_right = *Gosu::Image.load_tiles(@path_to_image, 19, 25)
+
   end
 
   def draw

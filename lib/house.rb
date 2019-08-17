@@ -6,7 +6,7 @@ class House
   attr_accessor :x, :y
 
   def initialize(x, y)
-    @image = Gosu::Image.new('media/house2.bmp')
+    @image = Gosu::Image.new('media/houses/1.bmp')
 
     @x = x
     @y = y
