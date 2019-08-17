@@ -7,20 +7,20 @@ class City
     @x = @y = 0
     @nature = Nature.new
     @village = Village.new
-#    @people = People.new
+    @people = People.new
 
     @nature.spawn_trees_on_screen_edge
 
   end
 
   def update(x, y, dir)
-#    @people.update(x, y, dir)
+    @people.update(x, y, dir)
   end
 
   def draw
     @village.draw
     @nature.draw
-#    @people.draw
+    @people.draw
   end
 
   # Checks if player hits some obeject near him
@@ -29,8 +29,8 @@ class City
   def colliding?(x, y, dir)
     @village.colliding_to_houses?(x, y, dir) ||
       @nature.colliding_to_trees?(x, y, dir) ||
-      @nature.colliding_to_stones?(x, y, dir)
-#      @people.colliding_to_fnpc?(x, y, dir)
+      @nature.colliding_to_stones?(x, y, dir) ||
+      @people.colliding_to_people?(x, y, dir)
   end
 
 end

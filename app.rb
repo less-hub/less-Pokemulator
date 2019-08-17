@@ -12,6 +12,7 @@ require './lib/village'
 require './lib/stone'
 require './lib/friendlynpc'
 require './lib/person'
+require './lib/people'
 
 module ZOrder
   BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, PLAYER_Z, UI = *0..6
