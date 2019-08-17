@@ -30,8 +30,6 @@ Welcome to my world!
 ---
 You can move your charcter with `i, j, k, l`.
 
-You can interact with NPCs with `space`.
-
 ## Known bugs
 ---
 * Player can't move on top of top-left corner of house.
