@@ -19,6 +19,10 @@ class LocalMap
 #    @people.new_friendPerson(npc x, npc y, :dir, image of npc, text speech of npc)
 #     EXAMPLE: @people.new_friendPerson(800, 900, :down, 0, 1)
 
+    @people.new_friendPerson(800, 900, :down, 0, 1)
+    @nature.new_tree(600, 400)
+    @nature.new_stone(500, 800)
+    @village.new_house(1100, 400)
   end
 
   def update(x, y, dir)

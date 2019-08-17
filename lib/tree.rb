@@ -26,17 +26,17 @@ class Tree
   def collide?(x, y, dir)
     # UNDERSTAND THESE COSTANTS: 10, 15, 35, 80, 90, 100
     if dir == :up
-      x <= @x + TREE_WIDTH - 15 && x >= @x - 35 &&
-        y <= @y + TREE_HEIGHT - 80 && y >= @y
+      x <= @x + TREE_WIDTH - AVATAR_A && x >= @x - AVATAR_B &&
+        y <= @y + TREE_HEIGHT - AVATAR_D && y >= @y
     elsif dir == :left
       x <= @x + TREE_WIDTH && x >= @x &&
-        y <= @y + TREE_HEIGHT - 100 && y >= @y - 90
+        y <= @y + TREE_HEIGHT - AVATAR_F && y >= @y - AVATAR_E
     elsif dir == :down
-      x <= @x + TREE_WIDTH - 15 && x >= @x - 35 &&
-        y <= @y + TREE_HEIGHT - 100 && y >= @y - 100
+      x <= @x + TREE_WIDTH - AVATAR_A && x >= @x - AVATAR_B &&
+        y <= @y + TREE_HEIGHT - AVATAR_F && y >= @y - AVATAR_F
     elsif dir == :right
-      x <= @x + TREE_WIDTH - 15 && x >= @x - 45 &&
-        y <= @y + TREE_HEIGHT - 100 && y >= @y - 90
+      x <= @x + TREE_WIDTH - AVATAR_A && x >= @x - AVATAR_C &&
+        y <= @y + TREE_HEIGHT - AVATAR_F && y >= @y - AVATAR_E
     end
   end
 end
