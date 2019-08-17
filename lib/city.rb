@@ -11,6 +11,14 @@ class City
 
     @nature.spawn_trees_on_screen_edge
 
+#    @nature.new_tree(x of tree, y of tree)
+#    @nature.new_stone(x of stone, y of stone)
+
+#    @village.new_house(x of house, y of house)
+
+#    @people.new_friendPerson(npc x, npc y, :dir, image of npc, text speech of npc)
+#     EXAMPLE: @people.new_friendPerson(800, 900, :down, 0, 1)
+
   end
 
   def update(x, y, dir)

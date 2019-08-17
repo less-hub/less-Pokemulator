@@ -8,7 +8,6 @@
 class Village
   def initialize
     @village = []
-    @village.push(new_house(400, 400))
   end
 
   def draw
@@ -19,7 +18,7 @@ class Village
   # @param: x-axis of house, y-axis of house
   # @return: House at given position
   def new_house(x, y)
-    House.new(x, y)
+    @village.push(House.new(x, y))
   end
 
   # Checks if player hits the houses

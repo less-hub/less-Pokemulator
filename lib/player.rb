@@ -87,6 +87,7 @@ class Player
       end
 
       @city.update(@x, @y, @dir)
+
   end
 
   # Will be usefull for map changes, cos checks screen limits

@@ -14,22 +14,20 @@ class Nature
     @forest = []
     @hound = []
 
-    @forest.push(new_tree(1200, 500))
-    @hound.push(new_stone(900, 400))
   end
 
   # Builds a new tree in given position
   # @param: x-axis of tree, y-axis of tree
   # @return: Tree at given position
   def new_tree(x, y)
-    Tree.new(x, y)
+    @forest.push(Tree.new(x, y))
   end
 
   # Builds a new stone in given position
   # @param: x-axis of stone, y-axis of stone
   # @return: Stone at given position
   def new_stone(x, y)
-    Stone.new(x, y)
+    @hound.push(Stone.new(x, y))
   end
 
   def draw

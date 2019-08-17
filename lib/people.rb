@@ -4,12 +4,10 @@ class People
     @y = 0
     @people = []
 
-    @people.push(new_friendPerson(400, 900, :left, 1, 1))
-    @people.push(new_friendPerson(800, 900, :down, 0, 2))
   end
 
   def new_friendPerson(x, y, dir, npc_kind, text_ind)
-    FriendPerson.new(x, y, dir, npc_kind, text_ind)
+    @people.push(FriendPerson.new(x, y, dir, npc_kind, text_ind))
   end
 
   def update(x, y, dir)
