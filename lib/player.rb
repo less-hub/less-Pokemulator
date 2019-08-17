@@ -20,7 +20,7 @@ class Player
 
     @cur_image = @standing_down
 
-    @localmap = LocalMap.new
+    @localmap = LocalMap.new(1)
 
     @interact_status = false
   end
