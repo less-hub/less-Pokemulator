@@ -48,6 +48,28 @@ You can move your charcter with `i, j, k, l`.
 ---
 This game is written in Ruby
 
+## Adding maps
+---
+Create a `.txt` file, place it in `media/maps/MAP_NUMBER.txt`. The path is
+```
+POS X OBJ POS Y
+```
+where `OBJ` stands for
+* `H` stands for HOUSE
+* `T` stands for TREE
+* `S` stands for STONE
+
+Hence, for instance
+```
+# /media/maps/0.txt
+600 T 400
+500 S 800
+1100 H 400
+```
+To create a `Tree` in `600, 400`
+To create a `Stone` in `500, 800`
+To create a `House` in `1100, 400`
+
 ## Credits
 ---
 * Thanks to Gosu for his awesome graphic library.
