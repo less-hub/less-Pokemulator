@@ -11,11 +11,17 @@ class Friendlynpc
     @look_left, @look_right = *Gosu::Image.load_tiles('media/fnpc1_leftright.bmp', 16, 24)
 
     @is_talking = false
+
+    @font = Gosu::Font.new(30)
+    @text_speech = File.new("media/fnpc_speech.txt")
+    @npc_speech = @text_speech.readlines("---")[0]
+    @npc_speech.gsub!('-',' ')
   end
 
   def draw
     @cur_image.draw(@x, @y, ZOrder::NPC, IMAGE_FACTOR_X - 1.0, IMAGE_FACTOR_Y - 1.0)
     Gosu.draw_rect(-@OFFSET_X, -@OFFSET_Y, 300, 300, Gosu::Color::WHITE, ZOrder::UI)
+    @font.draw_text(@npc_speech, -@OFFSET_X, -@OFFSET_Y, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def update(x, y, dir)
@@ -84,7 +90,7 @@ class Friendlynpc
   end
 
   def npc_says_stuff
-    npc_speech =  "Lorem ipsum dolor sit amet."
+    npc_speech = @text_speech.readlines[0]
   end
 
 end
