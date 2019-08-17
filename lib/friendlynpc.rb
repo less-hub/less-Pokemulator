@@ -1,5 +1,5 @@
 class Friendlynpc
-  def initialize(x, y, dir)
+  def initialize(x, y, dir, npc_kind)
     @x = x
     @y = y
     @native_dir = dir
@@ -18,8 +18,10 @@ class Friendlynpc
     @OFFSET_X = 1920
     @OFFSET_Y = 1080
 
+    @path_to_image = "media/trainers/fnpc/" + npc_kind.to_s + ".bmp"
+
     @look_up, @look_down,
-    @look_left, @look_right = *Gosu::Image.load_tiles('media/trainers/fnpc/0.bmp', 17, 24)
+    @look_left, @look_right = *Gosu::Image.load_tiles(@path_to_image, 19, 25)
 
     @is_talking = false
 
