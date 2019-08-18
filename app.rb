@@ -14,7 +14,7 @@ require './lib/friendperson'
 require './lib/people'
 
 module ZOrder
-  BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, PLAYER_Z, UI = *0..6
+  BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, PLAYER_Z, UI, LOADING = *0..7
 end
 
 #  BG EFFECTIVE SIZE:
@@ -27,6 +27,10 @@ class APP_NAME < Gosu::Window
     self.caption = 'APP_NAME'
 
     @map_position = [0, 0]
+
+    @loading_offset_x = 1920
+    @loading_offset_y = 1080
+    @loading = false
 
     # Shows FPS
     @font = Gosu::Font.new(self, Gosu.default_font_name, 20)
@@ -87,10 +91,13 @@ class APP_NAME < Gosu::Window
       @player.draw
     end
 
+    Gosu.draw_rect(-@loading_offset_x, -@loading_offset_y, 1920, 1080, Gosu::Color::BLACK, ZOrder::LOADING)
     @font.draw_text(Gosu.fps.to_s, 0, 0, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def change_map(player_direction)
+    loading_screen(Gosu.milliseconds)
+
     if player_direction == :up
       @map_position[1] += 1
     elsif player_direction == :down
@@ -100,6 +107,18 @@ class APP_NAME < Gosu::Window
     elsif player_direction == :left
       @map_position[0] -= 1
     end
+  end
+
+  def loading_screen(seconds_at_loading)
+    @start_time = seconds_at_loading
+
+    while Gosu.milliseconds - @start_time < 100
+      @loading_offset_x = 0
+      @loading_offset_y = 0
+    end
+
+    @loading_offset_x = 1920
+    @loading_offset_y = 1080
   end
 
 
