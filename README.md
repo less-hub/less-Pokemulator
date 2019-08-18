@@ -102,4 +102,4 @@ and finish to last speech.
 * Thanks to Gosu for his awesome graphic library.
 * Thanks to Gallantyl U-Seigel for all houses tiles.
 * Thanks to Chae for trees and mountains
-* Thanks to https://www.dragonflycave.com/resources/ for sprites.
+* Thanks to https://www.pokencyclopedia.info/en/index.php?id=sprites/overworlds for sprites.
