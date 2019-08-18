@@ -13,10 +13,8 @@ class LocalMap
 
 #    @nature.new_tree(x of tree, y of tree)
 #    @nature.new_stone(x of stone, y of stone)
-
 #    @village.new_house(x of house, y of house)
-
-#    @people.new_friendPerson(npc x, npc y, :dir, image of npc, text speech of npc)
+#    @people.new_friendPerson(npc x, npc y, :dir, image of npc, speech region, text speech of npc)
 #     EXAMPLE: @people.new_friendPerson(800, 900, :down, 0, 1)
 
     @path_to_map = "media/maps/" + map_number.to_s + ".txt"
@@ -30,7 +28,7 @@ class LocalMap
         elsif num[0] == "H"
           @village.new_house(num[1].to_i, num[2].to_i)
         elsif num[0] == "F"
-          @people.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, num[5].to_i)
+          @people.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, map_number, num[5].to_i)
         end
       end
     end

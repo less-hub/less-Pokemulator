@@ -1,5 +1,5 @@
 class FriendPerson
-  def initialize(x, y, dir, npc_kind, text_ind)
+  def initialize(x, y, dir, npc_kind, speech_to_load, text_ind)
     @x = x
     @y = y
     @native_dir = dir
@@ -19,6 +19,7 @@ class FriendPerson
     @OFFSET_Y = 1080
 
     @path_to_image = "media/trainers/fnpc/" + npc_kind.to_s + ".bmp"
+    @path_to_speech = "media/trainers/fnpc/speech_zone/" + speech_to_load.to_s + ".txt"
 
     @look_up, @look_down,
     @look_left, @look_right = *Gosu::Image.load_tiles(@path_to_image, 19, 25)
@@ -26,7 +27,7 @@ class FriendPerson
     @is_talking = false
 
     @font = Gosu::Font.new(30)
-    @text_speech = File.new("media/trainers/fnpc/speech_zone/1.txt")
+    @text_speech = File.new(@path_to_speech)
     @npc_speech = @text_speech.readlines("---")[text_ind]
     @npc_speech.gsub!('---','')
 

@@ -3,7 +3,7 @@
 # Spawns the player at given position, who can move around
 
 class Player
-  attr_reader :x, :y
+  attr_reader :x, :y, :path_to_speech
 
   def initialize(x, y, map_to_load)
     @x = x
