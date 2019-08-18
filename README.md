@@ -1,3 +1,8 @@
+## Just...Well... just why?
+---
+Because i wanted to create a game with ruby and a graphic library. So, how could
+I choose a different game then the one we all love?!
+
 ## Installing... On Arch
 ---
 ```
@@ -13,27 +18,20 @@ gem install gosu
 
 ##Installing... On other distros
 ---
-```
-while OS != ArchLinux
-	OS.uninstall
-	OS.install("ARCH")
-end
-```
-
-## Starting the game
----
-In the game main directory, run `ruby app.rb`
-
-Welcome to my world!
+* Install Ruby and Gosu library dependecies
+* Install Ruby
+* Install Gosu
 
 ## Playing
 ---
 You can move your charcter with `i, j, k, l`. You can talk with NPCs
 just by facing them.
 
-## Known bugs
----
-* Player can't move on top of top-left corner of house.
+If you just want to play, you can stop reading and `ruby app.rb` !
+
+Welcome to my world!
+
+If you are interested to this repo, you should keep reading!
 
 ## TO-DO list
 ---
@@ -44,10 +42,6 @@ just by facing them.
 * Add villages, routes etc to world zone
 * Add better world map
 * Add storyline
-
-## Program language
----
-This game is written in Ruby
 
 ## Adding a map
 ---
