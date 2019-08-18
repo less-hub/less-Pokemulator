@@ -52,7 +52,7 @@ This game is written in Ruby
 ---
 Create a `.txt` file, place it in `media/maps/MAP_NUMBER.txt`. The spawn path is
 ```
-POSX OBJ POSY
+OBJ POSX POSY . . .
 ```
 Where `OBJ` stands for
 
@@ -60,14 +60,19 @@ Where `OBJ` stands for
 * `H` for HOUSE
 * `T` for TREE
 * `S` for STONE
+* `F` for Friendly NPC, but has different setup. Look `lib/friendperson.rb` for more info.
 
 Hence, for instance, in file `/media/maps/0.txt`
 ```
-600 T 400
-500 S 800
-1100 H 400
+T 600 400 . . .
+S 500 800 . . .
+H 1100 400 . . .
+F 1300 620 down 0 1
 ```
-To create a `Tree` in `600, 400`, a `Stone` in `500, 800` and `House` in `1100, 400`
+To create a `Tree` in `600, 400`, a `Stone` in `500, 800`, a `House` in `1100, 400` and a `Friendly
+NPC` right under the house, at `1300, 620`, looking `:down`, image `0` and speech `1`.
+
+Note that `.` has `NIL` value in other objects.
 
 ## Credits
 ---
