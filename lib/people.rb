@@ -24,4 +24,8 @@ class People
     @people.detect { |friendPerson| friendPerson.colliding_to_fnpc?(x, y, dir) }
   end
 
+  def clear
+    @people.clear
+  end
+
 end

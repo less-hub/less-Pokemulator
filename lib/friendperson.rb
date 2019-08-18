@@ -5,6 +5,12 @@ class FriendPerson
     @native_dir = dir
     @dir = dir
 
+    @cur_image = :down
+
+    @path_to_image = "media/trainers/fnpc/" + npc_kind.to_s + ".bmp"
+    @look_up, @look_down,
+    @look_left, @look_right = *Gosu::Image.load_tiles(@path_to_image, 19, 25)
+
     if dir == :down
       @cur_image = @look_down
     elsif dir == :left
@@ -18,11 +24,8 @@ class FriendPerson
     @OFFSET_X = 1920
     @OFFSET_Y = 1080
 
-    @path_to_image = "media/trainers/fnpc/" + npc_kind.to_s + ".bmp"
     @path_to_speech = "media/trainers/fnpc/speech_zone/" + map_to_load_x.to_s + map_to_load_y.to_s + ".txt"
 
-    @look_up, @look_down,
-    @look_left, @look_right = *Gosu::Image.load_tiles(@path_to_image, 19, 25)
 
     @is_talking = false
 

@@ -5,10 +5,10 @@
 class Player
   attr_reader :x, :y, :path_to_speech
 
-  def initialize(x, y, map_to_load_x, map_to_load_y)
+  def initialize(x, y, dir, map_to_load_x, map_to_load_y)
     @x = x
     @y = y
-    @dir = :down
+    @dir = dir
 
     @factor_x = 4.0
     @factor_y = 4.0
@@ -111,6 +111,10 @@ class Player
   def do_i_go_off_screen_down?
     # FIND OUT WHY 100
     @y > 2 * HEIGHT - 100
+  end
+
+  def clear_maps
+    @localmap.clear_all
   end
 
 end

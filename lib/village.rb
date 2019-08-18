@@ -28,4 +28,8 @@ class Village
     @village.detect { |house| house.collide?(x, y, dir) }
   end
 
+  def clear
+    @village.clear
+  end
+
 end

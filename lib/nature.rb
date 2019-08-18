@@ -72,4 +72,9 @@ class Nature
     spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 2 * HEIGHT - TREE_HEIGHT)
     spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 2 * WIDTH - TREE_WIDTH)
   end
+
+  def clear
+    @forest.clear
+    @hound.clear
+  end
 end

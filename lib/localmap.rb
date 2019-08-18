@@ -9,7 +9,7 @@ class LocalMap
     @village = Village.new
     @people = People.new
 
-    @nature.spawn_trees_on_screen_edge
+    #@nature.spawn_trees_on_screen_edge
 
 #    @nature.new_tree(x of tree, y of tree)
 #    @nature.new_stone(x of stone, y of stone)
@@ -57,6 +57,12 @@ class LocalMap
       @nature.colliding_to_trees?(x, y, dir) ||
       @nature.colliding_to_stones?(x, y, dir) ||
       @people.colliding_to_people?(x, y, dir)
+  end
+
+  def clear_all
+    @nature.clear
+    @village.clear
+    @people.clear
   end
 
 end
