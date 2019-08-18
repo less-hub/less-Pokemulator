@@ -9,6 +9,8 @@ class LocalMap
     @village = Village.new
     @people = People.new
 
+    @bulbasaur = Pokemon.new(300, 300, 1)
+
     #@nature.spawn_trees_on_screen_edge
 
 #    @nature.new_tree(x of tree, y of tree)
@@ -41,12 +43,23 @@ class LocalMap
 
   def update(x, y, dir)
     @people.update(x, y, dir)
+
+    move_y = 0
+    move_x = 0
+
+    move_y += 5 if (Gosu.milliseconds / 1750).even?
+    move_y -= 5 if (Gosu.milliseconds / 2000).even?
+    move_x += 5 if (Gosu.milliseconds / 2250).even?
+    move_x -= 5 if (Gosu.milliseconds / 2500).even?
+
+    @bulbasaur.update(move_x, move_y)
   end
 
   def draw
     @village.draw
     @nature.draw
     @people.draw
+    @bulbasaur.draw
   end
 
   # Checks if player hits some obeject near him
