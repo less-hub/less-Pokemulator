@@ -6,8 +6,8 @@ class People
 
   end
 
-  def new_friendPerson(x, y, dir, npc_kind, speech_to_load, text_ind)
-    @people.push(FriendPerson.new(x, y, dir, npc_kind, speech_to_load, text_ind))
+  def new_friendPerson(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, text_ind)
+    @people.push(FriendPerson.new(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, text_ind))
   end
 
   def update(x, y, dir)

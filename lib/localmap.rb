@@ -3,7 +3,7 @@
 # Creates a city with refer point in [0, 0], full of trees, rocks and houses!
 
 class LocalMap
-  def initialize(map_number)
+  def initialize(map_to_load_x, map_to_load_y)
     @x = @y = 0
     @nature = Nature.new
     @village = Village.new
@@ -17,7 +17,7 @@ class LocalMap
 #    @people.new_friendPerson(npc x, npc y, :dir, image of npc, speech region, text speech of npc)
 #     EXAMPLE: @people.new_friendPerson(800, 900, :down, 0, 1)
 
-    @path_to_map = "media/maps/" + map_number.to_s + ".txt"
+    @path_to_map = "media/maps/" + map_to_load_x.to_s + map_to_load_y.to_s + ".txt"
 
     File.readlines(@path_to_map).each do |phrase|
       phrase.split(" ").each_cons(6) do |num|
@@ -28,7 +28,7 @@ class LocalMap
         elsif num[0] == "H"
           @village.new_house(num[1].to_i, num[2].to_i)
         elsif num[0] == "F"
-          @people.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, map_number, num[5].to_i)
+          @people.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, map_to_load_x, map_to_load_y, num[5].to_i)
         end
       end
     end

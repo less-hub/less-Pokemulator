@@ -67,7 +67,7 @@ class Nature
   # @param: NIL
   # @return: NIL
   def spawn_trees_on_screen_edge
-    spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 0)
+    #spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 0)
     spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 0)
     spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 2 * HEIGHT - TREE_HEIGHT)
     spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 2 * WIDTH - TREE_WIDTH)
