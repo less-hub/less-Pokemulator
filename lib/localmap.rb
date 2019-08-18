@@ -22,13 +22,15 @@ class LocalMap
     @path_to_map = "media/maps/" + map_number.to_s + ".txt"
 
     File.readlines(@path_to_map).each do |phrase|
-      phrase.split(" ").each_cons(3) do |num|
-        if num[1] == "T"
-          @nature.new_tree(num[0].to_i, num[2].to_i)
-        elsif num[1] == "S"
-          @nature.new_stone(num[0].to_i, num[2].to_i)
-        elsif num[1] == "H"
-          @village.new_house(num[0].to_i, num[2].to_i)
+      phrase.split(" ").each_cons(6) do |num|
+        if num[0] == "T"
+          @nature.new_tree(num[1].to_i, num[2].to_i)
+        elsif num[0] == "S"
+          @nature.new_stone(num[1].to_i, num[2].to_i)
+        elsif num[0] == "H"
+          @village.new_house(num[1].to_i, num[2].to_i)
+        elsif num[0] == "F"
+          @people.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, num[5].to_i)
         end
       end
     end

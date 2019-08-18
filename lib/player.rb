@@ -5,7 +5,7 @@
 class Player
   attr_reader :x, :y
 
-  def initialize(x, y)
+  def initialize(x, y, map_to_load)
     @x = x
     @y = y
     @dir = :down
@@ -20,7 +20,7 @@ class Player
 
     @cur_image = @standing_down
 
-    @localmap = LocalMap.new(1)
+    @localmap = LocalMap.new(map_to_load)
 
     @interact_status = false
   end
