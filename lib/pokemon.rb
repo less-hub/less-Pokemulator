@@ -2,6 +2,13 @@ class Pokemon
   def initialize(x, y, pokedex_number)
     @x = x
     @y = y
+
+    @x_left_margin = x
+    @y_up_margin = y
+
+    @x_right_margin = x + 50
+    @y_down_margin = y + 50
+
     @speed = 50
     @wait_time = 0
 
@@ -37,15 +44,15 @@ class Pokemon
     end
 
     if move_y > 0
-      move_y.times { @y += 1 }
+      move_y.times { @y += 1 } unless out_fence_down?
     elsif move_y < 0
       move_y = -move_y
-      move_y.times { @y -= 1 }
+      move_y.times { @y -= 1 } unless out_fence_up?
     elsif move_x < 0
       move_x = -move_x
-      move_x.times { @x -= 1 }
+      move_x.times { @x -= 1 } unless out_fence_left?
     elsif move_x > 0
-      move_x.times { @x += 1 }
+      move_x.times { @x += 1 } unless out_fence_right?
     end
 
   end
@@ -66,6 +73,23 @@ class Pokemon
     elsif dir == 4
       @dir = :up
     end
+
+  end
+
+  def out_fence_up?
+    @y < @y_up_margin
+  end
+
+  def out_fence_down?
+    @y > @y_down_margin
+  end
+
+  def out_fence_left?
+    @x < @x_left_margin
+  end
+
+  def out_fence_right?
+    @x > @x_right_margin
   end
 
 end
