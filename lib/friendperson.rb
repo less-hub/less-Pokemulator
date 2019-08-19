@@ -17,7 +17,7 @@ class FriendPerson < Obstacles
     @look_left, @look_right = *Gosu::Image.load_tiles(@path_to_image, 19, 25)
 
 
-    @path_to_speech = "media/trainers/fnpc/speech_zone/" + map_to_load_x.to_s + map_to_load_y.to_s + ".txt"
+    @path_to_speech = "media/maps/" + map_to_load_x.to_s + map_to_load_y.to_s + "speech.txt"
 
     @font = Gosu::Font.new(30)
     @npc_speech = File.new(@path_to_speech).readlines("---")[text_ind]
