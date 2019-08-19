@@ -2,6 +2,7 @@
 
 require 'gosu'
 require './lib/sizes'
+require './lib/obstacles'
 require './lib/player'
 require './lib/house'
 require './lib/localmap'
