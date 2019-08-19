@@ -7,14 +7,6 @@ class LocalMap
     @x = @y = 0
     @mapobjects = MapObjects.new
 
-    #@nature.spawn_trees_on_screen_edge
-
-#    @nature.new_tree(x of tree, y of tree)
-#    @nature.new_stone(x of stone, y of stone)
-#    @village.new_house(x of house, y of house)
-#    @people.new_friendPerson(npc x, npc y, :dir, image of npc, speech region, text speech of npc)
-#     EXAMPLE: @people.new_friendPerson(800, 900, :down, 0, 1)
-
     @path_to_map = "media/maps/" + map_to_load_x.to_s + map_to_load_y.to_s + ".txt"
 
     File.readlines(@path_to_map).each do |phrase|
@@ -34,12 +26,6 @@ class LocalMap
         end
       end
     end
-
-    # @people.new_friendPerson(800, 900, :down, 0, 1)
-    # @nature.new_tree(600, 400)
-    # @nature.new_stone(500, 800)
-    # @village.new_house(1100, 400)
-    # @pokemons.new_pokemon(300, 300, 1)
 
   end
 
