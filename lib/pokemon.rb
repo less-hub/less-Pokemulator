@@ -56,22 +56,22 @@ class Pokemon < Obstacles
   end
 
   def draw
-    @cur_image.draw(@x, @y, ZOrder::NPC, IMAGE_FACTOR_X, IMAGE_FACTOR_Y)
+    @cur_image.draw(@x, @y, ZOrder::NPC, @scale_x, @scale_y)
   end
 
   def calculate_pokemon_size
     if @cur_image == @up1 || @cur_image == @up2
-      @width = 13 * IMAGE_FACTOR_X
-      @height = 15 * IMAGE_FACTOR_Y
+      @width = 13 * @scale_x
+      @height = 15 * @scale_y
     elsif @cur_image == @down1 || @cur_image == @down2
-      @width = 15 * IMAGE_FACTOR_X
-      @height = 16 * IMAGE_FACTOR_Y
+      @width = 15 * @scale_x
+      @height = 16 * @scale_y
     elsif @cur_image == @left1 || @cur_image == @left2
-      @width = 19 * IMAGE_FACTOR_X
-      @height = 15 * IMAGE_FACTOR_Y
+      @width = 19 * @scale_x
+      @height = 15 * @scale_y
     elsif @cur_image == @right1 || @cur_image == @right2
-      @width = 19 * IMAGE_FACTOR_X
-      @height = 15 * IMAGE_FACTOR_Y
+      @width = 19 * @scale_x
+      @height = 15 * @scale_y
     end
   end
 

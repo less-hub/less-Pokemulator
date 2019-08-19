@@ -13,6 +13,6 @@ class Street
   end
 
   def draw
-    @image.draw(@x, @y, ZOrder::STREET, IMAGE_FACTOR_X, IMAGE_FACTOR_X)
+    @image.draw(@x, @y, ZOrder::STREET, 5.0, 5.0)
   end
 end
