@@ -7,14 +7,42 @@
 #
 # NOTE: Spawn trees on village constructor!
 
-class Nature
+class MapObjects
   def initialize
     @x = 0
     @y = 0
     @forest = []
     @hound = []
     @lakes = []
+    @village = []
+    @people = []
+    @wildpokemons = []
 
+  end
+
+  def update(x, y, dir)
+    @people.each do |friendPerson|
+      friendPerson.update(x, y, dir)
+    end
+
+    move_y = 0
+    move_x = 0
+
+    move_y += 5 if (Gosu.milliseconds / 1750).even?
+    move_y -= 5 if (Gosu.milliseconds / 2000).even?
+    move_x += 5 if (Gosu.milliseconds / 2250).even?
+    move_x -= 5 if (Gosu.milliseconds / 2500).even?
+
+    @wildpokemons.each { |pok| pok.update(move_x, move_y) }
+  end
+
+  def draw
+    @forest.each(&:draw)
+    @hound.each(&:draw)
+    @lakes.each(&:draw)
+    @village.each(&:draw)
+    @people.each(&:draw)
+    @wildpokemons.each(&:draw)
   end
 
   # Builds a new tree in given position
@@ -38,24 +66,33 @@ class Nature
     @lakes.push(Lake.new(x, y, sx, sy))
   end
 
-  def draw
-    @forest.each(&:draw)
-    @hound.each(&:draw)
-    @lakes.each(&:draw)
+  # Builds a new house in given position
+  # @param: x-axis of house, y-axis of house
+  # @return: House at given position
+  def new_house(x, y)
+    @village.push(House.new(x, y))
   end
 
-  # Checks if player hits the trees
-  # @param: player x-axis, player y-axis, player direction
-  # @return: true if player hits ATLEAST 1 tree, false otherwise
-  def colliding_to_trees?(x, y, dir)
-    @forest.detect { |tree| tree.collide?(x, y, dir) }
+  # Builds a new friendly NPC at given position
+  # @param: NPC x, NPC y, NPC image, NPC map x, NPC map y, text to say
+  # @return: NPC at given position
+  def new_friendPerson(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, text_ind)
+    @people.push(FriendPerson.new(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, text_ind))
   end
 
-  # Checks if player hits the stones
-  # @param: player x-axis, player y-axis, player direction
-  # @return: true if player hits ATLEAST 1 stone, false otherwise
-  def colliding_to_stones?(x, y, dir)
-    @hound.detect { |stone| stone.collide?(x, y, dir) }
+  # Builds a new pokemon in given position
+  # @param: x-axis of pokemon, y-axis of pokemon, pokedex number of pokemon
+  # @return: Pokemon at given position
+  def new_pokemon(x, y, pokedex_number)
+    @wildpokemons.push(Pokemon.new(x, y, pokedex_number))
+  end
+
+  def collide?(x, y, dir)
+    @forest.detect { |tree| tree.collide?(x, y, dir) } ||
+    @hound.detect { |stone| stone.collide?(x, y, dir) } ||
+    @village.detect { |house| house.collide?(x, y, dir) } ||
+    @people.detect { |friendPerson| friendPerson.colliding_to_fnpc?(x, y, dir) } ||
+    @wildpokemons.detect { |poke| poke.collide?(x, y, dir) }
   end
 
   # Checks if player hits the lake
@@ -83,7 +120,7 @@ class Nature
   # @param: NIL
   # @return: NIL
   def spawn_trees_on_screen_edge
-    #spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 0)
+    spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 0)
     spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 0)
     spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 2 * HEIGHT - TREE_HEIGHT)
     spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 2 * WIDTH - TREE_WIDTH)
@@ -93,5 +130,8 @@ class Nature
     @forest.clear
     @hound.clear
     @lakes.clear
+    @village.clear
+    @people.clear
+    @wildpokemons.clear
   end
 end

@@ -8,14 +8,11 @@ require './lib/house'
 require './lib/localmap'
 require './lib/street'
 require './lib/tree'
-require './lib/lakes'
-require './lib/nature'
-require './lib/village'
+require './lib/lake'
+require './lib/mapobjects'
 require './lib/stone'
 require './lib/friendperson'
-require './lib/people'
 require './lib/pokemon'
-require './lib/wildpokemons'
 
 module ZOrder
   BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, PLAYER_Z, UI, LOADING = *0..7

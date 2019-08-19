@@ -5,10 +5,7 @@
 class LocalMap
   def initialize(map_to_load_x, map_to_load_y)
     @x = @y = 0
-    @nature = Nature.new
-    @village = Village.new
-    @people = People.new
-    @pokemons = WildPokemons.new
+    @mapobjects = MapObjects.new
 
     #@nature.spawn_trees_on_screen_edge
 
@@ -23,17 +20,17 @@ class LocalMap
     File.readlines(@path_to_map).each do |phrase|
       phrase.split(" ").each_cons(6) do |num|
         if num[0] == "T"
-          @nature.new_tree(num[1].to_i, num[2].to_i)
+          @mapobjects.new_tree(num[1].to_i, num[2].to_i)
         elsif num[0] == "S"
-          @nature.new_stone(num[1].to_i, num[2].to_i)
+          @mapobjects.new_stone(num[1].to_i, num[2].to_i)
         elsif num[0] == "H"
-          @village.new_house(num[1].to_i, num[2].to_i)
+          @mapobjects.new_house(num[1].to_i, num[2].to_i)
         elsif num[0] == "L"
-          @nature.new_lake(num[1].to_i, num[2].to_i, num[3].to_i, num[4].to_i)
+          @mapobjects.new_lake(num[1].to_i, num[2].to_i, num[3].to_i, num[4].to_i)
         elsif num[0] == "P"
-          @pokemons.new_pokemon(num[1].to_i, num[2].to_i, num[3].to_i)
+          @mapobjects.new_pokemon(num[1].to_i, num[2].to_i, num[3].to_i)
         elsif num[0] == "F"
-          @people.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, map_to_load_x, map_to_load_y, num[5].to_i)
+          @mapobjects.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, map_to_load_x, map_to_load_y, num[5].to_i)
         end
       end
     end
@@ -47,37 +44,26 @@ class LocalMap
   end
 
   def update(x, y, dir)
-    @people.update(x, y, dir)
-    @pokemons.update
+    @mapobjects.update(x, y, dir)
   end
 
   def draw
-    @village.draw
-    @nature.draw
-    @people.draw
-    @pokemons.draw
+    @mapobjects.draw
   end
 
   # Checks if player hits some obeject near him
   # @param: player x-axis, player y-axis, player direction
   # @return: true if player hits ATLEAST 1 solid object, false otherwise
   def colliding?(x, y, dir)
-    @village.colliding_to_houses?(x, y, dir) ||
-      @nature.colliding_to_trees?(x, y, dir) ||
-      @nature.colliding_to_stones?(x, y, dir) ||
-      @people.colliding_to_people?(x, y, dir) ||
-      @pokemons.colliding_to_pokemons?(x, y, dir)
+    @mapobjects.collide?(x, y, dir)
   end
 
   def clear_all
-    @nature.clear
-    @village.clear
-    @people.clear
-    @pokemons.clear
+    @mapobjects.clear
   end
 
   def drowned?(x, y, dir)
-    @nature.colliding_to_lakes?(x, y, dir)
+    @mapobjects.colliding_to_lakes?(x, y, dir)
   end
 
 end
