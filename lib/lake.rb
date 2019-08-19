@@ -21,7 +21,21 @@ class Lake < Obstacles
     super
   end
 
+  # 44 = player_width / 2
+  # 104 = player_height
   def collide?(x, y, dir)
-    super
+    if dir == :up
+      x <= @x + @width - 44 && x >= @x - 44 &&
+        y <= @y + @height - 104 && y >= @y - 104
+    elsif dir == :left
+      x <= @x + @width - 44 && x >= @x - 44 &&
+        y <= @y + @height - 104 && y >= @y - 104
+    elsif dir == :down
+      x <= @x + @width - 44 && x >= @x - 44 &&
+        y <= @y + @height - 104 && y >= @y - 104
+    elsif dir == :right
+      x <= @x + @width - 44 && x >= @x - 44 &&
+        y <= @y + @height - 104 && y >= @y - 104
+    end
   end
 end
