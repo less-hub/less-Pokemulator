@@ -32,17 +32,17 @@ class Lake
   def collide?(x, y, dir)
     # UNDERSTAND THESE COSTANTS: 10, 15, 35, 80, 90, 100
     if dir == :up
-      x <= @x + @LAKE_WIDTH - AVATAR_A && x >= @x - AVATAR_C &&
-        y <= @y + @LAKE_HEIGHT - AVATAR_D && y >= @y
+      x <= @x + @LAKE_WIDTH - 5 && x >= @x - 60 &&
+        y <= @y + @LAKE_HEIGHT - 80 && y >= @y
     elsif dir == :left
       x <= @x + @LAKE_WIDTH && x >= @x &&
-        y <= @y + @LAKE_HEIGHT - AVATAR_E && y >= @y - AVATAR_D
+        y <= @y + @LAKE_HEIGHT - 90 && y >= @y - 80
     elsif dir == :down
-      x <= @x + @LAKE_WIDTH - AVATAR_A && x >= @x - AVATAR_C &&
-        y <= @y + @LAKE_HEIGHT - AVATAR_E && y >= @y - AVATAR_E
+      x <= @x + @LAKE_WIDTH - 5 && x >= @x - 60 &&
+        y <= @y + @LAKE_HEIGHT - 90 && y >= @y - 90
     elsif dir == :right
-      x <= @x + @LAKE_WIDTH - AVATAR_A && x >= @x - AVATAR_D &&
-        y <= @y + @LAKE_HEIGHT - AVATAR_E && y >= @y - AVATAR_D
+      x <= @x + @LAKE_WIDTH - 5 && x >= @x - 80 &&
+        y <= @y + @LAKE_HEIGHT - 90 && y >= @y - 80
     end
   end
 end
