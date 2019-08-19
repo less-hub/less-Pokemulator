@@ -91,8 +91,7 @@ class MapObjects
     @forest.detect { |tree| tree.collide?(x, y, dir) } ||
     @hound.detect { |stone| stone.collide?(x, y, dir) } ||
     @village.detect { |house| house.collide?(x, y, dir) } ||
-    @people.detect { |friendPerson| friendPerson.collide?(x, y, dir) } ||
-    @wildpokemons.detect { |poke| poke.collide?(x, y, dir) }
+    @people.detect { |friendPerson| friendPerson.collide?(x, y, dir) }
   end
 
   # Checks if player hits the lake
@@ -100,6 +99,13 @@ class MapObjects
   # @return: true if player hits ATLEAST 1 lake, false otherwise
   def colliding_to_lakes?(x, y, dir)
     @lakes.detect { |lake| lake.collide?(x, y, dir) }
+  end
+
+  # Checks if player hits the pokemon
+  # @param: player x-axis, player y-axis, player direction
+  # @return: true if player hits ATLEAST 1 pokemon, false otherwise
+  def colliding_to_pokemons?(x, y, dir)
+    @wildpokemons.detect { |poke| poke.collide?(x, y, dir) }
   end
 
   # Spawns an horizontal line of trees
@@ -124,6 +130,10 @@ class MapObjects
     spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 0)
     spawn_trees_line_on_x(0, (2 * WIDTH / TREE_WIDTH) + 1, 2 * HEIGHT - TREE_HEIGHT)
     spawn_trees_line_on_y(TREE_HEIGHT, (2 * HEIGHT / TREE_HEIGHT) - 1, 2 * WIDTH - TREE_WIDTH)
+  end
+
+  def pokemon_dead?
+    @wildpokemons.reject! { |poke| poke.dead? }
   end
 
   def clear

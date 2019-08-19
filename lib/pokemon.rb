@@ -23,6 +23,9 @@ class Pokemon < Obstacles
     @right1, @right2 = *Gosu::Image.load_tiles(@path_to_image + @image_right, 19, 15)
 
     @cur_image = @down1
+
+    # COMBAT SYSTEM
+    @hp = 0
   end
 
   def update(move_x, move_y)
@@ -110,4 +113,7 @@ class Pokemon < Obstacles
     super
   end
 
+  def dead?
+    @hp.zero?
+  end
 end

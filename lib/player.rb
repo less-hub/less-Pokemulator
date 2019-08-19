@@ -171,6 +171,14 @@ class Player
     @localmap.drowned?(@x, @y, @dir)
   end
 
+  def starts_battle?
+    @localmap.met_wild_pokemon?(@x, @y, @dir)
+  end
+
+  def pokemon_defeated
+    @localmap.wild_poke_defeated
+  end
+
   def clear_maps
     @localmap.clear_all
   end

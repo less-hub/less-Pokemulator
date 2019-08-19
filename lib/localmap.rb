@@ -47,6 +47,14 @@ class LocalMap
     @mapobjects.clear
   end
 
+  def met_wild_pokemon?(x, y, dir)
+    @mapobjects.colliding_to_pokemons?(x, y, dir)
+  end
+
+  def wild_poke_defeated
+    @mapobjects.pokemon_dead?
+  end
+
   def drowned?(x, y, dir)
     @mapobjects.colliding_to_lakes?(x, y, dir)
   end
