@@ -35,7 +35,7 @@ If you are interested to this repo, you should keep reading!
 
 ## TO-DO list
 ---
-* Add wild pokemons
+* Add Player following team
 * Add combat system
 * Add Player spawn point at player House
 * Add enemy NPC
