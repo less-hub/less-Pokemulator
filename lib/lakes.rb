@@ -10,11 +10,11 @@ class Lake < Obstacles
     @width = 100 * @scale_x
     @height = 100 * @scale_y
 
-    @lake_image = Gosu::Image.new('media/nature/lake.bmp')
+    @image = Gosu::Image.new('media/nature/lake.bmp')
   end
 
   def draw
-    @lake_image.draw(@x, @y, ZOrder::OBSTACLES, @scale_x, @scale_y)
+    super
   end
 
   def warp(x, y)
