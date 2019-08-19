@@ -68,12 +68,12 @@ Where `OBJ` stands for
 
 Hence, for instance, in file `/media/maps/00.txt`
 ```
-T 600 400 . . .
-S 500 800 . . .
-H 1100 400 . . .
-L 2000 500 10 10 .
+T 600 400 . . . .
+S 500 800 . . . .
+H 1100 400 . . . .
+L 2000 500 10 10 . .
 P 300 100 1 . .
-F 1300 620 down 0 1
+F 1300 620 down 0 loremipsum 0
 ```
 To create:
 
@@ -82,7 +82,7 @@ To create:
 * `House` at `1100, 400`
 * `Lake` at `2000, 500` with x size of `10` and y size of `10`
 * `Pokemon` at `300, 100` with pokedex number `1`
-* `FriendlyNPC` at `1300, 620`, looking `:down`, image `0` and speech `1`.
+* `FriendlyNPC` at `1300, 620`, looking `:down`, image `0`, named `Loremipsum` and speech `0`.
 
 Note that `.` has `NIL` value in other objects.
 
@@ -90,17 +90,20 @@ Note that `.` has `NIL` value in other objects.
 The syntax is
 
 ```
----
+NAME
 NPC_SPEECH_1
----
+
+NAME
 NPC_SPEECH_2
----
+NPC_SPEECH_2
+
+NAME
 NPC_SPEECH_3
----
+NPC_SPEECH_3
 ```
 
-Note that the file starts and ends with `---`. To access a specific speech, start from 1
-and finish to last speech.
+Note that the speech start with `NAME` the double `\n` works as separator. To access a specific speech, start from 0
+and finish to `speech - 1`.
 
 ## Credits
 * Thanks to Gosu for his awesome graphic library.
