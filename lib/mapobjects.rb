@@ -74,10 +74,10 @@ class MapObjects
   end
 
   # Builds a new friendly NPC at given position
-  # @param: NPC x, NPC y, NPC image, NPC map x, NPC map y, text to say
+  # @param: NPC x, NPC y, NPC image, NPC map x, NPC map y, NPC name, text to say
   # @return: NPC at given position
-  def new_friendPerson(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, text_ind)
-    @people.push(FriendPerson.new(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, text_ind))
+  def new_friendPerson(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, name, text_ind)
+    @people.push(FriendPerson.new(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, name, text_ind))
   end
 
   # Builds a new pokemon in given position

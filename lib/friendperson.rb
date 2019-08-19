@@ -1,5 +1,5 @@
 class FriendPerson < Obstacles
-  def initialize(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, text_ind)
+  def initialize(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, name, text_ind)
     super(x, y)
 
     @dir = dir
@@ -11,6 +11,8 @@ class FriendPerson < Obstacles
     @OFFSET_X = WIDTH
     @OFFSET_Y = HEIGHT
 
+    @name = name.capitalize
+
     @path_to_image = "media/trainers/fnpc/" + npc_kind.to_s + ".bmp"
 
     @look_up, @look_down,
@@ -20,8 +22,8 @@ class FriendPerson < Obstacles
     @path_to_speech = "media/maps/" + map_to_load_x.to_s + map_to_load_y.to_s + "speech.txt"
 
     @font = Gosu::Font.new(30)
-    @npc_speech = File.new(@path_to_speech).readlines("---")[text_ind]
-    @npc_speech.gsub!('---','')
+    @npc_speech = File.new(@path_to_speech).readlines("\n\n").map(&:rstrip)[text_ind]
+    @npc_speech.gsub!("NAME", "#{@name} dice: ")
 
     if @dir == :down
       @cur_image = @look_down

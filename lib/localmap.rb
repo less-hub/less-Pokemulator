@@ -9,7 +9,7 @@ class LocalMap
     @path_to_map = "media/maps/" + map_to_load_x.to_s + map_to_load_y.to_s + ".txt"
 
     File.readlines(@path_to_map).each do |phrase|
-      phrase.split(" ").each_cons(6) do |num|
+      phrase.split(" ").each_cons(7) do |num|
         if num[0] == "T"
           @mapobjects.new_tree(num[1].to_i, num[2].to_i)
         elsif num[0] == "S"
@@ -21,7 +21,7 @@ class LocalMap
         elsif num[0] == "P"
           @mapobjects.new_pokemon(num[1].to_i, num[2].to_i, num[3].to_i)
         elsif num[0] == "F"
-          @mapobjects.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, map_to_load_x, map_to_load_y, num[5].to_i)
+          @mapobjects.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, map_to_load_x, map_to_load_y, num[5], num[6].to_i)
         end
       end
     end
