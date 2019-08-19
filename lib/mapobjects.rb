@@ -91,7 +91,7 @@ class MapObjects
     @forest.detect { |tree| tree.collide?(x, y, dir) } ||
     @hound.detect { |stone| stone.collide?(x, y, dir) } ||
     @village.detect { |house| house.collide?(x, y, dir) } ||
-    @people.detect { |friendPerson| friendPerson.colliding_to_fnpc?(x, y, dir) } ||
+    @people.detect { |friendPerson| friendPerson.collide?(x, y, dir) } ||
     @wildpokemons.detect { |poke| poke.collide?(x, y, dir) }
   end
 

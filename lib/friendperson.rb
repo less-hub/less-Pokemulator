@@ -1,38 +1,37 @@
-class FriendPerson
+class FriendPerson < Obstacles
   def initialize(x, y, dir, npc_kind, map_to_load_x, map_to_load_y, text_ind)
-    @x = x
-    @y = y
-    @native_dir = dir
-    @dir = dir
+    super(x, y)
 
-    @cur_image = :down
+    @dir = dir
+    @native_dir = dir
+
+    @width = 85
+    @height = 120
+
+    @OFFSET_X = WIDTH
+    @OFFSET_Y = HEIGHT
 
     @path_to_image = "media/trainers/fnpc/" + npc_kind.to_s + ".bmp"
+
     @look_up, @look_down,
     @look_left, @look_right = *Gosu::Image.load_tiles(@path_to_image, 19, 25)
 
-    if dir == :down
-      @cur_image = @look_down
-    elsif dir == :left
-      @cur_image = @look_left
-    elsif dir == :up
-      @cur_image = @look_up
-    elsif dir == :right
-      @cur_image = @look_right
-    end
-
-    @OFFSET_X = 1920
-    @OFFSET_Y = 1080
 
     @path_to_speech = "media/trainers/fnpc/speech_zone/" + map_to_load_x.to_s + map_to_load_y.to_s + ".txt"
 
-
-    @is_talking = false
-
     @font = Gosu::Font.new(30)
-    @text_speech = File.new(@path_to_speech)
-    @npc_speech = @text_speech.readlines("---")[text_ind]
+    @npc_speech = File.new(@path_to_speech).readlines("---")[text_ind]
     @npc_speech.gsub!('---','')
+
+    if @dir == :down
+      @cur_image = @look_down
+    elsif @dir == :left
+      @cur_image = @look_left
+    elsif @dir == :up
+      @cur_image = @look_up
+    elsif @dir == :right
+      @cur_image = @look_right
+    end
 
   end
 
@@ -53,10 +52,7 @@ class FriendPerson
       @cur_image = @look_right
     end
 
-    if colliding_to_fnpc?(x, y, dir)
-      @is_talking = true
-
-      if @is_talking
+    if collide?(x, y, dir)
         @OFFSET_X = -(@x - 150 + FNPC_WIDTH / 2)
         @OFFSET_Y = -(@y - 350)
 
@@ -69,47 +65,19 @@ class FriendPerson
         elsif dir == :down
           @dir = :up
         end
-      else
-        @OFFSET_X = 1920
-        @OFFSET_Y = 1080
-
-        @dir = @native_dir
-      end
-
-      while @is_talking
-        npc_says_stuff
-        @is_talking = false
-      end
     else
-      @OFFSET_X = 1920
-      @OFFSET_Y = 1080
+      @OFFSET_X = WIDTH
+      @OFFSET_Y = HEIGHT
       @dir = @native_dir
-      @is_talking = false
     end
   end
 
-  def colliding_to_fnpc?(x, y, dir)
-    if dir == :up
-      x <= @x + FNPC_WIDTH - AVATAR_A && x >= @x - AVATAR_C &&
-        y <= @y + FNPC_HEIGHT - AVATAR_D && y >= @y
-    elsif dir == :left
-      x <= @x + FNPC_WIDTH && x >= @x &&
-        y <= @y + FNPC_HEIGHT - AVATAR_E && y >= @y - AVATAR_D
-    elsif dir == :down
-      x <= @x + FNPC_WIDTH - AVATAR_A && x >= @x - AVATAR_C &&
-        y <= @y + FNPC_HEIGHT - AVATAR_E && y >= @y - AVATAR_E
-    elsif dir == :right
-      x <= @x + FNPC_WIDTH - AVATAR_A && x >= @x - AVATAR_D &&
-        y <= @y + FNPC_HEIGHT - AVATAR_E && y >= @y - AVATAR_D
-    end
+  def warp(x, y)
+    super
   end
 
-  def finished_to_talk?
-    @is_talking
-  end
-
-  def npc_says_stuff
-    npc_speech = @text_speech.readlines[0]
+  def collide?(x, y, dir)
+    super
   end
 
 end
