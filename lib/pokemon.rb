@@ -1,19 +1,12 @@
-class Pokemon
+class Pokemon < Obstacles
   def initialize(x, y, pokedex_number)
-    @x = x
-    @y = y
-
-    @height = 15 * IMAGE_FACTOR_Y
-    @width = 0
+    super(x, y)
 
     @x_left_margin = x
     @y_up_margin = y
 
     @x_right_margin = x + 50
     @y_down_margin = y + 50
-
-    @speed = 50
-    @wait_time = 0
 
     @dir = :down
 
@@ -45,7 +38,7 @@ class Pokemon
     elsif move_x > 0
       @cur_image = (Gosu.milliseconds / 350).even? ? @right1 : @right2
     end
-    
+
     calculate_pokemon_size
 
     if move_y > 0
@@ -59,8 +52,6 @@ class Pokemon
     elsif move_x > 0
       move_x.times { @x += 1 } unless out_fence_right?
     end
-
-
 
   end
 
@@ -116,20 +107,7 @@ class Pokemon
   end
 
   def collide?(x, y, dir)
-    # UNDERSTAND THESE COSTANTS: 10, 15, 35, 80, 90, 100
-    if dir == :up
-      x <= @x + @width - AVATAR_A && x >= @x - AVATAR_C &&
-        y <= @y + @height - AVATAR_D && y >= @y
-    elsif dir == :left
-      x <= @x + @width && x >= @x &&
-        y <= @y + @height - AVATAR_E && y >= @y - AVATAR_D
-    elsif dir == :down
-      x <= @x + @width - AVATAR_A && x >= @x - AVATAR_C &&
-        y <= @y + @height - AVATAR_E && y >= @y - AVATAR_E
-    elsif dir == :right
-      x <= @x + @width - AVATAR_A && x >= @x - AVATAR_D &&
-        y <= @y + @height - AVATAR_E && y >= @y - AVATAR_D
-    end
+    super
   end
 
 end
