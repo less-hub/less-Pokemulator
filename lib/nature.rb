@@ -13,6 +13,7 @@ class Nature
     @y = 0
     @forest = []
     @hound = []
+    @lakes = []
 
   end
 
@@ -30,9 +31,17 @@ class Nature
     @hound.push(Stone.new(x, y))
   end
 
+  # Builds a new lake in given position
+  # @param: x-axis of lake, y-axis of lake
+  # @return: Lake at given position
+  def new_lake(x, y, sx, sy)
+    @lakes.push(Lake.new(x, y, sx, sy))
+  end
+
   def draw
     @forest.each(&:draw)
     @hound.each(&:draw)
+    @lakes.each(&:draw)
   end
 
   # Checks if player hits the trees
@@ -47,6 +56,13 @@ class Nature
   # @return: true if player hits ATLEAST 1 stone, false otherwise
   def colliding_to_stones?(x, y, dir)
     @hound.detect { |stone| stone.collide?(x, y, dir) }
+  end
+
+  # Checks if player hits the lake
+  # @param: player x-axis, player y-axis, player direction
+  # @return: true if player hits ATLEAST 1 lake, false otherwise
+  def colliding_to_lakes?(x, y, dir)
+    @lakes.detect { |lake| lake.collide?(x, y, dir) }
   end
 
   # Spawns an horizontal line of trees
@@ -76,5 +92,6 @@ class Nature
   def clear
     @forest.clear
     @hound.clear
+    @lakes.clear
   end
 end

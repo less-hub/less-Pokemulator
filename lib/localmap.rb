@@ -30,6 +30,8 @@ class LocalMap
           @nature.new_stone(num[1].to_i, num[2].to_i)
         elsif num[0] == "H"
           @village.new_house(num[1].to_i, num[2].to_i)
+        elsif num[0] == "L"
+          @nature.new_lake(num[1].to_i, num[2].to_i, num[3].to_i, num[4].to_i)
         elsif num[0] == "P"
           @pokemons.new_pokemon(num[1].to_i, num[2].to_i, num[3].to_i)
         elsif num[0] == "F"
@@ -65,6 +67,7 @@ class LocalMap
     @village.colliding_to_houses?(x, y, dir) ||
       @nature.colliding_to_trees?(x, y, dir) ||
       @nature.colliding_to_stones?(x, y, dir) ||
+      @nature.colliding_to_lakes?(x, y, dir) ||
       @people.colliding_to_people?(x, y, dir) ||
       @pokemons.colliding_to_pokemons?(x, y, dir)
   end
