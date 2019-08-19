@@ -13,6 +13,7 @@ require './lib/mapobjects'
 require './lib/stone'
 require './lib/friendperson'
 require './lib/pokemon'
+require './lib/trainerpokemon'
 
 module ZOrder
   BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, PLAYER_Z, UI, LOADING = *0..7
