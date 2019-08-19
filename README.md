@@ -42,13 +42,13 @@ If you are interested to this repo, you should keep reading!
 
 ## Adding a map
 Create a `.txt` file, place it in `media/maps/MAP_NUMBER.txt`. Then add NPCs
-speech into an other `.txt` file in `media/trainers/fnpc/speech_zone/MAP_NUMBER.txt`.
+speech into an other `.txt` file in `media/maps/MAP_NUMBERspeech.txt`.
 Remember to replace `MAP_NUMBER` with the position of local map. For instance,
 to create a local map in `4,2` the files would be
 
 ```
 media/maps/42.txt
-media/trainers/fnpc/speech_zone/42.txt
+media/maps/42speech.txt
 ```
 
 ## Adding objects to maps
