@@ -65,7 +65,6 @@ class LocalMap
     @village.colliding_to_houses?(x, y, dir) ||
       @nature.colliding_to_trees?(x, y, dir) ||
       @nature.colliding_to_stones?(x, y, dir) ||
-      @nature.colliding_to_lakes?(x, y, dir) ||
       @people.colliding_to_people?(x, y, dir) ||
       @pokemons.colliding_to_pokemons?(x, y, dir)
   end
@@ -75,6 +74,10 @@ class LocalMap
     @village.clear
     @people.clear
     @pokemons.clear
+  end
+
+  def drowned?(x, y, dir)
+    @nature.colliding_to_lakes?(x, y, dir)
   end
 
 end

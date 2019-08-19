@@ -116,4 +116,8 @@ class Player
     @localmap.clear_all
   end
 
+  def dies?
+    @localmap.drowned?(@x, @y, @dir)
+  end
+
 end

@@ -46,43 +46,47 @@ class APP_NAME < Gosu::Window
   end
 
   def update
-    if @player.do_i_go_off_screen_up?
-      change_map(:up)
-      @player.clear_maps
-      @player = Player.new(@player.x, 2 * HEIGHT - 101, :up, @map_position[0], @map_position[1])
+    unless @player.dies?
+      if @player.do_i_go_off_screen_up?
+        change_map(:up)
+        @player.clear_maps
+        @player = Player.new(@player.x, 2 * HEIGHT - 101, :up, @map_position[0], @map_position[1])
 
-    elsif @player.do_i_go_off_screen_down?
-      change_map(:down)
-      @player.clear_maps
-      @player = Player.new(@player.x, 1, :down, @map_position[0], @map_position[1])
+      elsif @player.do_i_go_off_screen_down?
+        change_map(:down)
+        @player.clear_maps
+        @player = Player.new(@player.x, 1, :down, @map_position[0], @map_position[1])
 
-    elsif @player.do_i_go_off_screen_left?
-      change_map(:left)
-      @player.clear_maps
-      @player = Player.new(2 * WIDTH - 71, @player.y, :down, @map_position[0], @map_position[1])
+      elsif @player.do_i_go_off_screen_left?
+        change_map(:left)
+        @player.clear_maps
+        @player = Player.new(2 * WIDTH - 71, @player.y, :down, @map_position[0], @map_position[1])
 
-    elsif @player.do_i_go_off_screen_right?
-      change_map(:right)
-      @player.clear_maps
-      @player = Player.new(1, @player.y, :down, @map_position[0], @map_position[1])
-    else
-      # --- CLASS PLAYER
-      move_y = 0
-      move_x = 0
+      elsif @player.do_i_go_off_screen_right?
+        change_map(:right)
+        @player.clear_maps
+        @player = Player.new(1, @player.y, :down, @map_position[0], @map_position[1])
+      else
+        # --- CLASS PLAYER
+        move_y = 0
+        move_x = 0
 
-      move_y += 5 if Gosu.button_down? Gosu::KB_K
-      move_y -= 5 if Gosu.button_down? Gosu::KB_I
+        move_y += 5 if Gosu.button_down? Gosu::KB_K
+        move_y -= 5 if Gosu.button_down? Gosu::KB_I
 
-      if move_y.zero?
-        move_x += 5 if Gosu.button_down? Gosu::KB_L
-        move_x -= 5 if Gosu.button_down? Gosu::KB_J
+        if move_y.zero?
+          move_x += 5 if Gosu.button_down? Gosu::KB_L
+          move_x -= 5 if Gosu.button_down? Gosu::KB_J
+        end
+
+        @player.update(move_x, move_y)
+
+        # Camera follows player
+        @camera_x = [[@player.x - WIDTH / 2, 0].max, WIDTH].min
+        @camera_y = [[@player.y - HEIGHT / 2, 0].max, HEIGHT].min
       end
-
-      @player.update(move_x, move_y)
-
-      # Camera follows player
-      @camera_x = [[@player.x - WIDTH / 2, 0].max, WIDTH].min
-      @camera_y = [[@player.y - HEIGHT / 2, 0].max, HEIGHT].min
+    else
+      @player = Player.new(1920 / 2, 1080 / 2, :down, @map_position[0], @map_position[1])
     end
     # --- END PLAYER
 
