@@ -8,8 +8,9 @@ class LocalMap
     @nature = Nature.new
     @village = Village.new
     @people = People.new
+    @pokemons = WildPokemons.new
 
-    @bulbasaur = Pokemon.new(300, 300, 1)
+
 
     #@nature.spawn_trees_on_screen_edge
 
@@ -29,6 +30,8 @@ class LocalMap
           @nature.new_stone(num[1].to_i, num[2].to_i)
         elsif num[0] == "H"
           @village.new_house(num[1].to_i, num[2].to_i)
+        elsif num[0] == "P"
+          @pokemons.new_pokemon(num[1].to_i, num[2].to_i, num[3].to_i)
         elsif num[0] == "F"
           @people.new_friendPerson(num[1].to_i, num[2].to_i, num[3].to_sym, num[4].to_i, map_to_load_x, map_to_load_y, num[5].to_i)
         end
@@ -39,27 +42,20 @@ class LocalMap
     # @nature.new_tree(600, 400)
     # @nature.new_stone(500, 800)
     # @village.new_house(1100, 400)
+    # @pokemons.new_pokemon(300, 300, 1)
+
   end
 
   def update(x, y, dir)
     @people.update(x, y, dir)
-
-    move_y = 0
-    move_x = 0
-
-    move_y += 5 if (Gosu.milliseconds / 1750).even?
-    move_y -= 5 if (Gosu.milliseconds / 2000).even?
-    move_x += 5 if (Gosu.milliseconds / 2250).even?
-    move_x -= 5 if (Gosu.milliseconds / 2500).even?
-
-    @bulbasaur.update(move_x, move_y)
+    @pokemons.update
   end
 
   def draw
     @village.draw
     @nature.draw
     @people.draw
-    @bulbasaur.draw
+    @pokemons.draw
   end
 
   # Checks if player hits some obeject near him
@@ -70,13 +66,14 @@ class LocalMap
       @nature.colliding_to_trees?(x, y, dir) ||
       @nature.colliding_to_stones?(x, y, dir) ||
       @people.colliding_to_people?(x, y, dir) ||
-      @bulbasaur.collide?(x, y, dir)
+      @pokemons.colliding_to_pokemons?(x, y, dir)
   end
 
   def clear_all
     @nature.clear
     @village.clear
     @people.clear
+    @pokemons.clear
   end
 
 end
