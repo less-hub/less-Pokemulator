@@ -18,6 +18,8 @@ module ZOrder
   BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, PLAYER_Z, UI, LOADING = *0..7
 end
 
+WIDTH = 1920
+HEIGHT = 1080
 #  BG EFFECTIVE SIZE:
 #     WIDTH: 1920 * 2 = 3840
 #     HEIGHT:1080 * 2 = 2160
@@ -28,44 +30,44 @@ class APP_NAME < Gosu::Window
     self.caption = 'APP_NAME'
 
     @map_position = [0, 0]
+    @player_spawn_x = WIDTH / 2
+    @player_spawn_y = HEIGHT / 2
+    @player_spawn_dir = :down
 
-    @loading_offset_x = 1920
-    @loading_offset_y = 1080
-    @loading = false
+    @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
 
     # Shows FPS
     @font = Gosu::Font.new(self, Gosu.default_font_name, 20)
 
     @background_image = Gosu::Image.new('media/bg.png')
 
-    @player = Player.new(1920 / 2, 1080 / 2, :down, @map_position[0], @map_position[1])
-
-    @camera_x = @camera_y = 0
+    @camera_x = [[@player.x - WIDTH / 2, 0].max, WIDTH].min
+    @camera_y = [[@player.y - HEIGHT / 2, 0].max, HEIGHT].min
   end
 
   def update
     unless @player.dies?
-      if @player.do_i_go_off_screen_up?
+      if @player.off_screen_up?
         change_map(:up)
         @player.clear_maps
         @player = Player.new(@player.x, 2 * HEIGHT - 101, :up, @map_position[0], @map_position[1])
 
-      elsif @player.do_i_go_off_screen_down?
+      elsif @player.off_screen_down?
         change_map(:down)
         @player.clear_maps
         @player = Player.new(@player.x, 1, :down, @map_position[0], @map_position[1])
 
-      elsif @player.do_i_go_off_screen_left?
+      elsif @player.off_screen_left?
         change_map(:left)
         @player.clear_maps
         @player = Player.new(2 * WIDTH - 71, @player.y, :down, @map_position[0], @map_position[1])
 
-      elsif @player.do_i_go_off_screen_right?
+      elsif @player.off_screen_right?
         change_map(:right)
         @player.clear_maps
         @player = Player.new(1, @player.y, :down, @map_position[0], @map_position[1])
       else
-        # --- CLASS PLAYER
+
         move_y = 0
         move_x = 0
 
@@ -84,9 +86,8 @@ class APP_NAME < Gosu::Window
         @camera_y = [[@player.y - HEIGHT / 2, 0].max, HEIGHT].min
       end
     else
-      @player = Player.new(1920 / 2, 1080 / 2, :down, @map_position[0], @map_position[1])
+      @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
     end
-    # --- END PLAYER
 
   end
 
@@ -96,7 +97,6 @@ class APP_NAME < Gosu::Window
       @player.draw
     end
 
-    Gosu.draw_rect(-@loading_offset_x, -@loading_offset_y, 1920, 1080, Gosu::Color::BLACK, ZOrder::LOADING)
     @font.draw_text(Gosu.fps.to_s, 0, 0, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
@@ -115,15 +115,8 @@ class APP_NAME < Gosu::Window
   end
 
   def loading_screen(seconds_at_loading)
-    @start_time = seconds_at_loading
-
-    while Gosu.milliseconds - @start_time < 100
-      @loading_offset_x = 0
-      @loading_offset_y = 0
+    while Gosu.milliseconds - seconds_at_loading < 100
     end
-
-    @loading_offset_x = 1920
-    @loading_offset_y = 1080
   end
 
 

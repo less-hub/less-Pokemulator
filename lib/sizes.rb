@@ -1,13 +1,5 @@
 # frozen_string_literal: true
-
-WIDTH = 1920
-HEIGHT = 1080
-
-# 22 * 4
-PLAYER_WIDTH = 88
-# 26 * 4
-PLAYER_HEIGHT = 104
-
+# SIZES.RB because WHY THE HELL THESE VARIABLES HAVE THESE VALUES?! is too long.
 AVATAR_A = 15
 AVATAR_C = 70
 AVATAR_D = 90

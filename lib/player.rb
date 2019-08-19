@@ -3,7 +3,7 @@
 # Spawns the player at given position, who can move around
 
 class Player
-  attr_reader :x, :y, :path_to_speech
+  attr_reader :x, :y
 
   def initialize(x, y, dir, map_to_load_x, map_to_load_y)
     @x = x
@@ -21,7 +21,6 @@ class Player
     @cur_image = @standing_down
 
     @localmap = LocalMap.new(map_to_load_x, map_to_load_y)
-
   end
 
   def draw
@@ -29,7 +28,7 @@ class Player
     @localmap.draw
   end
 
-  # Makes the player moving around, stops if hits screen border or houses
+  # Makes the player moving around, changes screen if player hits map border
   # @param: player offset x, player offset y
   # @return: NIL
   def update(move_x, move_y)
@@ -58,7 +57,7 @@ class Player
 
       move_y = 0 if @localmap.colliding?(@x, @y, @dir)
 
-      move_y.times { @y += 1 } unless do_i_go_off_screen_down?
+      move_y.times { @y += 1 }
 
     elsif move_y.negative?
       @dir = :up
@@ -66,14 +65,14 @@ class Player
       move_y = 0 if @localmap.colliding?(@x, @y, @dir)
 
       move_y = -move_y
-      move_y.times { @y -= 1 } unless do_i_go_off_screen_up?
+      move_y.times { @y -= 1 }
 
     elsif move_x.positive?
       @dir = :right
 
       move_x = 0 if @localmap.colliding?(@x, @y, @dir)
 
-      move_x.times { @x += 1 } unless do_i_go_off_screen_right?
+      move_x.times { @x += 1 }
 
     elsif move_x.negative?
       @dir = :left
@@ -81,43 +80,35 @@ class Player
       move_x = 0 if @localmap.colliding?(@x, @y, @dir)
 
       move_x = -move_x
-      move_x.times { @x -= 1 } unless do_i_go_off_screen_left?
+      move_x.times { @x -= 1 }
 
       end
 
       @localmap.update(@x, @y, @dir)
-
   end
 
-  # Will be usefull for map changes, cos checks screen limits
-  # @param: NIL
-  # @return: true if player goes offscreen, flase otherwise
-  def do_i_go_off_screen_right?
-    # 95 = 70px WIDTH HERO
+  def off_screen_right?
     @x > 2 * WIDTH - 70
   end
 
-  def do_i_go_off_screen_left?
-    # OFF_SCREEN LEFT = 0
+  def off_screen_left?
     @x.negative?
   end
 
-  def do_i_go_off_screen_up?
-    # OFF_SCREEN UP = 0
+  def off_screen_up?
     @y.negative?
   end
 
-  def do_i_go_off_screen_down?
-    # FIND OUT WHY 100
+  def off_screen_down?
     @y > 2 * HEIGHT - 100
-  end
-
-  def clear_maps
-    @localmap.clear_all
   end
 
   def dies?
     @localmap.drowned?(@x, @y, @dir)
+  end
+
+  def clear_maps
+    @localmap.clear_all
   end
 
 end
