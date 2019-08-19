@@ -18,10 +18,11 @@ class FriendPerson < Obstacles
     @look_up, @look_down,
     @look_left, @look_right = *Gosu::Image.load_tiles(@path_to_image, 19, 25)
 
+    @bubble = Gosu::Image.new("media/bubble.png")
 
     @path_to_speech = "media/maps/" + map_to_load_x.to_s + map_to_load_y.to_s + "speech.txt"
 
-    @font = Gosu::Font.new(30)
+    @npc_font = Gosu::Font.new(30)
     @npc_speech = File.new(@path_to_speech).readlines("\n\n").map(&:rstrip)[text_ind]
     @npc_speech.gsub!("NAME", "#{@name} dice: ")
 
@@ -39,8 +40,8 @@ class FriendPerson < Obstacles
 
   def draw
     @cur_image.draw(@x, @y, ZOrder::NPC, @scale_x - 1.0, @scale_y - 1.0)
-    Gosu.draw_rect(-@OFFSET_X, -@OFFSET_Y, 300, 300, Gosu::Color::WHITE, ZOrder::UI)
-    @font.draw_text(@npc_speech, -@OFFSET_X, -@OFFSET_Y, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @bubble.draw(-@OFFSET_X, -@OFFSET_Y, ZOrder::UI)
+    @npc_font.draw_text(@npc_speech, -@OFFSET_X + 10, -@OFFSET_Y + 10, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def update(x, y, dir)
