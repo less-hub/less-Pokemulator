@@ -4,7 +4,6 @@
 
 class LocalMap
   def initialize(map_to_load_x, map_to_load_y)
-    @x = @y = 0
     @mapobjects = MapObjects.new
 
     @path_to_map = "media/maps/" + map_to_load_x.to_s + map_to_load_y.to_s + ".txt"

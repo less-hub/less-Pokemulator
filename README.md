@@ -62,8 +62,9 @@ Where `OBJ` stands for
 * `H` for HOUSE
 * `T` for TREE
 * `S` for STONE
+* `L` for LAKE
 * `P` for POKEMON
-* `F` for Friendly NPC, but has different setup. Look `lib/friendperson.rb` for more info.
+* `F` for Friendly NPC
 
 Hence, for instance, in file `/media/maps/00.txt`
 ```
