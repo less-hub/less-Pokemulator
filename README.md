@@ -67,6 +67,7 @@ Where `OBJ` stands for
 * `H` for HOUSE
 * `T` for TREE
 * `S` for STONE
+* `P` for POKEMON
 * `F` for Friendly NPC, but has different setup. Look `lib/friendperson.rb` for more info.
 
 Hence, for instance, in file `/media/maps/00.txt`
@@ -74,10 +75,12 @@ Hence, for instance, in file `/media/maps/00.txt`
 T 600 400 . . .
 S 500 800 . . .
 H 1100 400 . . .
+P 300 100 1 . .
 F 1300 620 down 0 1
 ```
-To create a `Tree` in `600, 400`, a `Stone` in `500, 800`, a `House` in `1100, 400` and a `Friendly
-NPC` right under the house, at `1300, 620`, looking `:down`, image `0` and speech `1`.
+To create a `Tree` in `600, 400`, a `Stone` in `500, 800`, a `House` in `1100, 400`, a
+pokemon in `300, 100` with pokedex number `1` and `FriendlyNPC` right under the
+house, at `1300, 620`, looking `:down`, image `0` and speech `1`.
 
 Note that `.` has `NIL` value in other objects.
 
