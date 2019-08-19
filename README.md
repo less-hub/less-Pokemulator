@@ -75,12 +75,18 @@ Hence, for instance, in file `/media/maps/00.txt`
 T 600 400 . . .
 S 500 800 . . .
 H 1100 400 . . .
+L 2000 500 10 10 .
 P 300 100 1 . .
 F 1300 620 down 0 1
 ```
-To create a `Tree` in `600, 400`, a `Stone` in `500, 800`, a `House` in `1100, 400`, a
-pokemon in `300, 100` with pokedex number `1` and `FriendlyNPC` right under the
-house, at `1300, 620`, looking `:down`, image `0` and speech `1`.
+To create:
+
+* `Tree` at `600, 400`
+* `Stone` at `500, 800`
+* `House` at `1100, 400`
+* `Lake` at `2000, 500` with x size of `10` and y size of `10`
+* `Pokemon` at `300, 100` with pokedex number `1`
+* `FriendlyNPC` at `1300, 620`, looking `:down`, image `0` and speech `1`.
 
 Note that `.` has `NIL` value in other objects.
 
