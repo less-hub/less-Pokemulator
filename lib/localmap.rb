@@ -10,8 +10,6 @@ class LocalMap
     @people = People.new
     @pokemons = WildPokemons.new
 
-
-
     #@nature.spawn_trees_on_screen_edge
 
 #    @nature.new_tree(x of tree, y of tree)

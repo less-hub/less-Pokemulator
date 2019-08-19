@@ -11,11 +11,11 @@ class Lake
     @LAKE_WIDTH = 100 * @scale_x
     @LAKE_HEIGHT = 100 * @scale_y
 
-    @image = Gosu::Image.new('media/nature/lake.bmp')
+    @lake_image = Gosu::Image.new('media/nature/lake.bmp')
   end
 
   def draw
-    @image.draw(@x, @y, ZOrder::OBSTACLES, @scale_x, @scale_y)
+    @lake_image.draw(@x, @y, ZOrder::OBSTACLES, @scale_x, @scale_y)
   end
 
   # Moves a lake to a different location
