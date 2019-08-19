@@ -22,7 +22,6 @@ class Player
 
     @localmap = LocalMap.new(map_to_load_x, map_to_load_y)
 
-    @interact_status = false
   end
 
   def draw

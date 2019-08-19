@@ -3,6 +3,9 @@ class Pokemon
     @x = x
     @y = y
 
+    @height = 15 * IMAGE_FACTOR_Y
+    @width = 0
+
     @x_left_margin = x
     @y_up_margin = y
 
@@ -42,6 +45,8 @@ class Pokemon
     elsif move_x > 0
       @cur_image = (Gosu.milliseconds / 350).even? ? @right1 : @right2
     end
+    
+    calculate_pokemon_size
 
     if move_y > 0
       move_y.times { @y += 1 } unless out_fence_down?
@@ -55,10 +60,28 @@ class Pokemon
       move_x.times { @x += 1 } unless out_fence_right?
     end
 
+
+
   end
 
   def draw
     @cur_image.draw(@x, @y, ZOrder::NPC, IMAGE_FACTOR_X, IMAGE_FACTOR_Y)
+  end
+
+  def calculate_pokemon_size
+    if @cur_image == @up1 || @cur_image == @up2
+      @width = 13 * IMAGE_FACTOR_X
+      @height = 15 * IMAGE_FACTOR_Y
+    elsif @cur_image == @down1 || @cur_image == @down2
+      @width = 15 * IMAGE_FACTOR_X
+      @height = 16 * IMAGE_FACTOR_Y
+    elsif @cur_image == @left1 || @cur_image == @left2
+      @width = 19 * IMAGE_FACTOR_X
+      @height = 15 * IMAGE_FACTOR_Y
+    elsif @cur_image == @right1 || @cur_image == @right2
+      @width = 19 * IMAGE_FACTOR_X
+      @height = 15 * IMAGE_FACTOR_Y
+    end
   end
 
   def change_direction
@@ -90,6 +113,23 @@ class Pokemon
 
   def out_fence_right?
     @x > @x_right_margin
+  end
+
+  def collide?(x, y, dir)
+    # UNDERSTAND THESE COSTANTS: 10, 15, 35, 80, 90, 100
+    if dir == :up
+      x <= @x + @width - AVATAR_A && x >= @x - AVATAR_C &&
+        y <= @y + @height - AVATAR_D && y >= @y
+    elsif dir == :left
+      x <= @x + @width && x >= @x &&
+        y <= @y + @height - AVATAR_E && y >= @y - AVATAR_D
+    elsif dir == :down
+      x <= @x + @width - AVATAR_A && x >= @x - AVATAR_C &&
+        y <= @y + @height - AVATAR_E && y >= @y - AVATAR_E
+    elsif dir == :right
+      x <= @x + @width - AVATAR_A && x >= @x - AVATAR_D &&
+        y <= @y + @height - AVATAR_E && y >= @y - AVATAR_D
+    end
   end
 
 end

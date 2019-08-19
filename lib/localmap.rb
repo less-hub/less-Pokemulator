@@ -69,7 +69,8 @@ class LocalMap
     @village.colliding_to_houses?(x, y, dir) ||
       @nature.colliding_to_trees?(x, y, dir) ||
       @nature.colliding_to_stones?(x, y, dir) ||
-      @people.colliding_to_people?(x, y, dir)
+      @people.colliding_to_people?(x, y, dir) ||
+      @bulbasaur.collide?(x, y, dir)
   end
 
   def clear_all
