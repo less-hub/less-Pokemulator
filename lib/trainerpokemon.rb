@@ -37,11 +37,11 @@ class TrainerPokemon
     if move_y.positive?
       @dir = :down
 
-      if @x < player_x
+      if @x < player_x + 15
         move_y.times do
           @x += 1
         end
-      elsif @x > player_x
+      elsif @x > player_x + 15
         move_y.times do
           @x -= 1
         end
@@ -59,11 +59,11 @@ class TrainerPokemon
     if move_y.negative?
       @dir = :up
 
-      if @x < player_x
+      if @x < player_x + 15
         (-move_y).times do
           @x += 1
         end
-      elsif @x > player_x
+      elsif @x > player_x + 15
         (-move_y).times do
           @x -= 1
         end
