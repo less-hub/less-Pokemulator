@@ -1,6 +1,6 @@
 # Table of contents
 
-- [Uhm...Well...Just... Just why?](#uhmwelljust-just-why-)
+- [Uhm...Well...Just... Just why?](#uhmwelljust-just-why)
 - [Installing... On Arch](#installing-on-arch)
 - [Installing... On other distros](#installing-on-other-distros)
 - [Playing](#playing)
@@ -44,11 +44,11 @@ Welcome to my world!
 If you are interested to this repo, you should keep reading!
 
 ## TO-DO list
-* Add Player following team
+* Add pokemons LVL, HP, ATK, DEF
 * Add combat system
 * Add Player spawn point at player House
-* Add enemy NPC
 * Add villages, routes etc to world zone
+* Add enemy NPC
 * Add better world map
 * Add storyline
 
