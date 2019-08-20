@@ -164,10 +164,6 @@ class APP_NAME < Gosu::Window
     @combat.OFFSET_Y = HEIGHT
   end
 
-  def combat_ends
-
-  end
-
   def button_down(id)
     if id == Gosu::KB_ESCAPE
       close
