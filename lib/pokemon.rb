@@ -1,4 +1,6 @@
 class Pokemon < Obstacles
+  attr_reader :x, :y, :hp
+
   def initialize(x, y, pokedex_number)
     super(x, y)
 
@@ -25,7 +27,7 @@ class Pokemon < Obstacles
     @cur_image = @down1
 
     # COMBAT SYSTEM
-    @hp = 10
+    @hp = 120
   end
 
   def dec_hp_by(atk)

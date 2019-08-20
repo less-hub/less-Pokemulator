@@ -51,11 +51,24 @@ class APP_NAME < Gosu::Window
 
   def update
     unless @player.dies?
-      if @player.starts_battle?
-        @combat.update
-        
-        @player.pokemon_defeated? if Gosu.button_down? Gosu::KB_A
+      if @player.met_pokemon_to_start_battle
+          @combat.update
+          @combat.fight_between(@player.trainerpokemon, @player.met_pokemon_to_start_battle)
+
+          @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x + 30)
+          @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
+
+          if @player.trainerpokemon.is_dead?
+            remove_combat_speech
+            @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
+          end
+          @player.remove_dead_poke
+
+          if @combat.wpoke_exhausted?
+            @combat.combat_text = "Hai vinto!\nStrano che non\nè crashato niente eh?\nHai guadagnato 0 EXP!"
+          end
       else
+
         if @player.off_screen_up?
           change_map(:up)
           @player.clear_maps
@@ -80,12 +93,26 @@ class APP_NAME < Gosu::Window
           move_y = 0
           move_x = 0
 
-          move_y += 5 if Gosu.button_down? Gosu::KB_K
-          move_y -= 5 if Gosu.button_down? Gosu::KB_I
+          if Gosu.button_down? Gosu::KB_K
+            remove_combat_speech
+            move_y += 5
+          end
+
+          if Gosu.button_down? Gosu::KB_I
+            remove_combat_speech
+            move_y -= 5
+          end
 
           if move_y.zero?
-            move_x += 5 if Gosu.button_down? Gosu::KB_L
-            move_x -= 5 if Gosu.button_down? Gosu::KB_J
+            if Gosu.button_down? Gosu::KB_L
+              remove_combat_speech
+              move_x += 5
+            end
+
+            if Gosu.button_down? Gosu::KB_J
+              remove_combat_speech
+              move_x -= 5
+            end
           end
 
           @player.update(move_x, move_y)
@@ -129,6 +156,15 @@ class APP_NAME < Gosu::Window
     end
   end
 
+  def remove_combat_speech
+    @combat.reset_text
+    @combat.OFFSET_X = WIDTH
+    @combat.OFFSET_Y = HEIGHT
+  end
+
+  def combat_ends
+
+  end
 
   def button_down(id)
     if id == Gosu::KB_ESCAPE
@@ -139,7 +175,7 @@ class APP_NAME < Gosu::Window
   end
 
   def button_up(id)
-    if @player.starts_battle?
+    if @player.met_pokemon_to_start_battle
       case id
       when Gosu::KB_Q
         @combat.player_hits_wild(30)

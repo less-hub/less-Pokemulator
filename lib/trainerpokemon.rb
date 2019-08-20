@@ -1,4 +1,6 @@
 class TrainerPokemon
+  attr_reader :hp
+
   def initialize(x, y, dir, pokedex_number)
     @x = x
     @y = y
@@ -21,6 +23,16 @@ class TrainerPokemon
 
     @cur_image = @down1
 
+    @hp = 120
+
+  end
+
+  def dec_hp_by(atk)
+    @hp -= atk
+  end
+
+  def is_dead?
+    @hp < 1
   end
 
   def update(move_x, move_y, player_x, player_y)

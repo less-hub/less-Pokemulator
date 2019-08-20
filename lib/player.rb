@@ -3,7 +3,7 @@
 # Spawns the player at given position, who can move around
 
 class Player
-  attr_reader :x, :y
+  attr_reader :x, :y, :trainerpokemon
 
   def initialize(x, y, dir, map_to_load_x, map_to_load_y)
     @x = x
@@ -122,11 +122,11 @@ class Player
     @localmap.drowned?(@x, @y, @dir)
   end
 
-  def starts_battle?
+  def met_pokemon_to_start_battle
     @localmap.met_wild_pokemon?(@x, @y, @dir)
   end
 
-  def pokemon_defeated?
+  def remove_dead_poke
     @localmap.wild_poke_defeated?
   end
 
