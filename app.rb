@@ -49,7 +49,7 @@ class APP_NAME < Gosu::Window
   def update
     unless @player.dies?
       if @player.starts_battle?
-        
+
         @player.pokemon_defeated
       else
         if @player.off_screen_up?
