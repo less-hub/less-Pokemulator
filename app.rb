@@ -50,7 +50,7 @@ class APP_NAME < Gosu::Window
     unless @player.dies?
       if @player.starts_battle?
 
-        @player.pokemon_defeated
+        @player.pokemon_defeated?
       else
         if @player.off_screen_up?
           change_map(:up)

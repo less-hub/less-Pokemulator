@@ -51,7 +51,7 @@ class LocalMap
     @mapobjects.colliding_to_pokemons?(x, y, dir)
   end
 
-  def wild_poke_defeated
+  def wild_poke_defeated?
     @mapobjects.pokemon_dead?
   end
 
