@@ -33,9 +33,11 @@ class Combat
 
     @bubbleWHP.draw(-@OFFSET_XWHP - 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
     @font.draw_text(@tp_life, -@OFFSET_XWHP - 180, -@OFFSET_YWHP - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text("Wild Pokemon", -@OFFSET_XWHP - 210, -@OFFSET_YWHP - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
     @bubbleWHP.draw(-@OFFSET_XWHP + 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
     @font.draw_text(@pw_life, -@OFFSET_XWHP + 210, -@OFFSET_YWHP - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text("Trainer Pokemon", -@OFFSET_XWHP + 190, -@OFFSET_YWHP - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def player_hits_wild(atk)
@@ -48,7 +50,7 @@ class Combat
       @OFFSET_YWHP = HEIGHT
     end
 
-    @combat_text = "Il tuo pokemon infligge\n #{atk} danni.\n\n Come vuoi procedere?\nQ. Attacco da 30"
+    @combat_text = "Il tuo pokemon infligge\n #{atk} danni.\n\nTocca a te!,\nCome vuoi procedere?\nQ. Attacco da 30"
   end
 
   def wpoke_exhausted?
