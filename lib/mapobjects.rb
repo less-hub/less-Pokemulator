@@ -87,6 +87,9 @@ class MapObjects
     @wildpokemons.push(Pokemon.new(x, y, pokedex_number))
   end
 
+  # Checks if player collides to objects
+  # @param: player x, player y, player direction
+  # @return: True if player collides, false otherwise
   def collide?(x, y, dir)
     @forest.detect { |tree| tree.collide?(x, y, dir) } ||
     @hound.detect { |stone| stone.collide?(x, y, dir) } ||
@@ -136,6 +139,9 @@ class MapObjects
     @wildpokemons.reject! { |poke| poke.dead? }
   end
 
+  # Clears all objects on the map
+  # @param: NIL
+  # @return: Cleared map
   def clear
     @forest.clear
     @hound.clear
