@@ -55,8 +55,8 @@ class APP_NAME < Gosu::Window
           @combat.update
           @combat.fight_between(@player.trainerpokemon, @player.met_pokemon_to_start_battle)
 
-          @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x + 30)
-          @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
+          @combat.OFFSET_XWHP = @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x + 30)
+          @combat.OFFSET_YWHP = @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
 
           if @player.trainerpokemon.is_dead?
             remove_combat_speech
@@ -65,6 +65,8 @@ class APP_NAME < Gosu::Window
           @player.remove_dead_poke
 
           if @combat.wpoke_exhausted?
+            @combat.OFFSET_YWHP = HEIGHT
+            @combat.OFFSET_XWHP = WIDTH
             @combat.combat_text = "Hai vinto!\nStrano che non\nè crashato niente eh?\nHai guadagnato 0 EXP!"
           end
       else
