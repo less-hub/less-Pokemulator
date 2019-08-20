@@ -25,7 +25,11 @@ class Pokemon < Obstacles
     @cur_image = @down1
 
     # COMBAT SYSTEM
-    @hp = 0
+    @hp = 10
+  end
+
+  def dec_hp_by(atk)
+    @hp -= atk
   end
 
   def update(move_x, move_y)
@@ -114,6 +118,6 @@ class Pokemon < Obstacles
   end
 
   def dead?
-    @hp.zero?
+    @hp < 1
   end
 end

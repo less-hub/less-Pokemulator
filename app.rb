@@ -14,6 +14,7 @@ require './lib/stone'
 require './lib/friendperson'
 require './lib/pokemon'
 require './lib/trainerpokemon'
+require './lib/combat'
 
 module ZOrder
   BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, PLAYER_Z, UI, LOADING = *0..7
@@ -35,7 +36,9 @@ class APP_NAME < Gosu::Window
     @player_spawn_y = HEIGHT / 2
     @player_spawn_dir = :down
 
+
     @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
+    @combat = Combat.new
 
     # Shows FPS
     @font = Gosu::Font.new(self, Gosu.default_font_name, 20)
@@ -49,8 +52,9 @@ class APP_NAME < Gosu::Window
   def update
     unless @player.dies?
       if @player.starts_battle?
-
-        @player.pokemon_defeated?
+        @combat.update
+        
+        @player.pokemon_defeated? if Gosu.button_down? Gosu::KB_A
       else
         if @player.off_screen_up?
           change_map(:up)
@@ -102,7 +106,7 @@ class APP_NAME < Gosu::Window
       @background_image.draw(0, 0, ZOrder::BACKGROUND)
       @player.draw
     end
-
+     @combat.draw
     @font.draw_text(Gosu.fps.to_s, 0, 0, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
@@ -131,6 +135,21 @@ class APP_NAME < Gosu::Window
       close
     else
       super
+    end
+  end
+
+  def button_up(id)
+    if @player.starts_battle?
+      case id
+      when Gosu::KB_Q
+        @combat.player_hits_wild(30)
+      when Gosu::KB_W
+        puts "W"
+      when Gosu::KB_E
+        puts "E"
+      when Gosu::KB_R
+        puts "R"
+      end
     end
   end
 end
