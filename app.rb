@@ -55,8 +55,8 @@ class APP_NAME < Gosu::Window
         @fighting = true
 
         if @fighting
-            @combat.OFFSET_YWHP = @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
-            @combat.OFFSET_XWHP = @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x - 200)
+            @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
+            @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x - 200)
 
             @combat.update
             @combat.fight_between(@player.trainerpokemon, @player.met_pokemon_to_start_battle, @player)
@@ -165,8 +165,6 @@ class APP_NAME < Gosu::Window
     @combat.reset_text
     @combat.OFFSET_X = WIDTH
     @combat.OFFSET_Y = HEIGHT
-    @combat.OFFSET_YWHP = HEIGHT
-    @combat.OFFSET_XWHP = WIDTH
   end
 
   def button_down(id)

@@ -9,9 +9,6 @@ class Combat
     @OFFSET_X = WIDTH
     @OFFSET_Y = HEIGHT
 
-    @OFFSET_XWHP = WIDTH
-    @OFFSET_YWHP = HEIGHT
-
     @combat_text = "Combattimento iniziato!"
     @tp_life = "100"
 
@@ -35,12 +32,12 @@ class Combat
     @bubble.draw(-@OFFSET_X, -@OFFSET_Y, ZOrder::UI, 2.0, 1.0)
     @font.draw_text(@combat_text, -@OFFSET_X + 10, -@OFFSET_Y + 10, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
-    @bubbleWHP.draw(-@OFFSET_XWHP + 50, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
+    @bubbleWHP.draw(-@OFFSET_X + 50, -@OFFSET_Y - 310, ZOrder::UI, 0.3, 0.3)
     @font.draw_text(@pw_life, -@OFFSET_X + 80, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
     @font.draw_text(@pw_name, -@OFFSET_X + 40, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
     @font.draw_text("Selvatico", -@OFFSET_X + 40, -@OFFSET_Y - 210, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
-    @bubbleWHP.draw(-@OFFSET_XWHP + 450, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
+    @bubbleWHP.draw(-@OFFSET_X + 450, -@OFFSET_Y - 310, ZOrder::UI, 0.3, 0.3)
     @font.draw_text(@pt_life, -@OFFSET_X + 480, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
     @font.draw_text(@pt_name, -@OFFSET_X + 440, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
     @font.draw_text("Allenatore", -@OFFSET_X + 440, -@OFFSET_Y - 210, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
