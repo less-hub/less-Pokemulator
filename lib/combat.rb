@@ -46,16 +46,28 @@ class Combat
 
   def player_hits_wild
 
-    dmg = calculate_trainer_damage(@pt.lvl, @pt.atk, @pw.def, 40)
+    if @pt.speed > @pw.speed
+      dmg = calculate_trainer_damage(@pt.lvl, @pt.atk, @pw.def, 40)
+      @pw.dec_hp_by(dmg)
 
-    @pw.dec_hp_by(dmg)
-
-    unless wpoke_exhausted?
+      unless wpoke_exhausted?
+        dmg = calculate_trainer_damage(@pw.lvl, @pw.atk, @pt.def, 40)
+        @pt.dec_hp_by(dmg)
+      else
+        @OFFSET_XWHP = WIDTH
+        @OFFSET_YWHP = HEIGHT
+      end
+    else
       dmg = calculate_trainer_damage(@pw.lvl, @pw.atk, @pt.def, 40)
       @pt.dec_hp_by(dmg)
-    else
-      @OFFSET_XWHP = WIDTH
-      @OFFSET_YWHP = HEIGHT
+
+      unless wpoke_exhausted?
+        dmg = calculate_trainer_damage(@pt.lvl, @pt.atk, @pw.def, 40)
+        @pw.dec_hp_by(dmg)
+      else
+        @OFFSET_XWHP = WIDTH
+        @OFFSET_YWHP = HEIGHT
+      end
     end
 
     @combat_text = "Il tuo pokemon infligge\n #{dmg} danni.\n\nTocca a te!,\nCome vuoi procedere?\nQ. Attacco da 40"
