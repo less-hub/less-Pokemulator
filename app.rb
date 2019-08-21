@@ -56,7 +56,7 @@ class APP_NAME < Gosu::Window
 
         if @fighting
             @combat.OFFSET_YWHP = @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
-            @combat.OFFSET_XWHP = @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x + 30)
+            @combat.OFFSET_XWHP = @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x - 200)
 
             @combat.update
             @combat.fight_between(@player.trainerpokemon, @player.met_pokemon_to_start_battle, @player)
@@ -69,7 +69,7 @@ class APP_NAME < Gosu::Window
             @player.remove_dead_poke
 
             if @combat.wpoke_exhausted?
-              @combat.combat_text = "Hai vinto!\nStrano che non\nè crashato niente eh?\nHai guadagnato 0 EXP!"
+              @combat.combat_text = "Congratulazioni! #{@combat.pt_name} selvatico è stato\nsconfitto!\n\nHai guadagnato 0 EXP!\n\nMuoviti per uscire."
               @fighting = false
             end
           end

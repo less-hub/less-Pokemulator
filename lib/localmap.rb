@@ -25,7 +25,6 @@ class LocalMap
         end
       end
     end
-
   end
 
   def update(x, y, dir)

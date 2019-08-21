@@ -1,5 +1,5 @@
 class Combat
-  attr_accessor :pt, :pw, :OFFSET_X, :OFFSET_Y, :combat_text, :OFFSET_XWHP, :OFFSET_YWHP
+  attr_accessor :pt, :pw, :OFFSET_X, :OFFSET_Y, :combat_text, :OFFSET_XWHP, :OFFSET_YWHP, :pt_name
 
   def initialize
     @bubble = Gosu::Image.new("media/bubble.png")
@@ -32,16 +32,18 @@ class Combat
   end
 
   def draw
-    @bubble.draw(-@OFFSET_X, -@OFFSET_Y, ZOrder::UI)
+    @bubble.draw(-@OFFSET_X, -@OFFSET_Y, ZOrder::UI, 2.0, 1.0)
     @font.draw_text(@combat_text, -@OFFSET_X + 10, -@OFFSET_Y + 10, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
-    @bubbleWHP.draw(-@OFFSET_XWHP - 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
-    @font.draw_text(@pw_life, -@OFFSET_X - 170, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
-    @font.draw_text(@pw_name, -@OFFSET_X - 210, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @bubbleWHP.draw(-@OFFSET_XWHP + 50, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
+    @font.draw_text(@pw_life, -@OFFSET_X + 80, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pw_name, -@OFFSET_X + 40, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text("Selvatico", -@OFFSET_X + 40, -@OFFSET_Y - 210, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
-    @bubbleWHP.draw(-@OFFSET_XWHP + 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
-    @font.draw_text(@pt_life, -@OFFSET_X + 230, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
-    @font.draw_text(@pt_name, -@OFFSET_X + 190, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @bubbleWHP.draw(-@OFFSET_XWHP + 450, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
+    @font.draw_text(@pt_life, -@OFFSET_X + 480, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pt_name, -@OFFSET_X + 440, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text("Allenatore", -@OFFSET_X + 440, -@OFFSET_Y - 210, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def player_hits_wild
@@ -65,7 +67,7 @@ class Combat
       end
     end
 
-    @combat_text = "#{@pt_name} infligge\n#{dmg} danni.\nE ne riceve #{dmgw}\n\nTocca a te!,\nCome vuoi procedere?\nQ. Attacco da 40"
+    @combat_text = "#{@pt_name} infligge #{dmg} danni e ne riceve #{dmgw}!\n\nTocca a te! Come vuoi procedere?\n\nQ. Attacco da 40"
   end
 
   def fight_between(poke1, poke2, player)
@@ -87,11 +89,11 @@ class Combat
   end
 
   def reset_text
-    @combat_text = "Combattimento iniziato!\n\nCome vuoi procedere?\nQ. Attacco da 40"
+    @combat_text = "Combattimento iniziato!\n\nCome vuoi procedere?\n\nQ. Attacco da 40"
   end
 
   def ask_for_moves
-    @combat_text = "Come vuoi procedere?\nQ. Attacco da 40"
+    @combat_text = "Come vuoi procedere?\n\nQ. Attacco da 40"
   end
 
   def load_fight_ui
