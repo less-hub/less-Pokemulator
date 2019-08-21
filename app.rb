@@ -17,7 +17,7 @@ require './lib/trainerpokemon'
 require './lib/combat'
 
 module ZOrder
-  BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, PLAYER_Z, UI, LOADING = *0..7
+  BACKGROUND, STREET, OBSTACLES, HOUSE, NPC, POKE, PLAYER_Z, UI, LOADING = *0..7
 end
 
 WIDTH = 1920

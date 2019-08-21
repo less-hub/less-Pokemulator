@@ -172,6 +172,6 @@ class TrainerPokemon
   end
 
   def draw
-    @cur_image.draw(@x, @y, ZOrder::NPC, @factor_x, @factor_y)
+    @cur_image.draw(@x, @y, ZOrder::POKE, @factor_x, @factor_y)
   end
 end

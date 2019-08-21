@@ -65,7 +65,7 @@ class Pokemon < Obstacles
     if @hp < 0
       @hp = 0
     end
-    
+
   end
 
   def update(move_x, move_y)
@@ -99,7 +99,7 @@ class Pokemon < Obstacles
   end
 
   def draw
-    @cur_image.draw(@x, @y, ZOrder::NPC, @scale_x, @scale_y)
+    @cur_image.draw(@x, @y, ZOrder::POKE, @scale_x, @scale_y)
   end
 
   def calculate_pokemon_size
