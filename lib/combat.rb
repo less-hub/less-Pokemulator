@@ -46,20 +46,19 @@ class Combat
 
   def player_hits_wild
 
-    @pw.dec_hp_by(30)
+    dmg = calculate_trainer_damage(@pt.lvl, @pt.atk, @pw.def, 40)
+
+    @pw.dec_hp_by(dmg)
 
     unless wpoke_exhausted?
-      @pt.dec_hp_by(10)
+      dmg = calculate_trainer_damage(@pw.lvl, @pw.atk, @pt.def, 40)
+      @pt.dec_hp_by(dmg)
     else
       @OFFSET_XWHP = WIDTH
       @OFFSET_YWHP = HEIGHT
     end
 
-    @combat_text = "Il tuo pokemon infligge\n #{30} danni.\n\nTocca a te!,\nCome vuoi procedere?\nQ. Attacco da 30"
-  end
-
-  def wpoke_exhausted?
-    @pw.dead?
+    @combat_text = "Il tuo pokemon infligge\n #{dmg} danni.\n\nTocca a te!,\nCome vuoi procedere?\nQ. Attacco da 40"
   end
 
   def fight_between(poke1, poke2, player)
@@ -69,6 +68,15 @@ class Combat
     @player = player
 
     @loaded = :true
+  end
+
+  def calculate_trainer_damage(pkm_lvl, pkm_atk, pkm_def, spell_dmg)
+    # 40 = SPELL DAMAGE
+    ((((2 * pkm_lvl + 10) * pkm_atk * spell_dmg) / (250 * pkm_def) + 2) * rand(0.85..1)).round
+  end
+
+  def wpoke_exhausted?
+    @pw.dead?
   end
 
   def reset_text

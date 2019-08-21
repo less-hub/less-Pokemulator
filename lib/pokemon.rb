@@ -1,5 +1,5 @@
 class Pokemon < Obstacles
-  attr_accessor :x, :y, :name, :hp, :atk, :def, :spatk, :spdef, :speed, :type
+  attr_accessor :x, :y, :lvl, :name, :hp, :atk, :def, :spatk, :spdef, :speed, :type
 
   def initialize(x, y, pokedex_number)
     super(x, y)
@@ -42,6 +42,21 @@ class Pokemon < Obstacles
       end
     end
 
+    @lvl = 3
+
+    @hp = 2 * @hp * @lvl / 100 + @lvl + 10
+
+    @atk = calc_stats(@atk)
+    @def = calc_stats(@def)
+    @spatk = calc_stats(@spatk)
+    @spdef = calc_stats(@spdef)
+    @speed = calc_stats(@speed)
+
+
+  end
+
+  def calc_stats(stat)
+    (2 * stat * @lvl / 100) + 5
   end
 
   def dec_hp_by(atk)
