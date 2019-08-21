@@ -61,6 +61,11 @@ class Pokemon < Obstacles
 
   def dec_hp_by(atk)
     @hp -= atk
+
+    if @hp < 0
+      @hp = 0
+    end
+    
   end
 
   def update(move_x, move_y)

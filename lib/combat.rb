@@ -36,41 +36,36 @@ class Combat
     @font.draw_text(@combat_text, -@OFFSET_X + 10, -@OFFSET_Y + 10, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
     @bubbleWHP.draw(-@OFFSET_XWHP - 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
-    @font.draw_text(@pw_life, -@OFFSET_XWHP - 180, -@OFFSET_YWHP - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
-    @font.draw_text(@pw_name, -@OFFSET_XWHP - 210, -@OFFSET_YWHP - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pw_life, -@OFFSET_X - 180, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pw_name, -@OFFSET_X - 210, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
     @bubbleWHP.draw(-@OFFSET_XWHP + 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
-    @font.draw_text(@pt_life, -@OFFSET_XWHP + 210, -@OFFSET_YWHP - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
-    @font.draw_text(@pw_name, -@OFFSET_XWHP + 190, -@OFFSET_YWHP - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pt_life, -@OFFSET_X + 210, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pw_name, -@OFFSET_X + 190, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def player_hits_wild
 
     if @pt.speed > @pw.speed
       dmg = calculate_trainer_damage(@pt.lvl, @pt.atk, @pw.def, 40)
+      dmgw = calculate_trainer_damage(@pw.lvl, @pw.atk, @pt.def, 40)
+
       @pw.dec_hp_by(dmg)
 
       unless wpoke_exhausted?
-        dmg = calculate_trainer_damage(@pw.lvl, @pw.atk, @pt.def, 40)
-        @pt.dec_hp_by(dmg)
-      else
-        @OFFSET_XWHP = WIDTH
-        @OFFSET_YWHP = HEIGHT
+        @pt.dec_hp_by(dmgw)
       end
     else
       dmg = calculate_trainer_damage(@pw.lvl, @pw.atk, @pt.def, 40)
-      @pt.dec_hp_by(dmg)
+      @pt.dec_hp_by(dmgw)
 
       unless wpoke_exhausted?
         dmg = calculate_trainer_damage(@pt.lvl, @pt.atk, @pw.def, 40)
         @pw.dec_hp_by(dmg)
-      else
-        @OFFSET_XWHP = WIDTH
-        @OFFSET_YWHP = HEIGHT
       end
     end
 
-    @combat_text = "Il tuo pokemon infligge\n #{dmg} danni.\n\nTocca a te!,\nCome vuoi procedere?\nQ. Attacco da 40"
+    @combat_text = "#{@pt_name} infligge\n#{dmg} danni.\nE ne riceve #{dmgw}\n\nTocca a te!,\nCome vuoi procedere?\nQ. Attacco da 40"
   end
 
   def fight_between(poke1, poke2, player)
@@ -92,11 +87,11 @@ class Combat
   end
 
   def reset_text
-    @combat_text = "Combattimento iniziato!\n\nCome vuoi procedere?\nQ. Attacco da 30"
+    @combat_text = "Combattimento iniziato!\n\nCome vuoi procedere?\nQ. Attacco da 40"
   end
 
   def ask_for_moves
-    @combat_text = "Come vuoi procedere?\nQ. Attacco da 30"
+    @combat_text = "Come vuoi procedere?\nQ. Attacco da 40"
   end
 
   def load_fight_ui

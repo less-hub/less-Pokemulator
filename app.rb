@@ -69,8 +69,6 @@ class APP_NAME < Gosu::Window
             @player.remove_dead_poke
 
             if @combat.wpoke_exhausted?
-              @combat.OFFSET_YWHP = HEIGHT
-              @combat.OFFSET_XWHP = WIDTH
               @combat.combat_text = "Hai vinto!\nStrano che non\nè crashato niente eh?\nHai guadagnato 0 EXP!"
               @fighting = false
             end
@@ -167,6 +165,8 @@ class APP_NAME < Gosu::Window
     @combat.reset_text
     @combat.OFFSET_X = WIDTH
     @combat.OFFSET_Y = HEIGHT
+    @combat.OFFSET_YWHP = HEIGHT
+    @combat.OFFSET_XWHP = WIDTH
   end
 
   def button_down(id)

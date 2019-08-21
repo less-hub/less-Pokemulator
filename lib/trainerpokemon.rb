@@ -41,7 +41,7 @@ class TrainerPokemon
     @lvl = 5
 
     @hp = 2 * @hp * @lvl / 100 + @lvl + 10
-    
+
     @atk = calc_stats(@atk)
     @def = calc_stats(@def)
     @spatk = calc_stats(@spatk)
@@ -57,6 +57,11 @@ class TrainerPokemon
 
   def dec_hp_by(atk)
     @hp -= atk
+
+    if @hp < 0
+      @hp = 0
+    end
+    
   end
 
   def is_dead?
