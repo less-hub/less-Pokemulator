@@ -63,11 +63,12 @@ class APP_NAME < Gosu::Window
             remove_combat_speech
             @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
           end
-          
+
           @player.remove_dead_poke
 
           if @combat.wpoke_exhausted?
-            @combat.combat_text = "Congratulazioni! #{@combat.pt_name} selvatico è stato\nsconfitto!\n\nHai guadagnato 0 EXP!\n\nMuoviti per uscire."
+            @combat.trainerpoke_give_exp
+            @combat.combat_text = "Congratulazioni! #{@combat.pt_name} selvatico è stato\nsconfitto!\n\nHai guadagnato #{@combat.pt.lvl * 6 / 5} EXP!\n\nMuoviti per uscire."
           end
       else
         if @player.off_screen_up?

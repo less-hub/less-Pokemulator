@@ -1,5 +1,5 @@
 class Combat
-  attr_accessor :pt, :pw, :OFFSET_X, :OFFSET_Y, :combat_text, :OFFSET_XWHP, :OFFSET_YWHP, :pt_name
+  attr_accessor :pt, :pw, :OFFSET_X, :OFFSET_Y, :combat_text, :pt_name
 
   def initialize
     @bubble = Gosu::Image.new("media/bubble.png")
@@ -19,12 +19,19 @@ class Combat
 
       @pt_life = @pt.hp.to_s
       @pw_life = @pw.hp.to_s
+
+
+      @pt_lvl = "LV. #{@pt.lvl.to_s}"
+      @pw_lvl = "LV. #{@pw.lvl.to_s}"
     else
       @pt_life = "100"
       @pw_life = "100"
 
       @pt_name = "Lorem"
       @pw_name = "Ipsum"
+
+      @pt_lvl = "LV."
+      @pw_lvl = "LV."
     end
   end
 
@@ -35,16 +42,17 @@ class Combat
     @bubbleWHP.draw(-@OFFSET_X + 50, -@OFFSET_Y - 310, ZOrder::UI, 0.3, 0.3)
     @font.draw_text(@pw_life, -@OFFSET_X + 80, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
     @font.draw_text(@pw_name, -@OFFSET_X + 40, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pw_lvl, -@OFFSET_X - 30, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
     @font.draw_text("Selvatico", -@OFFSET_X + 40, -@OFFSET_Y - 210, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
     @bubbleWHP.draw(-@OFFSET_X + 450, -@OFFSET_Y - 310, ZOrder::UI, 0.3, 0.3)
     @font.draw_text(@pt_life, -@OFFSET_X + 480, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
     @font.draw_text(@pt_name, -@OFFSET_X + 440, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pt_lvl, -@OFFSET_X + 370, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
     @font.draw_text("Allenatore", -@OFFSET_X + 440, -@OFFSET_Y - 210, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def player_hits_wild
-
     if @pt.speed > @pw.speed
       dmg = calculate_trainer_damage(@pt.lvl, @pt.atk, @pw.def, 40)
       dmgw = calculate_trainer_damage(@pw.lvl, @pw.atk, @pt.def, 40)
@@ -74,6 +82,16 @@ class Combat
     @player = player
 
     @loaded = :true
+  end
+
+  def trainerpoke_give_exp
+    @pt.exp += @pt.lvl * 6 / 5
+
+    if @pt.exp > @pt.exp_to_lvl
+      @pt.lvl += 1
+
+      @pt.exp -= @pt.exp_to_lvl
+    end
   end
 
   def calculate_trainer_damage(pkm_lvl, pkm_atk, pkm_def, spell_dmg)

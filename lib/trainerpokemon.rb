@@ -1,5 +1,5 @@
 class TrainerPokemon
-  attr_accessor :x, :y, :name, :lvl, :hp, :atk, :def, :spatk, :spdef, :speed, :type
+  attr_accessor :x, :y, :name, :lvl, :hp, :atk, :def, :spatk, :spdef, :speed, :type, :exp, :exp_to_lvl
 
   def initialize(x, y, dir, pokedex_number)
     @x = x
@@ -39,6 +39,7 @@ class TrainerPokemon
     end
 
     @lvl = 5
+    @exp = 123
 
     @hp = 2 * @hp * @lvl / 100 + @lvl + 10
 
@@ -48,6 +49,7 @@ class TrainerPokemon
     @spdef = calc_stats(@spdef)
     @speed = calc_stats(@speed)
 
+    @exp_to_lvl = @lvl**3
 
   end
 
