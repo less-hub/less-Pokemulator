@@ -61,7 +61,7 @@ class TrainerPokemon
     if @hp < 0
       @hp = 0
     end
-    
+
   end
 
   def is_dead?
@@ -124,11 +124,11 @@ class TrainerPokemon
     if move_x.positive?
       @dir = :right
 
-      if @y < player_y
+      if @y < player_y + 25
         move_x.times do
           @y += 1
         end
-      elsif @y > player_y
+      elsif @y > player_y + 25
         move_x.times do
           @y -= 1
         end
@@ -144,11 +144,11 @@ class TrainerPokemon
     if move_x.negative?
       @dir = :left
 
-      if @y < player_y
+      if @y < player_y + 25
         (-move_x).times do
           @y += 1
         end
-      elsif @y > player_y
+      elsif @y > player_y + 25
         (-move_x).times do
           @y -= 1
         end
