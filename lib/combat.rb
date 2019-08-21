@@ -36,12 +36,12 @@ class Combat
     @font.draw_text(@combat_text, -@OFFSET_X + 10, -@OFFSET_Y + 10, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
     @bubbleWHP.draw(-@OFFSET_XWHP - 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
-    @font.draw_text(@pw_life, -@OFFSET_X - 180, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pw_life, -@OFFSET_X - 170, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
     @font.draw_text(@pw_name, -@OFFSET_X - 210, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
     @bubbleWHP.draw(-@OFFSET_XWHP + 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
-    @font.draw_text(@pt_life, -@OFFSET_X + 210, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
-    @font.draw_text(@pw_name, -@OFFSET_X + 190, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pt_life, -@OFFSET_X + 230, -@OFFSET_Y - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pt_name, -@OFFSET_X + 190, -@OFFSET_Y - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
   def player_hits_wild
