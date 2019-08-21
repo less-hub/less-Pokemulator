@@ -10,19 +10,19 @@ class Combat
     @OFFSET_Y = HEIGHT
 
     @combat_text = "Combattimento iniziato!"
-    @tp_life = "100"
-
   end
 
   def update
     if @loaded == :true
       @pt_name = @pt.name
       @pw_name = @pw.name
+
       @pt_life = @pt.hp.to_s
       @pw_life = @pw.hp.to_s
     else
       @pt_life = "100"
       @pw_life = "100"
+
       @pt_name = "Lorem"
       @pw_name = "Ipsum"
     end
@@ -87,10 +87,6 @@ class Combat
 
   def reset_text
     @combat_text = "Combattimento iniziato!\n\nCome vuoi procedere?\n\nQ. Attacco da 40"
-  end
-
-  def ask_for_moves
-    @combat_text = "Come vuoi procedere?\n\nQ. Attacco da 40"
   end
 
   def load_fight_ui

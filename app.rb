@@ -52,26 +52,22 @@ class APP_NAME < Gosu::Window
   def update
     unless @player.dies?
       if @player.met_pokemon_to_start_battle
-        @fighting = true
+          @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
+          @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x - 200)
 
-        if @fighting
-            @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
-            @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x - 200)
+          @combat.update
+          @combat.fight_between(@player.trainerpokemon, @player.met_pokemon_to_start_battle, @player)
+          @combat.load_fight_ui
 
-            @combat.update
-            @combat.fight_between(@player.trainerpokemon, @player.met_pokemon_to_start_battle, @player)
-            @combat.load_fight_ui
+          if @player.trainerpokemon.is_dead?
+            remove_combat_speech
+            @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
+          end
+          
+          @player.remove_dead_poke
 
-            if @player.trainerpokemon.is_dead?
-              remove_combat_speech
-              @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
-            end
-            @player.remove_dead_poke
-
-            if @combat.wpoke_exhausted?
-              @combat.combat_text = "Congratulazioni! #{@combat.pt_name} selvatico è stato\nsconfitto!\n\nHai guadagnato 0 EXP!\n\nMuoviti per uscire."
-              @fighting = false
-            end
+          if @combat.wpoke_exhausted?
+            @combat.combat_text = "Congratulazioni! #{@combat.pt_name} selvatico è stato\nsconfitto!\n\nHai guadagnato 0 EXP!\n\nMuoviti per uscire."
           end
       else
         if @player.off_screen_up?
