@@ -88,11 +88,12 @@ class TrainerPokemon
         move_y.times do
           @x += 1
         end
+        @cur_image = (Gosu.milliseconds / 175).even? ? @right1 : @right2
       elsif @x > player_x + 15
         move_y.times do
           @x -= 1
         end
-
+        @cur_image = (Gosu.milliseconds / 175).even? ? @left1 : @left2
       end
 
       if @y < player_y - 100
@@ -110,10 +111,12 @@ class TrainerPokemon
         (-move_y).times do
           @x += 1
         end
+        @cur_image = (Gosu.milliseconds / 175).even? ? @right1 : @right2
       elsif @x > player_x + 15
         (-move_y).times do
           @x -= 1
         end
+        @cur_image = (Gosu.milliseconds / 175).even? ? @left1 : @left2
       end
 
       if @y > player_y + 120
@@ -130,10 +133,12 @@ class TrainerPokemon
         move_x.times do
           @y += 1
         end
+        @cur_image = (Gosu.milliseconds / 175).even? ? @down1 : @down2
       elsif @y > player_y + 25
         move_x.times do
           @y -= 1
         end
+        @cur_image = (Gosu.milliseconds / 175).even? ? @up1 : @up2
       end
 
       if @x < player_x - 100
@@ -150,10 +155,12 @@ class TrainerPokemon
         (-move_x).times do
           @y += 1
         end
+        @cur_image = (Gosu.milliseconds / 175).even? ? @down1 : @down2
       elsif @y > player_y + 25
         (-move_x).times do
           @y -= 1
         end
+        @cur_image = (Gosu.milliseconds / 175).even? ? @up1 : @up2
       end
 
       if @x > player_x + 100
