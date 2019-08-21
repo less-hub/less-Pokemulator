@@ -1,5 +1,5 @@
 class TrainerPokemon
-  attr_reader :x, :y, :hp
+  attr_reader :x, :y, :name, :hp, :atk, :def, :spatk, :spdef, :speed, :type
 
   def initialize(x, y, dir, pokedex_number)
     @x = x
@@ -23,7 +23,20 @@ class TrainerPokemon
 
     @cur_image = @down1
 
-    @hp = 120
+    File.readlines("media/pokemon_stat.txt").each do |phrase|
+      phrase.split(" ").each_cons(9) do |num|
+        if num[0].to_i == pokedex_number
+          @name = num[1]
+          @hp = num[2].to_i
+          @atk = num[3].to_i
+          @def = num[4].to_i
+          @spatk = num[5].to_i
+          @spdef = num[6].to_i
+          @speed = num[7].to_i
+          @type = num[8]
+        end
+      end
+    end
 
   end
 
