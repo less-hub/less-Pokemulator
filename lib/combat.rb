@@ -57,9 +57,13 @@ class Combat
     @pw.dead?
   end
 
-  def fight_between(poke1, poke2)
+  def fight_between(poke1, poke2, player)
     @pt = poke1
     @pw = poke2
+
+    @player_l = player
+    @player_x = player.x
+    @player_y = player.y
 
     @loaded = :true
   end
@@ -70,5 +74,13 @@ class Combat
 
   def ask_for_moves
     @combat_text = "Come vuoi procedere?\nQ. Attacco da 30"
+  end
+
+  def load_fight_ui
+    @player_x = @pw.x + 200
+    @player_y = @pw.y + 90
+    @pt.update(0, 5, @player_x, @player_y)
+
+  #  @pw.update(0, 0)
   end
 end

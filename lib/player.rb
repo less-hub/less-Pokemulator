@@ -3,7 +3,7 @@
 # Spawns the player at given position, who can move around
 
 class Player
-  attr_reader :x, :y, :trainerpokemon
+  attr_accessor :x, :y, :trainerpokemon
 
   def initialize(x, y, dir, map_to_load_x, map_to_load_y)
     @x = x
@@ -29,6 +29,10 @@ class Player
     @cur_image.draw(@x, @y, ZOrder::PLAYER_Z, @factor_x, @factor_y)
     @trainerpokemon.draw
     @localmap.draw
+  end
+
+  def move(move_x, move_y)
+    update(move_x, move_y)
   end
 
   # Makes the player moving around, changes screen if player hits map border

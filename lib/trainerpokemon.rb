@@ -1,5 +1,5 @@
 class TrainerPokemon
-  attr_reader :hp
+  attr_reader :x, :y, :hp
 
   def initialize(x, y, dir, pokedex_number)
     @x = x
@@ -126,9 +126,7 @@ class TrainerPokemon
            @x -= 1
         end
       end
-
     end
-
   end
 
   def draw

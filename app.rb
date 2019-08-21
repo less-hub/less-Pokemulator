@@ -52,25 +52,30 @@ class APP_NAME < Gosu::Window
   def update
     unless @player.dies?
       if @player.met_pokemon_to_start_battle
-          @combat.update
-          @combat.fight_between(@player.trainerpokemon, @player.met_pokemon_to_start_battle)
+        @fighting = true
 
-          @combat.OFFSET_XWHP = @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x + 30)
-          @combat.OFFSET_YWHP = @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
+        if @fighting
+            @combat.OFFSET_YWHP = @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
+            @combat.OFFSET_XWHP = @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x + 30)
 
-          if @player.trainerpokemon.is_dead?
-            remove_combat_speech
-            @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
-          end
-          @player.remove_dead_poke
+            @combat.update
+            @combat.fight_between(@player.trainerpokemon, @player.met_pokemon_to_start_battle, @player)
+            @combat.load_fight_ui
 
-          if @combat.wpoke_exhausted?
-            @combat.OFFSET_YWHP = HEIGHT
-            @combat.OFFSET_XWHP = WIDTH
-            @combat.combat_text = "Hai vinto!\nStrano che non\nè crashato niente eh?\nHai guadagnato 0 EXP!"
+            if @player.trainerpokemon.is_dead?
+              remove_combat_speech
+              @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
+            end
+            @player.remove_dead_poke
+
+            if @combat.wpoke_exhausted?
+              @combat.OFFSET_YWHP = HEIGHT
+              @combat.OFFSET_XWHP = WIDTH
+              @combat.combat_text = "Hai vinto!\nStrano che non\nè crashato niente eh?\nHai guadagnato 0 EXP!"
+              @fighting = false
+            end
           end
       else
-
         if @player.off_screen_up?
           change_map(:up)
           @player.clear_maps
