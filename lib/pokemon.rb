@@ -1,5 +1,5 @@
 class Pokemon < Obstacles
-  attr_reader :x, :y, :hp
+  attr_accessor :x, :y, :name, :hp, :atk, :def, :spatk, :spdef, :speed, :type
 
   def initialize(x, y, pokedex_number)
     super(x, y)
@@ -41,7 +41,7 @@ class Pokemon < Obstacles
         end
       end
     end
-    
+
   end
 
   def dec_hp_by(atk)

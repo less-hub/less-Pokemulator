@@ -19,11 +19,15 @@ class Combat
 
   def update
     if @loaded == :true
-      @tp_life = @pt.hp.to_s
+      @pt_name = @pt.name
+      @pw_name = @pw.name
+      @pt_life = @pt.hp.to_s
       @pw_life = @pw.hp.to_s
     else
-      @tp_life = "100"
+      @pt_life = "100"
       @pw_life = "100"
+      @pt_name = "Lorem"
+      @pw_name = "Ipsum"
     end
   end
 
@@ -32,25 +36,26 @@ class Combat
     @font.draw_text(@combat_text, -@OFFSET_X + 10, -@OFFSET_Y + 10, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
     @bubbleWHP.draw(-@OFFSET_XWHP - 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
-    @font.draw_text(@tp_life, -@OFFSET_XWHP - 180, -@OFFSET_YWHP - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
-    @font.draw_text("Wild Pokemon", -@OFFSET_XWHP - 210, -@OFFSET_YWHP - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pw_life, -@OFFSET_XWHP - 180, -@OFFSET_YWHP - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pw_name, -@OFFSET_XWHP - 210, -@OFFSET_YWHP - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
 
     @bubbleWHP.draw(-@OFFSET_XWHP + 200, -@OFFSET_YWHP - 310, ZOrder::UI, 0.3, 0.3)
-    @font.draw_text(@pw_life, -@OFFSET_XWHP + 210, -@OFFSET_YWHP - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
-    @font.draw_text("Trainer Pokemon", -@OFFSET_XWHP + 190, -@OFFSET_YWHP - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pt_life, -@OFFSET_XWHP + 210, -@OFFSET_YWHP - 280, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
+    @font.draw_text(@pw_name, -@OFFSET_XWHP + 190, -@OFFSET_YWHP - 350, ZOrder::UI, 1.0, 1.0, Gosu::Color::BLACK)
   end
 
-  def player_hits_wild(atk)
-    @pw.dec_hp_by(atk)
+  def player_hits_wild
+
+    @pw.dec_hp_by(30)
 
     unless wpoke_exhausted?
-      @pt.dec_hp_by(atk)
+      @pt.dec_hp_by(10)
     else
       @OFFSET_XWHP = WIDTH
       @OFFSET_YWHP = HEIGHT
     end
 
-    @combat_text = "Il tuo pokemon infligge\n #{atk} danni.\n\nTocca a te!,\nCome vuoi procedere?\nQ. Attacco da 30"
+    @combat_text = "Il tuo pokemon infligge\n #{30} danni.\n\nTocca a te!,\nCome vuoi procedere?\nQ. Attacco da 30"
   end
 
   def wpoke_exhausted?
@@ -61,9 +66,7 @@ class Combat
     @pt = poke1
     @pw = poke2
 
-    @player_l = player
-    @player_x = player.x
-    @player_y = player.y
+    @player = player
 
     @loaded = :true
   end
@@ -77,9 +80,8 @@ class Combat
   end
 
   def load_fight_ui
-    @player_x = @pw.x + 200
-    @player_y = @pw.y + 90
-    @pt.update(0, 5, @player_x, @player_y)
+  #  @pw.x = @player.x - 200
+  #  @pw.y = @player.y - 90
 
   #  @pw.update(0, 0)
   end

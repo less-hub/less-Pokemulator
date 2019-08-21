@@ -1,5 +1,5 @@
 class TrainerPokemon
-  attr_reader :x, :y, :name, :hp, :atk, :def, :spatk, :spdef, :speed, :type
+  attr_accessor :x, :y, :name, :hp, :atk, :def, :spatk, :spdef, :speed, :type
 
   def initialize(x, y, dir, pokedex_number)
     @x = x

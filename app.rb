@@ -181,7 +181,7 @@ class APP_NAME < Gosu::Window
     if @player.met_pokemon_to_start_battle
       case id
       when Gosu::KB_Q
-        @combat.player_hits_wild(30)
+        @combat.player_hits_wild
       when Gosu::KB_W
         puts "W"
       when Gosu::KB_E
