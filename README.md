@@ -55,20 +55,13 @@ sudo gem install gosu
 You can move your charcter with `i, j, k, l`. You can talk with NPCs
 just by facing them.
 
+If you encounter a pokemon, you can use spells with `q, w, e, r`.
+
 If you just want to play, you can stop reading and `ruby app.rb` !
 
 Welcome to my world!
 
 If you are interested to this repo, you should keep reading!
-
-## TO-DO list
-* Add pokemons LVL, HP, ATK, DEF
-* Add combat system
-* Add Player spawn point at player House
-* Add villages, routes etc to world zone
-* Add enemy NPC
-* Add better world map
-* Add storyline
 
 ## Adding a map
 Create a `.txt` file, place it in `media/maps/MAP_NUMBER.txt`. Then add NPCs
@@ -84,7 +77,7 @@ media/maps/42speech.txt
 ## Adding objects to maps
 The syntax is
 ```
-OBJ POSX POSY . . .
+OBJ POSX POSY . . . .
 ```
 Where `OBJ` stands for
 
