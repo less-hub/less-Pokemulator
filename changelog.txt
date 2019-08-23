@@ -1,0 +1,23 @@
+# Changelog
+
+## [Unreleased]
+- Maps, world maps and storyline
+- More pokemons
+- More kind of stones, trees, houses, lakes
+- UI for combat system
+- Catch wild pokemons
+- Enemy trainers
+- Items
+- Menu
+- Player team
+
+## [0.0.1] - 2019-08-23
+### Added
+- Player can move
+- Player can collide to objects
+- Player can meet wild pokemons
+- Player drowns when goes into a lake
+- Player can move between maps
+- Talking friendly NPC
+- Following pokemon
+- Wild pokemons
