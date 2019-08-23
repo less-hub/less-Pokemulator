@@ -3,10 +3,11 @@
 # Creates a city with refer point in [0, 0], full of trees, rocks and houses!
 
 class LocalMap
-  attr_accessor :combat_status
+  attr_accessor :combat_status, :fighting_pokemon
 
   def initialize(map_to_load_x, map_to_load_y)
     @mapobjects = MapObjects.new
+    @fighting_pokemon = Array.new
 
     @combat_status = false
 
@@ -52,6 +53,7 @@ class LocalMap
 
   def met_wild_pokemon?(x, y, dir)
     if @mapobjects.colliding_to_pokemons?(x, y, dir)
+      @fighting_pokemon.push(@mapobjects.colliding_to_pokemons?(x, y, dir))
       @combat_status = true
     end
 

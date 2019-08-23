@@ -31,8 +31,19 @@ class Player
     @localmap.draw
   end
 
-  def move(move_x, move_y)
-    update(move_x, move_y)
+  def move_to(new_x, new_y)
+    if @x < new_x
+      update(5, 0)
+    elsif @x > new_x
+      update(-5, 0)
+    end
+
+    if @y < new_y
+      update(0, 5)
+    elsif @y > new_y
+      update(0, -5)
+    end
+
   end
 
   # Makes the player moving around, changes screen if player hits map border
@@ -126,7 +137,12 @@ class Player
     @localmap.combat_status
   end
 
+  def wild_fighting_poke
+    @localmap.fighting_pokemon[0]
+  end
+
   def is_not_fighting
+    @localmap.fighting_pokemon.clear
     @localmap.combat_status = false
   end
 

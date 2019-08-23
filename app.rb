@@ -51,7 +51,7 @@ class APP_NAME < Gosu::Window
   def update
     unless @player.dies?
       if @player.is_fighting
-          @pokemon_met = @player.met_pokemon_to_start_battle
+          @pokemon_met = @player.wild_fighting_poke
 
           @combat.OFFSET_Y = -(@pokemon_met.y + 100)
           @combat.OFFSET_X = -(@pokemon_met.x - 200)
@@ -174,7 +174,7 @@ class APP_NAME < Gosu::Window
   end
 
   def button_up(id)
-    if @player.met_pokemon_to_start_battle
+    if @player.met_pokemon_to_start_battle || @player.is_fighting
       case id
       when Gosu::KB_Q
         @combat.player_hits_wild

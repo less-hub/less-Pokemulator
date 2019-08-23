@@ -10,6 +10,7 @@ class Combat
     @OFFSET_Y = HEIGHT
 
     @combat_text = "Combattimento iniziato!"
+
   end
 
   def update
@@ -112,8 +113,11 @@ class Combat
     @pt.x = @pw.x + 400
     @pt.y = @pw.y
 
-    @player.move(0, 0)
+    x_media = (@pt.x + @pw.x) / 2
 
-  #  @pw.update(0, 0)
+    if @player.x != x_media || @player.y != (@pt.y - 100)
+      puts "true"
+      @player.move_to(x_media, @pt.y - 100)
+    end
   end
 end
