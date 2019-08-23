@@ -36,7 +36,6 @@ class APP_NAME < Gosu::Window
     @player_spawn_y = HEIGHT / 2
     @player_spawn_dir = :down
 
-
     @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
     @combat = Combat.new
 
@@ -51,7 +50,8 @@ class APP_NAME < Gosu::Window
 
   def update
     unless @player.dies?
-      if @player.met_pokemon_to_start_battle
+      puts "#{@player.is_fighting}"
+      if @player.is_fighting
           @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
           @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x - 200)
 
@@ -69,6 +69,7 @@ class APP_NAME < Gosu::Window
           if @combat.wpoke_exhausted?
             @combat.trainerpoke_give_exp
             @combat.combat_text = "Congratulazioni! #{@combat.pt_name} selvatico è stato\nsconfitto!\n\nHai guadagnato #{@combat.pt.lvl * 6 / 5} EXP!\n\nMuoviti per uscire."
+            @player.is_not_fighting
           end
       else
         if @player.off_screen_up?

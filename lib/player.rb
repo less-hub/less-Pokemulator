@@ -122,6 +122,14 @@ class Player
     @y > 2 * HEIGHT - 100
   end
 
+  def is_fighting
+    @localmap.combat_status
+  end
+
+  def is_not_fighting
+    @localmap.combat_status = false
+  end
+
   def dies?
     @localmap.drowned?(@x, @y, @dir)
   end
