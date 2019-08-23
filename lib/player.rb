@@ -20,7 +20,7 @@ class Player
 
     @cur_image = @standing_down
 
-    @trainerpokemon = TrainerPokemon.new(@x + 10, @y - 20 * @factor_y, @dir, 1)
+    @trainerpokemon = TrainerPokemon.new(@x + 10, @y - 20 * @factor_y, @dir, 7)
 
     @localmap = LocalMap.new(map_to_load_x, map_to_load_y)
   end

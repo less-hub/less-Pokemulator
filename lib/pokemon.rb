@@ -19,10 +19,22 @@ class Pokemon < Obstacles
 
     @path_to_image = "media/pokemons/" + pokedex_number.to_s
 
-    @up1, @up2 = *Gosu::Image.load_tiles(@path_to_image + @image_up, 13, 15)
-    @down1, @down2 = *Gosu::Image.load_tiles(@path_to_image + @image_down, 15, 16)
-    @left1, @left2 = *Gosu::Image.load_tiles(@path_to_image + @image_left, 19, 15)
-    @right1, @right2 = *Gosu::Image.load_tiles(@path_to_image + @image_right, 19, 15)
+    if pokedex_number == 1
+      @up1, @up2 = *Gosu::Image.load_tiles(@path_to_image + @image_up, 13, 15)
+      @down1, @down2 = *Gosu::Image.load_tiles(@path_to_image + @image_down, 15, 16)
+      @left1, @left2 = *Gosu::Image.load_tiles(@path_to_image + @image_left, 19, 15)
+      @right1, @right2 = *Gosu::Image.load_tiles(@path_to_image + @image_right, 19, 15)
+    elsif pokedex_number == 4
+      @up1, @up2 = *Gosu::Image.load_tiles(@path_to_image + @image_up, 11, 17)
+      @down1, @down2 = *Gosu::Image.load_tiles(@path_to_image + @image_down, 11, 16)
+      @left1, @left2 = *Gosu::Image.load_tiles(@path_to_image + @image_left, 19, 16)
+      @right1, @right2 = *Gosu::Image.load_tiles(@path_to_image + @image_right, 19, 16)
+    elsif pokedex_number == 7
+      @up1, @up2 = *Gosu::Image.load_tiles(@path_to_image + @image_up, 11, 15)
+      @down1, @down2 = *Gosu::Image.load_tiles(@path_to_image + @image_down, 11, 15)
+      @left1, @left2 = *Gosu::Image.load_tiles(@path_to_image + @image_left, 15, 15)
+      @right1, @right2 = *Gosu::Image.load_tiles(@path_to_image + @image_right, 15, 15)
+    end
 
     @cur_image = @down1
 
