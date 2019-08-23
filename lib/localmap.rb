@@ -54,7 +54,7 @@ class LocalMap
     if @mapobjects.colliding_to_pokemons?(x, y, dir)
       @combat_status = true
     end
-    
+
     @mapobjects.colliding_to_pokemons?(x, y, dir)
   end
 

@@ -108,7 +108,13 @@ class MapObjects
   # @param: player x-axis, player y-axis, player direction
   # @return: true if player hits ATLEAST 1 pokemon, false otherwise
   def colliding_to_pokemons?(x, y, dir)
-    @wildpokemons.detect { |poke| poke.collide?(x, y, dir) }
+    @wildpokemons.detect do |poke|
+      if poke.collide?(x, y, dir)
+        poke.stop
+      end
+      
+      poke.collide?(x, y, dir)
+    end
   end
 
   # Spawns an horizontal line of trees

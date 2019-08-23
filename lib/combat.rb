@@ -81,6 +81,7 @@ class Combat
 
     @player = player
 
+    load_fight_ui
     @loaded = :true
   end
 
@@ -108,8 +109,10 @@ class Combat
   end
 
   def load_fight_ui
-  #  @pw.x = @player.x - 200
-  #  @pw.y = @player.y - 90
+    @pt.x = @pw.x + 400
+    @pt.y = @pw.y
+
+    @player.move(0, 0)
 
   #  @pw.update(0, 0)
   end

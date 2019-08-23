@@ -50,14 +50,14 @@ class APP_NAME < Gosu::Window
 
   def update
     unless @player.dies?
-      puts "#{@player.is_fighting}"
       if @player.is_fighting
-          @combat.OFFSET_Y = -(@player.met_pokemon_to_start_battle.y + 100)
-          @combat.OFFSET_X = -(@player.met_pokemon_to_start_battle.x - 200)
+          @pokemon_met = @player.met_pokemon_to_start_battle
+
+          @combat.OFFSET_Y = -(@pokemon_met.y + 100)
+          @combat.OFFSET_X = -(@pokemon_met.x - 200)
 
           @combat.update
-          @combat.fight_between(@player.trainerpokemon, @player.met_pokemon_to_start_battle, @player)
-          @combat.load_fight_ui
+          @combat.fight_between(@player.trainerpokemon, @pokemon_met, @player)
 
           if @player.trainerpokemon.is_dead?
             remove_combat_speech

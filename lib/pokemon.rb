@@ -1,8 +1,10 @@
 class Pokemon < Obstacles
-  attr_accessor :x, :y, :lvl, :name, :hp, :atk, :def, :spatk, :spdef, :speed, :type
+  attr_accessor :x, :y, :is_fighting, :lvl, :name, :hp, :atk, :def, :spatk, :spdef, :speed, :type
 
   def initialize(x, y, pokedex_number)
     super(x, y)
+
+    @is_fighting = false
 
     @x_left_margin = x
     @y_up_margin = y
@@ -67,6 +69,10 @@ class Pokemon < Obstacles
 
   end
 
+  def stop
+    @is_fighting = true
+  end
+
   def calc_stats(stat)
     (2 * stat * @lvl / 100) + 5
   end
@@ -82,30 +88,33 @@ class Pokemon < Obstacles
 
   def update(move_x, move_y)
 
-    change_direction
+    unless @is_fighting
+      change_direction
 
-    if move_y > 0
-      @cur_image = (Gosu.milliseconds / 350).even? ? @down1 : @down2
-    elsif move_y < 0
-      @cur_image = (Gosu.milliseconds / 350).even? ? @up1 : @up2
-    elsif move_x < 0
-      @cur_image = (Gosu.milliseconds / 350).even? ? @left1 : @left2
-    elsif move_x > 0
-      @cur_image = (Gosu.milliseconds / 350).even? ? @right1 : @right2
-    end
+      if move_y > 0
+        @cur_image = (Gosu.milliseconds / 350).even? ? @down1 : @down2
+      elsif move_y < 0
+        @cur_image = (Gosu.milliseconds / 350).even? ? @up1 : @up2
+      elsif move_x < 0
+        @cur_image = (Gosu.milliseconds / 350).even? ? @left1 : @left2
+      elsif move_x > 0
+        @cur_image = (Gosu.milliseconds / 350).even? ? @right1 : @right2
+      end
 
-    calculate_pokemon_size
+      calculate_pokemon_size
 
-    if move_y > 0
-      move_y.times { @y += 1 } unless out_fence_down?
-    elsif move_y < 0
-      move_y = -move_y
-      move_y.times { @y -= 1 } unless out_fence_up?
-    elsif move_x < 0
-      move_x = -move_x
-      move_x.times { @x -= 1 } unless out_fence_left?
-    elsif move_x > 0
-      move_x.times { @x += 1 } unless out_fence_right?
+      if move_y > 0
+        move_y.times { @y += 1 } unless out_fence_down?
+      elsif move_y < 0
+        move_y = -move_y
+        move_y.times { @y -= 1 } unless out_fence_up?
+      elsif move_x < 0
+        move_x = -move_x
+        move_x.times { @x -= 1 } unless out_fence_left?
+      elsif move_x > 0
+        move_x.times { @x += 1 } unless out_fence_right?
+      end
+
     end
 
   end
