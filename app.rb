@@ -174,7 +174,7 @@ class APP_NAME < Gosu::Window
   end
 
   def button_up(id)
-    if @player.met_pokemon_to_start_battle || @player.is_fighting
+    if @player.is_fighting
       case id
       when Gosu::KB_Q
         @combat.player_hits_wild

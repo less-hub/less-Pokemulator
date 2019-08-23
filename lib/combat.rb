@@ -116,7 +116,6 @@ class Combat
     x_media = (@pt.x + @pw.x) / 2
 
     if @player.x != x_media || @player.y != (@pt.y - 100)
-      puts "true"
       @player.move_to(x_media, @pt.y - 100)
     end
   end

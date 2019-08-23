@@ -112,7 +112,6 @@ class MapObjects
       if poke.collide?(x, y, dir)
         poke.stop
       end
-      
       poke.collide?(x, y, dir)
     end
   end

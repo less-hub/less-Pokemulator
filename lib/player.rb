@@ -150,7 +150,7 @@ class Player
     @localmap.drowned?(@x, @y, @dir)
   end
 
-  def met_pokemon_to_start_battle
+  def met_pokemon_to_start_battle?
     @localmap.met_wild_pokemon?(@x, @y, @dir)
   end
 

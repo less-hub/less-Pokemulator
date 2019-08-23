@@ -34,6 +34,7 @@ class LocalMap
 
   def update(x, y, dir)
     @mapobjects.update(x, y, dir)
+    met_wild_pokemon?(x, y, dir)
   end
 
   def draw
@@ -56,8 +57,6 @@ class LocalMap
       @fighting_pokemon.push(@mapobjects.colliding_to_pokemons?(x, y, dir))
       @combat_status = true
     end
-
-    @mapobjects.colliding_to_pokemons?(x, y, dir)
   end
 
   def wild_poke_defeated?
