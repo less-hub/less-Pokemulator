@@ -43,7 +43,6 @@ class Player
     elsif @y > new_y
       update(0, -5)
     end
-
   end
 
   # Makes the player moving around, changes screen if player hits map border

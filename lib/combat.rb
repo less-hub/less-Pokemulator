@@ -11,6 +11,10 @@ class Combat
 
     @combat_text = "Combattimento iniziato!"
 
+    @x_media = 0
+    @y_media = 0
+    @loaded = :false
+
   end
 
   def update
@@ -24,6 +28,8 @@ class Combat
 
       @pt_lvl = "LV. #{@pt.lvl.to_s}"
       @pw_lvl = "LV. #{@pw.lvl.to_s}"
+
+      @x_media = (@pt.x + @pw.x) / 2
     else
       @pt_life = "100"
       @pw_life = "100"
@@ -82,6 +88,10 @@ class Combat
 
     @player = player
 
+    if @player.x != @x_media
+      @player.move_to(@x_media, @player.y - 1)
+    end
+
     load_fight_ui
     @loaded = :true
   end
@@ -113,10 +123,5 @@ class Combat
     @pt.x = @pw.x + 400
     @pt.y = @pw.y
 
-    x_media = (@pt.x + @pw.x) / 2
-
-    if @player.x != x_media || @player.y != (@pt.y - 100)
-      @player.move_to(x_media, @pt.y - 100)
-    end
   end
 end

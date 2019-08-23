@@ -38,7 +38,7 @@ class APP_NAME < Gosu::Window
 
     @player = Player.new(@player_spawn_x, @player_spawn_y, @player_spawn_dir, @map_position[0], @map_position[1])
     @combat = Combat.new
-
+    
     # Shows FPS
     @font = Gosu::Font.new(self, Gosu.default_font_name, 20)
 
