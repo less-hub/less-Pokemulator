@@ -5,7 +5,6 @@
 - [Installing... On Ubuntu](#installing-on-ubuntu)
 - [Installing... On other distros](#installing-on-other-distros)
 - [Playing](#playing)
-- [TO-DO list](#to-do-list)
 - [Adding a map](#adding-a-map)
 - [Adding objects to maps](#adding-objects-to-maps)
 - [Adding speech to NPCs](#adding-speech-to-npcs)
