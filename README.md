@@ -10,7 +10,7 @@
 - [Adding speech to NPCs](#adding-speech-to-npcs)
 - [Credits](#credits)
 
-## Uhm...Well...Just... Just why?
+## Uhm...Well...Just... Just why??????
 
 Because i wanted to create a game with ruby and a graphic library. So, how could
 I choose a different game then the one we all love?!
